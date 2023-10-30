@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="logging"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Projects/Programming/Java/external-libraries/log4j2/log4j-api-2.17.2.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Projects/Programming/Java/external-libraries/log4j2/log4j-api-2.17.2-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Projects/Programming/Java/external-libraries/log4j2/log4j-core-2.17.2.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Projects/Programming/Java/external-libraries/log4j2/log4j-core-2.17.2-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
