@@ -1,6 +1,7 @@
 package com.nwtcstudent.java.textadventure;
 
 // Nathaniel was here
+// Nicholas was here
 
 /**
  * The Main class is the first to run on program startup, and performs any non-game-related tasks before creating the game controller
@@ -27,7 +28,9 @@ public class Main {
 			}
 		}
 		finally {
-			
+			System.out.println(
+					"Have a great day!"
+					);
 			System.exit(0);
 		}
 		
