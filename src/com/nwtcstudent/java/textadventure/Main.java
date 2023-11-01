@@ -3,7 +3,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 // Nathaniel was here
-// Some text to revert
 // Kate was here
 // Nicholas was here
 
