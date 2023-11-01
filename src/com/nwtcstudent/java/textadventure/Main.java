@@ -12,13 +12,13 @@ import org.apache.logging.log4j.Logger;
 public class Main {
 	
 	//Instantiate Logging Object to be used by class
-	final static Logger Log = LogManager.getFormatterLogger(Main.class.getName());
+	final static Logger log = LogManager.getFormatterLogger(Main.class.getName());
 
 	public static void main(String[] args) {
 		
 		//logging debugging
-		Log.debug("Hello world! This is a debug message");
-		Log.info("Hello world! This is an info message.");
+		log.debug("Hello world! This is a debug message");
+		log.info("Hello world! This is an info message.");
 		
 		//exception handling block
 		try {
