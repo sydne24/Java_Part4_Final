@@ -39,9 +39,7 @@ public class Main {
 			}
 		}
 		finally {
-			System.out.println(
-					"Have a great day!"
-					);
+			System.out.println("Have a great day!");
 			System.exit(0);
 		}
 		
