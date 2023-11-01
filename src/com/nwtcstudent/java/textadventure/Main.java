@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 // Nathaniel was here
 // Kate was here
 // Nicholas was here
+// Sydney was here
 
 /**
  * The Main class is the first to run on program startup, and performs any non-game-related tasks before creating the game controller
