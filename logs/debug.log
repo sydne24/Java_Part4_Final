@@ -2,3 +2,5 @@
 10-31-2023 18:54:36.053 INFO  [com.nwtcstudent.java.textadventure.Main] - Hello world! This is an info message.
 10-31-2023 19:16:28.536 DEBUG [com.nwtcstudent.java.textadventure.Main] - Hello world! This is a debug message
 10-31-2023 19:16:28.537 INFO  [com.nwtcstudent.java.textadventure.Main] - Hello world! This is an info message.
+10-31-2023 19:46:10.793 DEBUG [com.nwtcstudent.java.textadventure.Main] - Hello world! This is a debug message
+10-31-2023 19:46:10.794 INFO  [com.nwtcstudent.java.textadventure.Main] - Hello world! This is an info message.
