@@ -40,7 +40,7 @@ public class Main {
 			}
 		}
 		finally {
-			System.out.println("Have a great day!");
+			System.out.println("Have a fantastic day!");
 			System.exit(0);
 		}
 		
