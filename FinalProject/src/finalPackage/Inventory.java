@@ -38,6 +38,10 @@ public class Inventory
         public void addItem() {
             items.add(this);
         }
+        
+        public void removeItem() {
+            items.remove(this);
+        }
     }
 
     
