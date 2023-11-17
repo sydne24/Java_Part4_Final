@@ -1,6 +1,6 @@
 package com.nwtcstudent.java.textadventure;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
+import org.apache.logging.log4j.Level;
 
 // Nathaniel was here
 // Kate was here
@@ -13,13 +13,15 @@ import org.apache.logging.log4j.Logger;
 public class Main {
 	
 	//Instantiate Logging Object to be used by class
-	final static Logger log = LogManager.getFormatterLogger(Main.class.getName());
+	// 1.1 - Proper use of visibility modifiers
+	private static GameLogger logger = GameLogger.getInstance();
 
 	public static void main(String[] args) {
 		
-		//logging debugging
-		log.debug("Hello world! This is a debug message");
-		log.info("Hello world! This is an info message.");
+		logger = GameLogger.getInstance();
+		
+		// Logging
+		logger.log("Logging started.", Level.INFO);
 		
 		//exception handling block
 		try {
@@ -28,19 +30,24 @@ public class Main {
 		}
 		catch (Exception e) {
 			
-			System.out.println(
-					"An error has occured and the application had to exit!" +
+			String errorMessage = "An error has occured and the application had to exit!" +
 					"\n\nCause of Error: " + e.getMessage() +
 					"\n\nLocation:\n\t" + e.getStackTrace()[0] +
-					"\n\nFull Stack Trace:"
-					);
+					"\n\nFull Stack Trace:";
+			
 			for (StackTraceElement line : e.getStackTrace()) {
 				
-				System.out.println("\t" + line);
+				errorMessage = errorMessage += "\n\t" + line;
 			}
+			
+			logger.log(errorMessage, Level.FATAL);
+	        
 		}
 		finally {
-			System.out.println("Have a great day!");
+			
+			
+			// Exit the game
+			logger.log("Game Exit", Level.INFO);
 			System.exit(0);
 		}
 		

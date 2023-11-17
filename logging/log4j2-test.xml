@@ -16,9 +16,6 @@
       </Policies>      
     </RollingFile>
     
-    <Console name="Console">
-      <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level [%logger{36}] - %msg%n"/>
-    </Console>
   </Appenders>
   
   <Loggers>
@@ -26,7 +23,6 @@
       <AppenderRef ref="fileLogger" level="debug"/>
     </Logger>
     <Root level="all">
-      <AppenderRef ref="Console"/>
       <AppenderRef ref="fileLogger"/>
     </Root>
     

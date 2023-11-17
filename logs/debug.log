@@ -1,4 +1,3 @@
-10-31-2023 18:54:36.051 DEBUG [com.nwtcstudent.java.textadventure.Main] - Hello world! This is a debug message
-10-31-2023 18:54:36.053 INFO  [com.nwtcstudent.java.textadventure.Main] - Hello world! This is an info message.
-10-31-2023 19:16:28.536 DEBUG [com.nwtcstudent.java.textadventure.Main] - Hello world! This is a debug message
-10-31-2023 19:16:28.537 INFO  [com.nwtcstudent.java.textadventure.Main] - Hello world! This is an info message.
+11-17-2023 13:14:04.862 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+11-17-2023 13:14:04.864 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
+11-17-2023 13:14:04.864 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit
