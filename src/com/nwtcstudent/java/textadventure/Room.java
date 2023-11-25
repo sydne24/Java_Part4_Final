@@ -5,61 +5,97 @@ public class Room {
     //will have some sort of feature in each sector
 	
 	//fields
-	private int ID;
-	private String Description;
-	private String NFeature;
-	private String EFeature;
-	private String SFeature;
-	private String WFeatuer;
+	private int id;
+	private String name;
+	private String description;
+	
+	private IFocusable NFeature;
+	private IFocusable EFeature;
+	private IFocusable SFeature;
+	private IFocusable WFeature;
+	
+	// Constructor
+	public Room(int doorID, String doorName, String doorDesc) {
+		
+		
+	}
+	
+	// Methods
+	
+	public void setItems(Item north, Item east, Item south, Item west) {
+		
+		NFeature = north;
+		EFeature = east;
+		SFeature = south;
+		WFeature = west;
+	}
+	
+	
+	
+	public void setDoors(Door north, Door east, Door south, Door west) {
+		
+		if (north != null) {
+			
+			NFeature = north;
+		}
+		
+		if (east != null) {
+			
+			EFeature = east;
+		}
+		
+		if (south != null) {
+			
+			SFeature = south;
+		}
+		
+		if (west != null) {
+			
+			WFeature = west;
+		}
+	}
 
 	//getters and setters
 	public int getID() {
-		return ID;
-	}
-
-	public void setID(int id) {
-		ID = id;
+		
+		return id;
 	}
 
 	public String getDescription() {
-		return Description;
+		
+		return description;
 	}
 
-	public void setDescription(String description) {
-		Description = description;
-	}
-
-	public String getNFeature() {
+	public IFocusable getNFeature() {
+		
 		return NFeature;
 	}
 
-	public void setNFeature(String nFeature) {
+	public void setNFeature(IFocusable nFeature) {
 		NFeature = nFeature;
 	}
 
-	public String getEFeature() {
+	public IFocusable getEFeature() {
 		return EFeature;
 	}
 
-	public void setEFeature(String eFeature) {
+	public void setEFeature(IFocusable eFeature) {
 		EFeature = eFeature;
 	}
 
-	public String getSFeature() {
+	public IFocusable getSFeature() {
 		return SFeature;
 	}
 
-	public void setSFeature(String sFeature) {
+	public void setSFeature(IFocusable sFeature) {
 		SFeature = sFeature;
 	}
 
-	public String getWFeatuer() {
-		return WFeatuer;
+	public IFocusable getWFeature() {
+		return WFeature;
 	}
 
-	public void setWFeatuer(String wFeatuer) {
-		WFeatuer = wFeatuer;
+	public void setWFeature(IFocusable wFeatuer) {
+		WFeature = wFeatuer;
 	}
-	
-	//Methods
 }
