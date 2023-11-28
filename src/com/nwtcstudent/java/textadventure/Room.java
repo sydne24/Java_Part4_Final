@@ -4,7 +4,8 @@ public class Room {
     //keep rooms as simple boxes - just have N/S/E/W, don't worry about corners?
     //will have some sort of feature in each sector
 	
-	//fields
+	// Fields
+	
 	private int id;
 	private String name;
 	private String description;
@@ -15,6 +16,7 @@ public class Room {
 	private IFocusable WFeature;
 	
 	// Constructor
+	
 	public Room(int doorID, String doorName, String doorDesc) {
 		
 		
@@ -22,40 +24,16 @@ public class Room {
 	
 	// Methods
 	
-	public void setItems(Item north, Item east, Item south, Item west) {
+	public void setFeatures(IFocusable north, IFocusable east, IFocusable south, IFocusable west) {
 		
 		NFeature = north;
 		EFeature = east;
 		SFeature = south;
 		WFeature = west;
 	}
-	
-	
-	
-	public void setDoors(Door north, Door east, Door south, Door west) {
-		
-		if (north != null) {
-			
-			NFeature = north;
-		}
-		
-		if (east != null) {
-			
-			EFeature = east;
-		}
-		
-		if (south != null) {
-			
-			SFeature = south;
-		}
-		
-		if (west != null) {
-			
-			WFeature = west;
-		}
-	}
 
-	//getters and setters
+	// Properties
+	
 	public int getID() {
 		
 		return id;

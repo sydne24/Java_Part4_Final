@@ -13,7 +13,8 @@ public class Player {
 		inventory = new Inventory();
 	}
 	
-	// Player inventory
+	// Player Inventory
+	
 	public class Inventory {
 		
 		// Items in the inventory

@@ -20,6 +20,7 @@ public class Controller {
 	// Game states
 	private static Room currentRoom;
 
+	// Constructor
 	public Controller() throws SQLException {
 		
 		logger = GameLogger.getInstance();
@@ -29,22 +30,31 @@ public class Controller {
     	
     	initializeItems();
     	initializeRooms();
+    	initializeDoors();
 	}
 	
+	// Methods
+	
+	// Initialize the list of items
 	public void initializeItems() throws SQLException {
 		
 		itemList = db.getItems();
 	}
 	
+	// Initialize the list of rooms
 	public void initializeRooms() throws SQLException {
 		
-		roomList = db.getRooms(itemList, doorList);
+		roomList = db.getRooms();
 	}
 	
+	// Initialize the list of doors
 	public void initializeDoors() throws SQLException {
 		
 		doorList = db.getDoors(roomList);
+		db.setRoomFeatures(itemList, roomList, doorList);
 	}
+	
+	// Properties
 	
 	public static HashMap<Integer, Item> getItems() {
 		
