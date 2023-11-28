@@ -1,7 +1,5 @@
 package com.nwtcstudent.java.textadventure;
 
-import java.util.Scanner;
-
 import org.apache.logging.log4j.Level;
 
 /**
@@ -9,21 +7,24 @@ import org.apache.logging.log4j.Level;
  */
 public class Main {
 	
+	// ### Fields ###
+	
 	//Instantiate Logging Object to be used by class
 	// 1.1 - Proper use of visibility modifiers
 	private static GameLogger logger = GameLogger.getInstance();
 
+	
+	// ### Methods ###
+	
 	public static void main(String[] args) {
-		
-		//duplicate
-		//logger = GameLogger.getInstance();
 		
 		// Logging
 		logger.log("Logging started.", Level.INFO);
 		
-		//exception handling block
+		// Exception handling block
 		try {
-			//runs the game
+			
+			// Run the game
 			Controller controller = new Controller();
 		}
 		catch (Exception e) {

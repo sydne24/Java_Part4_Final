@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 public class Door implements IFocusable {
 	
+	// ### Fields ###
+	
 	private int id;
 	private String name;
 	private String description;
@@ -11,6 +13,9 @@ public class Door implements IFocusable {
 	
 	HashMap<Integer, Room> connectedRooms;
 
+	
+	// ### Constructor ###
+	
 	public Door(int doorID, String doorName, String doorDesc, int doorValue) {
 		
 		id = doorID;
@@ -22,7 +27,8 @@ public class Door implements IFocusable {
 		value = doorValue;
 	}
 	
-	// Methods
+	
+	// ### Methods ###
 	
 	// Set the rooms being connected by this door
 	public void setRooms(Room room1, Room room2) {
@@ -49,7 +55,8 @@ public class Door implements IFocusable {
 		return null;
 	}
 	
-	// Properties
+	
+	// ### Properties ###
 	private int getID() {
 		
 		return id;

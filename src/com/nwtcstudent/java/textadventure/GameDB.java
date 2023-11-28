@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.derby.impl.sql.execute.ConstraintInfo;
 import org.apache.derby.jdbc.EmbeddedDataSource;
 
 import com.nwtcstudent.java.textadventure.Item.ItemType;
@@ -16,9 +17,14 @@ import com.nwtcstudent.java.textadventure.Item.ItemType;
  */
 public class GameDB {
 
+	// ### Fields ###
+	
 	EmbeddedDataSource ds;
 	Connection conn;
 	Statement stmt;
+	
+	
+	// ### Constructor ###
 	
 	public GameDB() throws SQLException {
 
@@ -31,23 +37,68 @@ public class GameDB {
 		conn = ds.getConnection();
 		stmt = conn.createStatement();
 		
-		
-		
-		
-		
+		setupdb();
 	}
 	
+	
+	// ### Methods ###
+	
+	// Set up the initial database (will be removed when we start shipping the database with the game)
 	public void setupdb() throws SQLException {
 		
+		try {
+			
+			stmt.execute("DELETE * FROM ITEM");
+			stmt.execute("DROP TABLE ITEM");
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		try {
+					
+					stmt.execute("DELETE * FROM DOOR");
+					stmt.execute("DROP TABLE DOOR");
+				}
+				catch (Exception e) {
+					// TODO: handle exception
+				}
+		try {
+			
+			stmt.execute("DELETE * FROM ROOM");
+			stmt.execute("DROP TABLE ROOM");
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+
 		
-		// ROOM_ID, ROOM_NAME, ROOM_DESCRIPTION, NORTH_ITEM, EAST_ITEM, SOUTH_ITEM, WEST_ITEM
-		stmt.execute("CREATE TABLE Room");
+		
+		// ROOM_ID, ROOM_NAME, ROOM_DESCRIPTION, NORTH, EAST, SOUTH, WEST
+		stmt.execute("CREATE TABLE Room ("
+				+ "room_id INTEGER PRIMARY KEY, "
+				+ "room_name VARCHAR(20),"
+				+ "room_description VARCHAR(1000), "
+				+ "north VARCHAR(6), "
+				+ "east VARCHAR(6), "
+				+ "south VARCHAR(6), "
+				+ "west (VARCHAR(6))");
 		
 		// DOOR_ID, DOOR_NAME, DOOR_DESCRIPTION, DOOR_VALUE, ROOM_FROM, ROOM_TO
-		stmt.execute("CREATE TABLE Door");
+		stmt.execute("CREATE TABLE Door("
+				+ "door_id INTEGER PRIMARY KEY, "
+				+ "door_name VARCHAR(20), "
+				+ "door_description VARHCAR(1000), "
+				+ "door_value INTEGER, "
+				+ "room_from INTEGER REFERENCES Room(room_id), "
+				+ "room_to INTEGER REFERENCES Room(room_id))");
 		
 		// ITEM_ID, ITEM_NAME, ITEM_DESCRIPTION, ITEM_TYPE, ITEM_VALUE
-		stmt.execute("CREATE TABLE Item");
+		stmt.execute("CREATE TABLE Item("
+				+ "item_id INTEGER PRIMARY KEY, "
+				+ "item_name VARCHAR(20), "
+				+ "item_description VARCHAR(1000), "
+				+ "item_type VARCHAR(20), "
+				+ "item_value INTEGER))");
 		
 		stmt.execute("INSERT INTO Item VALUES(0, 'Rusty Key', 'An old key. I wonder if it can be used anywhere?', 'KEY', 1)");
 		stmt.execute("INSERT INTO Item VALUES(1, 'Crumpled Note', 'The faded words reveal, ''Aging has a wonderful beauty...''', 'NOTE', 0)");
@@ -156,13 +207,37 @@ public class GameDB {
 		while (rs.next()) {
 			
 			Integer id = rs.getInt("door_id");
-			String[] north_features = rs.getString("north").split("_");
-			String[] east_features = rs.getString("east").split("_");
-			String[] south_features = rs.getString("south").split("_");
-			String[] west_features = rs.getString("west").split("_");
 			
-			// 2D array of all feature data
+			// Array of directional names
+			String[] dir = new String[] {"NORTH", "EAST", "SOUTH", "WEST"};
+			
+			// Arrays of features' data
+			String[] north_features = new String[] {"", "0"};
+			String[] east_features = new String[] {"", "0"};
+			String[] south_features = new String[] {"", "0"};
+			String[] west_features = new String[] {"", "0"};
+			
+			// 2D array of all string features
 			String[][] featureStrList = {north_features, east_features, south_features, west_features};
+			
+			for (int i = 0; i < featureStrList.length; i++) {
+				
+				try {
+					
+					// Try to split the string
+					String[] featureDetails = rs.getString(dir[i]).split("_");
+					
+					// Test if the second value can be converted to an integer
+					Integer.valueOf(featureDetails[1]);
+					
+					// If all tests completed, add this feature to the features array
+					featureStrList[i] = featureDetails;
+				}
+				catch (Exception e) {
+					
+					// Code reaching here means no feature, or a bad feature, was provided
+				}
+			}
 			
 			// Array of actual feature objects (4 per room)
 			IFocusable[] features = new IFocusable[4];
@@ -170,7 +245,10 @@ public class GameDB {
 			// Loop through arrays and extract data
 			for (int i = 0; i < featureStrList.length; i++) {
 				
+				// Type of the currently looped feature
 				String featureType = featureStrList[i][0];
+				
+				// ID of the currently looped feature. We can do Integer.valueOf because of prior validation.
 				int featureID = Integer.valueOf(featureStrList[i][1]);
 				
 				// Create a null feature. If there is a feature in this corner of the room, it will be filled by an item or door

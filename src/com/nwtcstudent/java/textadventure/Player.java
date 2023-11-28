@@ -4,8 +4,14 @@ import java.util.ArrayList;
 
 public class Player {
 
+	
+	// ### Fields ###
+	
 	private static String name;
 	private static Inventory inventory;
+	
+	
+	// ### Constructor ###
 	
 	public Player(String playerName) {
 		
@@ -13,18 +19,26 @@ public class Player {
 		inventory = new Inventory();
 	}
 	
-	// Player Inventory
+	// ### Nested Class ###
 	
+	// Player Inventory
 	public class Inventory {
+		
+		// ### Fields ###
 		
 		// Items in the inventory
 		private ArrayList<Item> items;
 		
-		// Constructor
+		
+		// ### Constructor ###
+		
 		public Inventory() {
 			
 			items = new ArrayList<>();
 		}
+		
+		
+		// ### Methods ###
 		
 		// Get all items from the items list
 		public ArrayList<Item> getAllItems() {

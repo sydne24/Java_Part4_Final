@@ -1,10 +1,8 @@
 package com.nwtcstudent.java.textadventure;
 
 public class Room {
-    //keep rooms as simple boxes - just have N/S/E/W, don't worry about corners?
-    //will have some sort of feature in each sector
 	
-	// Fields
+	// ### Fields ###
 	
 	private int id;
 	private String name;
@@ -15,14 +13,18 @@ public class Room {
 	private IFocusable SFeature;
 	private IFocusable WFeature;
 	
-	// Constructor
+	
+	// ### Constructor ###
 	
 	public Room(int doorID, String doorName, String doorDesc) {
 		
-		
+		id = doorID;
+		name = doorName;
+		description = doorDesc;
 	}
 	
-	// Methods
+	
+	// ### Methods ###
 	
 	public void setFeatures(IFocusable north, IFocusable east, IFocusable south, IFocusable west) {
 		
@@ -32,7 +34,8 @@ public class Room {
 		WFeature = west;
 	}
 
-	// Properties
+	
+	// ### Properties ###
 	
 	public int getID() {
 		

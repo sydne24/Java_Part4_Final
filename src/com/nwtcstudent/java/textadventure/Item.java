@@ -2,6 +2,8 @@ package com.nwtcstudent.java.textadventure;
 
 public class Item implements IFocusable {
 	
+	// ### Fields ###
+	
 	// Type of the item. Determines basic behavior/interaction with environment
 	public enum ItemType { KEY, NOTE }
 
@@ -11,6 +13,9 @@ public class Item implements IFocusable {
 	private ItemType type;
 	private int value;
 	
+	
+	// ### Constructor ###
+	
 	public Item(int itemID, String itemName, String itemDesc, ItemType itemType, int itemValue) {
 		
 		id = itemID;
@@ -19,6 +24,9 @@ public class Item implements IFocusable {
 		type = itemType;
 		value = itemValue;
 	}
+	
+	
+	// ### Properties ###
 	
 	public int getID() {
 		
