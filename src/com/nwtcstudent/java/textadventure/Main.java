@@ -1,11 +1,8 @@
 package com.nwtcstudent.java.textadventure;
 
-import org.apache.logging.log4j.Level;
+import java.util.Scanner;
 
-// Nathaniel was here
-// Kate was here
-// Nicholas was here
-// Sydney was here
+import org.apache.logging.log4j.Level;
 
 /**
  * The Main class is the first to run on program startup, and performs any non-game-related tasks before creating the game controller
@@ -18,14 +15,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		logger = GameLogger.getInstance();
+		//duplicate
+		//logger = GameLogger.getInstance();
 		
 		// Logging
 		logger.log("Logging started.", Level.INFO);
 		
 		//exception handling block
 		try {
-			
+			//runs the game
 			Controller controller = new Controller();
 		}
 		catch (Exception e) {
