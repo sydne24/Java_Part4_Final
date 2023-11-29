@@ -11,7 +11,7 @@ public class Door implements IFocusable {
 	private String description;
 	private int value;
 	
-	HashMap<Integer, Room> connectedRooms;
+	private HashMap<Integer, Room> connectedRooms;
 
 	
 	// ### Constructor ###
@@ -23,8 +23,10 @@ public class Door implements IFocusable {
 		description = doorDesc;
 		
 		// Value of the key needed to enter the door
-		// 0 = the door is unlocked
+		// 0 = the door is already unlocked
 		value = doorValue;
+		
+		connectedRooms = new HashMap<Integer, Room>();
 	}
 	
 	
@@ -57,37 +59,38 @@ public class Door implements IFocusable {
 	
 	
 	// ### Properties ###
-	private int getID() {
+	
+	public int getID() {
 		
 		return id;
 	}
 	
-	private String getName() {
+	public String getName() {
 		
 		return name;
 	}
 	
-	private void setName(String doorName) {
+	public void setName(String doorName) {
 		
 		name = doorName;
 	}
 	
-	private String getDescription() {
+	public String getDescription() {
 		
 		return description;
 	}
 	
-	private void setDescription(String doorDesc) {
+	public void setDescription(String doorDesc) {
 		
 		description = doorDesc;
 	}
 	
-	private int getValue() {
+	public int getValue() {
 		
 		return value;
 	}
 	
-	private void setValue(int doorValue) {
+	public void setValue(int doorValue) {
 		
 		value = doorValue;
 	}

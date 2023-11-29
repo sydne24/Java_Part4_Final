@@ -48,24 +48,23 @@ public class GameDB {
 		
 		try {
 			
-			stmt.execute("DELETE * FROM ITEM");
-			stmt.execute("DROP TABLE ITEM");
+			stmt.executeUpdate("DROP TABLE Item");
 		}
 		catch (Exception e) {
 			// TODO: handle exception
 		}
+		
 		try {
 					
-					stmt.execute("DELETE * FROM DOOR");
-					stmt.execute("DROP TABLE DOOR");
-				}
-				catch (Exception e) {
-					// TODO: handle exception
-				}
+		stmt.executeUpdate("DROP TABLE Door");
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		try {
 			
-			stmt.execute("DELETE * FROM ROOM");
-			stmt.execute("DROP TABLE ROOM");
+			stmt.executeUpdate("DROP TABLE Room");
 		}
 		catch (Exception e) {
 			// TODO: handle exception
@@ -74,47 +73,46 @@ public class GameDB {
 		
 		
 		// ROOM_ID, ROOM_NAME, ROOM_DESCRIPTION, NORTH, EAST, SOUTH, WEST
-		stmt.execute("CREATE TABLE Room ("
+		stmt.executeUpdate("CREATE TABLE Room ("
 				+ "room_id INTEGER PRIMARY KEY, "
 				+ "room_name VARCHAR(20),"
 				+ "room_description VARCHAR(1000), "
 				+ "north VARCHAR(6), "
 				+ "east VARCHAR(6), "
 				+ "south VARCHAR(6), "
-				+ "west (VARCHAR(6))");
+				+ "west VARCHAR(6))");
 		
 		// DOOR_ID, DOOR_NAME, DOOR_DESCRIPTION, DOOR_VALUE, ROOM_FROM, ROOM_TO
-		stmt.execute("CREATE TABLE Door("
+		stmt.executeUpdate("CREATE TABLE Door ("
 				+ "door_id INTEGER PRIMARY KEY, "
 				+ "door_name VARCHAR(20), "
-				+ "door_description VARHCAR(1000), "
+				+ "door_description VARCHAR(1000), "
 				+ "door_value INTEGER, "
 				+ "room_from INTEGER REFERENCES Room(room_id), "
 				+ "room_to INTEGER REFERENCES Room(room_id))");
 		
 		// ITEM_ID, ITEM_NAME, ITEM_DESCRIPTION, ITEM_TYPE, ITEM_VALUE
-		stmt.execute("CREATE TABLE Item("
+		stmt.executeUpdate("CREATE TABLE Item ("
 				+ "item_id INTEGER PRIMARY KEY, "
 				+ "item_name VARCHAR(20), "
 				+ "item_description VARCHAR(1000), "
 				+ "item_type VARCHAR(20), "
-				+ "item_value INTEGER))");
+				+ "item_value INTEGER)");
 		
-		stmt.execute("INSERT INTO Item VALUES(0, 'Rusty Key', 'An old key. I wonder if it can be used anywhere?', 'KEY', 1)");
-		stmt.execute("INSERT INTO Item VALUES(1, 'Crumpled Note', 'The faded words reveal, ''Aging has a wonderful beauty...''', 'NOTE', 0)");
-		stmt.execute("INSERT INTO Item VALUES(2, 'Golden Key', 'A golden key fit for royalty', 'KEY', 2)");
-		stmt.execute("INSERT INTO Item VALUES(3, 'Clipboard', 'Hastily written words recall, ''In the kingdom of the blind, the one-eyed man is king''', 'NOTE', 0)");
-		stmt.execute("INSERT INTO Item VALUES(4, 'Crowbar', 'Just beat it', 'KEY', 3)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(0, 'Rusty Key', 'An old key. I wonder if it can be used anywhere?', 'KEY', 1)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(1, 'Crumpled Note', 'The faded words reveal, ''Aging has a wonderful beauty...''', 'NOTE', 0)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(2, 'Golden Key', 'A golden key fit for royalty', 'KEY', 2)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(3, 'Clipboard', 'Hastily written words recall, ''In the kingdom of the blind, the one-eyed man is king''', 'NOTE', 0)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(4, 'Crowbar', 'Just beat it', 'KEY', 3)");
 		
+		stmt.executeUpdate("INSERT INTO Room VALUES(0, 'Main Room', 'The room feels dark and hollow. You have no idea how you got here.', 'DOOR_0', 'DOOR_1', 'ITEM_0', 'ITEM_1')");
+		stmt.executeUpdate("INSERT INTO Room VALUES(1, 'Overgrown Room', 'The walls are caked in moss. Their bioluminescence dimly lights the room to reveal several flowers.', '', 'ITEM_3', 'DOOR_0', 'ITEM_2')");
+		stmt.executeUpdate("INSERT INTO Room VALUES(2, 'Stone Room', 'It''s cold and damp in here. The walls are cracked and let in small amounts of light.', 'ITEM_4', 'DOOR_2', '', 'DOOR_1')");
+		stmt.executeUpdate("INSERT INTO Room VALUES(3, 'The Outside World', 'Sun shines down onto you and the field ahead. You''ve found your escape.', 'END', 'END', 'END', 'DOOR_2')");
 		
-		stmt.execute("INSERT INTO Door VALUES(0, 'Overgrown Door', 'A door covered in greenery and flora', 1, 0, 1)");
-		stmt.execute("INSERT INTO Door VALUES(1, 'Barricaded Door', 'An old saferoom door with a singular peephole.', 2, 0, 2)");
-		stmt.execute("INSERT INTO Door VALUES(2, 'Weak Door', 'A door barely kept on its hinges. Light seeps through the gaps in its unstable frame.', 3, 2, 3)");
-		
-		stmt.execute("INSERT INTO Room VALUES(0, 'Main Room', 'The room feels dark and hollow. You have no idea how you got here.', 'DOOR0', 'DOOR1', 'ITEM0', 'ITEM1')");
-		stmt.execute("INSERT INTO Room VALUES(1, 'Overgrown Room', 'The walls are caked in moss. Their bioluminescence dimly lights the room to reveal several flowers.', '', 'ITEM3', 'DOOR0', 'ITEM2')");
-		stmt.execute("INSERT INTO Room VALUES(2, 'Stone Room', 'It's cold and damp in here. The walls are cracked and let in small amounts of light.', 'ITEM4', 'DOOR2', '', 'DOOR1')");
-		stmt.execute("INSERT INTO Room VALUES(3, 'The Outside World', 'Sun shines down onto you and the field ahead. You've found your escape.', 'END', 'END', 'END', 'DOOR2')");
+		stmt.executeUpdate("INSERT INTO Door VALUES(0, 'Overgrown Door', 'A door covered in greenery and flora.', 1, 0, 1)");
+		stmt.executeUpdate("INSERT INTO Door VALUES(1, 'Barricaded Door', 'An old saferoom door with a singular peephole.', 2, 0, 2)");
+		stmt.executeUpdate("INSERT INTO Door VALUES(2, 'Weak Door', 'A door barely kept on its hinges. Light seeps through the gaps in its unstable frame.', 3, 2, 3)");
 	}
 	
 	// Get the items from the database
@@ -201,12 +199,12 @@ public class GameDB {
 	public void setRoomFeatures(HashMap<Integer, Item> items, HashMap<Integer, Room> rooms, HashMap<Integer, Door> doors) throws SQLException, NumberFormatException {
 		
 		// Select room-door information
-		ResultSet rs = stmt.executeQuery("SELECT door_id, north, east, south, west FROM Room");
+		ResultSet rs = stmt.executeQuery("SELECT room_id, north, east, south, west FROM Room");
 		
 		// Loop through the rooms and get data
 		while (rs.next()) {
 			
-			Integer id = rs.getInt("door_id");
+			Integer id = rs.getInt("room_id");
 			
 			// Array of directional names
 			String[] dir = new String[] {"NORTH", "EAST", "SOUTH", "WEST"};
