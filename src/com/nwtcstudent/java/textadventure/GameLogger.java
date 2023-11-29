@@ -4,6 +4,8 @@ import org.apache.logging.log4j.*;
 // Immutable/Singleton class for logging all application events
 public final class GameLogger {
 	
+	// ### Fields ###
+	
 	// 1.5 / 1.6 / 2.3 -- proper use of static and final keywords, use of the Singleton pattern
 	// The GameLogger object
 	private static final GameLogger instance = new GameLogger();
@@ -12,12 +14,7 @@ public final class GameLogger {
 	private static final Logger logger = LogManager.getFormatterLogger(GameLogger.class.getName());
 	
 	
-	// 2.3 -- use of the singleton pattern
-	// Get the GameLogger as an object
-	public static GameLogger getInstance() {
-		
-		return instance;
-	}
+	// ### Methods ###
 	
 	// Log a message
 	public void log(String message, Level level) {
@@ -30,5 +27,15 @@ public final class GameLogger {
 	public String toString() {
 		
 		return this.getClass().getName();
+	}
+	
+	
+	// ### Properties ###
+	
+	// 2.3 -- use of the singleton pattern
+	// Get the GameLogger as an object
+	public static GameLogger getInstance() {
+		
+		return instance;
 	}
 }
