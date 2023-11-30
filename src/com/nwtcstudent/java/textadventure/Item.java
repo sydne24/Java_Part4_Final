@@ -10,17 +10,19 @@ public class Item implements IFocusable {
 	private int id;
 	private String name;
 	private String description;
+	private String usedDescription;
 	private ItemType type;
 	private int value;
 	
 	
 	// ### Constructor ###
 	
-	public Item(int itemID, String itemName, String itemDesc, ItemType itemType, int itemValue) {
+	public Item(int itemID, String itemName, String itemDesc, String usedItemDesc, ItemType itemType, int itemValue) {
 		
 		id = itemID;
 		name = itemName;
 		description = itemDesc;
+		usedDescription = usedItemDesc;
 		type = itemType;
 		value = itemValue;
 	}
@@ -41,6 +43,11 @@ public class Item implements IFocusable {
 	public String getDescription() {
 		
 		return description;
+	}
+	
+	public String getUsedDescription() {
+		
+		return usedDescription;
 	}
 	
 	public ItemType getType() {

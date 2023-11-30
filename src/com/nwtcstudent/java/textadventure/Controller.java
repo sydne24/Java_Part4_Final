@@ -33,6 +33,7 @@ public class Controller {
 
 	
 	// ### Constructor ###
+	
 	public Controller() throws SQLException {
 		
 		// Start up the logger
@@ -49,11 +50,12 @@ public class Controller {
     	
     	// Create the input scanner
     	myScan = new Scanner(System.in);
+    	
+    	
 	}
 	
 	
 	// ### Methods ###
-
 	
 	// Game Logic Methods
 
