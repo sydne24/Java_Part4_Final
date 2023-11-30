@@ -314,6 +314,6 @@ public class GameDB {
 	 */
 	public void endGame() {
 		
-		
+		System.out.println("This was a temporary stub method. Call the method from the Controller class.");
 	}
 }

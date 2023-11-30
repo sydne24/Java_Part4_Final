@@ -37,7 +37,7 @@ public class GameInfo {
 	
 	public String getHelpMessage() {
 		
-		String message = "\n(Type HELP for a list of commands)";
+		String message = "\n(Type HELP for a list of commands) \n";
 		return message;
 	}
 }
