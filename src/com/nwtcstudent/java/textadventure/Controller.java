@@ -25,8 +25,12 @@ public class Controller {
 	private static HashMap<Integer, Door> doorList;
 	
 	// Game states
+	private boolean gameOver = false;
 	private static Room currentRoom;
 	private static Item currentItem;
+	
+	// Storytelling/Messages
+	GameInfo story;
 	
 	// Moved scanner instantiation to the controller's constructor for consistency
 	static Scanner myScan;
@@ -34,6 +38,10 @@ public class Controller {
 	
 	// ### Constructor ###
 	
+	/**
+	 * Sets up the controller object.
+	 * @throws SQLException
+	 */
 	public Controller() throws SQLException {
 		
 		// Start up the logger
@@ -48,8 +56,22 @@ public class Controller {
     	initializeRooms();
     	initializeDoors();
     	
+    	// Initialize the story teller
+    	story = new GameInfo();
+    	
     	// Create the input scanner
     	myScan = new Scanner(System.in);
+    	
+    	// Introductory messages
+    	System.out.println(story.getHeaderTitle());
+    	System.out.println(story.getIntroMessage());
+    	System.out.println(story.getHelpMessage());
+    	
+    	// Primary game loop. Handle the inputs in the verb-noun parser and have them call methods in the Controller class or a separate interaction class.
+//    	while (!gameOver) {
+//    		
+//    		
+//    	}
     	
     	
 	}
@@ -83,19 +105,28 @@ public class Controller {
     
     // Database-Accessing Methods
     
-    // Initialize the list of items
+    /**
+     * Initializes the list of items.
+     * @throws SQLException
+     */
  	public void initializeItems() throws SQLException {
  		
  		itemList = db.getItems();
  	}
  	
- 	// Initialize the list of rooms
+ 	/**
+ 	 * Initializes the list of rooms.
+ 	 * @throws SQLException
+ 	 */
  	public void initializeRooms() throws SQLException {
  		
  		roomList = db.getRooms();
  	}
  	
- 	// Initialize the list of doors
+ 	/**
+ 	 * Initializes the list of doors.
+ 	 * @throws SQLException
+ 	 */
  	public void initializeDoors() throws SQLException {
  		
  		doorList = db.getDoors(roomList);
@@ -105,21 +136,33 @@ public class Controller {
 	
 	// ### Properties ###
 	
+ 	/**
+ 	 * @return all items available in the game.
+ 	 */
 	public static HashMap<Integer, Item> getItems() {
 		
 		return itemList;
 	}
 	
+	/**
+	 * @return all rooms available in the game.
+	 */
 	public static HashMap<Integer, Room> getRooms() {
 		
 		return roomList;
 	}
 	
+	/**
+	 * @return the room the player is currently in.
+	 */
 	public static Room getCurrentRoom() {
 		
 		return currentRoom;
 	}
-	
+	/**
+	 * Sets the room the player is currently in.
+	 * @param room the room to set.
+	 */
 	public static void setCurrentRoom(Room room) {
 		
 		currentRoom = room;

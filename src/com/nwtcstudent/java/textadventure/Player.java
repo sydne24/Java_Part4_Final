@@ -2,6 +2,9 @@ package com.nwtcstudent.java.textadventure;
 
 import java.util.ArrayList;
 
+/**
+ * Information regarding the player.
+ */
 public class Player {
 
 	
@@ -13,6 +16,10 @@ public class Player {
 	
 	// ### Constructor ###
 	
+	/**
+	 * Initializes the player's values.
+	 * @param playerName the name of the player.
+	 */
 	public Player(String playerName) {
 		
 		name = playerName;
@@ -21,7 +28,9 @@ public class Player {
 	
 	// ### Nested Class ###
 	
-	// Player Inventory
+	/**
+	 * The inventory of the player.
+	 */
 	public class Inventory {
 		
 		// ### Fields ###
@@ -32,6 +41,9 @@ public class Player {
 		
 		// ### Constructor ###
 		
+		/**
+		 * Initialize the inventory.
+		 */
 		public Inventory() {
 			
 			items = new ArrayList<>();
@@ -40,19 +52,35 @@ public class Player {
 		
 		// ### Methods ###
 		
-		// Get all items from the items list
+		/**
+		 * Get all items from the inventory.
+		 * @return all items from the items list.
+		 */
 		public ArrayList<Item> getAllItems() {
 			
 			return items;
 		}
 		
-		// Get an item at a specific index
+		/**
+		 * @param itemIndex the index of the item list.
+		 * @return an item at the requested index.
+		 */
 		public Item getItem(int itemIndex) {
 			
-			return items.get(itemIndex);
+			// Only try to retrieve the item if the requested index is within the bounds of the list
+			if (itemIndex >= 0 && itemIndex < items.size()) {
+				
+				return items.get(itemIndex);
+			}
+			
+			// Return null otherwise
+			return null;
 		}
 		
-		// Add an item to the inventory
+		/**
+		 * Add an item to the inventory.
+		 * @param i the item to be added.
+		 */
 		public void storeItem(Item i) {
 			
 			items.add(i);

@@ -1,10 +1,15 @@
 package com.nwtcstudent.java.textadventure;
 
+/**
+ * The Item class defines items the player can add to their inventory and use.
+ */
 public class Item implements IFocusable {
 	
 	// ### Fields ###
 	
-	// Type of the item. Determines basic behavior/interaction with environment
+	/**
+	 * Type of an item. Determines basic behavior/interaction with the environment.
+	 */
 	public enum ItemType { KEY, NOTE }
 
 	private int id;
@@ -17,6 +22,15 @@ public class Item implements IFocusable {
 	
 	// ### Constructor ###
 	
+	/**
+	 * Creates an item.
+	 * @param itemID the item's id.
+	 * @param itemName the item's name.
+	 * @param itemDesc the item's description.
+	 * @param usedItemDesc a description of how the item is used.
+	 * @param itemType the type of the item, defined by the ItemType enumerator.
+	 * @param itemValue the item's value, such as a key's door level.
+	 */
 	public Item(int itemID, String itemName, String itemDesc, String usedItemDesc, ItemType itemType, int itemValue) {
 		
 		id = itemID;
@@ -30,31 +44,53 @@ public class Item implements IFocusable {
 	
 	// ### Properties ###
 	
+	/**
+	 * @return the item's id.
+	 */
+	@Override
 	public int getID() {
 		
 		return id;
 	}
 	
+	/**
+	 * @return the item's name.
+	 */
+	@Override
 	public String getName() {
 		
 		return name;
 	}
 	
+	/**
+	 * @return the item's description.
+	 */
+	@Override
 	public String getDescription() {
 		
 		return description;
 	}
 	
+	/**
+	 * @return the item's used description.
+	 */
 	public String getUsedDescription() {
 		
 		return usedDescription;
 	}
 	
+	/**
+	 * @return the item's type.
+	 */
 	public ItemType getType() {
 		
 		return type;
 	}
 	
+	/**
+	 * @return the item's value.
+	 */
+	@Override
 	public int getValue() {
 		
 		return value;

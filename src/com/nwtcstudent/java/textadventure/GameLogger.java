@@ -1,7 +1,9 @@
 package com.nwtcstudent.java.textadventure;
 import org.apache.logging.log4j.*;
 
-// Immutable/Singleton class for logging all application events
+/**
+ * Static class to be used for all logging operations.
+ **/
 public final class GameLogger {
 	
 	// ### Fields ###
@@ -16,7 +18,11 @@ public final class GameLogger {
 	
 	// ### Methods ###
 	
-	// Log a message
+	/**
+	 * Log a message.
+	 * @param message the message to output.
+	 * @param level the level of the message.
+	 */
 	public void log(String message, Level level) {
 		
 		logger.log(level, message);
@@ -33,7 +39,10 @@ public final class GameLogger {
 	// ### Properties ###
 	
 	// 2.3 -- use of the singleton pattern
-	// Get the GameLogger as an object
+	/**
+	 * Get the GameLogger as an object
+	 * @return the logger object.
+	 */
 	public static GameLogger getInstance() {
 		
 		return instance;
