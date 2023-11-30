@@ -16,6 +16,10 @@ public class Main {
 	
 	// ### Methods ###
 	
+	/**
+	 * Initializes the game and handles any fatal errors faced within the game.
+	 * @param args arguments to be passed in when the application begins
+	 */
 	public static void main(String[] args) {
 		
 		// Logging

@@ -26,6 +26,10 @@ public class GameDB {
 	
 	// ### Constructor ###
 	
+	/**
+	 * Sets up the game database.
+	 * @throws SQLException
+	 */
 	public GameDB() throws SQLException {
 
 		
@@ -40,13 +44,16 @@ public class GameDB {
 		// Enabled to recreate the database
 		// The database is not provided through github (for now), so this must be called at least the first time the application is run to initially create the database
 		// Delete or do not include the "foobar" database folder when you upload to github, in order to reduce the file size
-		repairDB();
+		//repairDB();
 	}
 	
 	
 	// ### Methods ###
 	
-	// Reset the database. Not called in the standard program execution.
+	/**
+	 * Reset the database. Not called in the standard program execution.
+	 * @throws SQLException
+	 */
 	public void repairDB() throws SQLException {
 		
 		// Try to drop all tables. Compacted code as it is fine for these to fail.
@@ -107,7 +114,11 @@ public class GameDB {
 		stmt.executeUpdate("INSERT INTO Door VALUES(2, 'Weak Door', 'A door barely kept on its hinges. Light seeps through the gaps in its unstable frame.', 3, 2, 3)");
 	}
 	
-	// Get the items from the database
+	/**
+	 * Get the items from the database
+	 * @return the list of items.
+	 * @throws SQLException
+	 */
 	public HashMap<Integer, Item> getItems() throws SQLException {
 		
 		// Select item information
@@ -133,7 +144,11 @@ public class GameDB {
 		return itemList;
 	}
 	
-	// Get the rooms from the database
+	/**
+	 * Get the rooms from the database
+	 * @return the list of rooms.
+	 * @throws SQLException
+	 */
 	public HashMap<Integer, Room> getRooms() throws SQLException {
 		
 		// Select room information
@@ -157,7 +172,12 @@ public class GameDB {
 		return roomList;
 	}
 	
-	// Get the doors from the database
+	/**
+	 * Get the doors from the database
+	 * @param rooms the rooms the doors connect.
+	 * @return the list of doors.
+	 * @throws SQLException
+	 */
 	public HashMap<Integer, Door> getDoors(HashMap<Integer, Room> rooms) throws SQLException {
 		
 		// Select door information
@@ -188,7 +208,14 @@ public class GameDB {
 		return doorList;
 	}
 	
-	// Set up the connection between room features
+	/**
+	 * Set up the connection between rooms and their features.
+	 * @param items the list of available items.
+	 * @param rooms the list of available rooms.
+	 * @param doors the list of available doors.
+	 * @throws SQLException
+	 * @throws NumberFormatException
+	 */
 	public void setRoomFeatures(HashMap<Integer, Item> items, HashMap<Integer, Room> rooms, HashMap<Integer, Door> doors) throws SQLException, NumberFormatException {
 		
 		// Select room feature information
@@ -282,7 +309,9 @@ public class GameDB {
 		}
 	}
 	
-	// Placeholder method. Should probably be called from the Controller class instead of here.
+	/**
+	 * Placeholder method. Should probably be called from the Controller class instead of here.
+	 */
 	public void endGame() {
 		
 		

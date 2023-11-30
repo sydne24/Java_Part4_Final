@@ -25,6 +25,7 @@ public class Controller {
 	private static HashMap<Integer, Door> doorList;
 	
 	// Game states
+	private boolean gameOver = false;
 	private static Room currentRoom;
 	private static Item currentItem;
 	
@@ -34,6 +35,10 @@ public class Controller {
 	
 	// ### Constructor ###
 	
+	/**
+	 * Sets up the controller object.
+	 * @throws SQLException
+	 */
 	public Controller() throws SQLException {
 		
 		// Start up the logger
@@ -51,6 +56,10 @@ public class Controller {
     	// Create the input scanner
     	myScan = new Scanner(System.in);
     	
+    	while (!gameOver) {
+    		
+    		
+    	}
     	
 	}
 	
@@ -83,19 +92,28 @@ public class Controller {
     
     // Database-Accessing Methods
     
-    // Initialize the list of items
+    /**
+     * Initializes the list of items.
+     * @throws SQLException
+     */
  	public void initializeItems() throws SQLException {
  		
  		itemList = db.getItems();
  	}
  	
- 	// Initialize the list of rooms
+ 	/**
+ 	 * Initializes the list of rooms.
+ 	 * @throws SQLException
+ 	 */
  	public void initializeRooms() throws SQLException {
  		
  		roomList = db.getRooms();
  	}
  	
- 	// Initialize the list of doors
+ 	/**
+ 	 * Initializes the list of doors.
+ 	 * @throws SQLException
+ 	 */
  	public void initializeDoors() throws SQLException {
  		
  		doorList = db.getDoors(roomList);
@@ -105,21 +123,33 @@ public class Controller {
 	
 	// ### Properties ###
 	
+ 	/**
+ 	 * @return all items available in the game.
+ 	 */
 	public static HashMap<Integer, Item> getItems() {
 		
 		return itemList;
 	}
 	
+	/**
+	 * @return all rooms available in the game.
+	 */
 	public static HashMap<Integer, Room> getRooms() {
 		
 		return roomList;
 	}
 	
+	/**
+	 * @return the room the player is currently in.
+	 */
 	public static Room getCurrentRoom() {
 		
 		return currentRoom;
 	}
-	
+	/**
+	 * Sets the room the player is currently in.
+	 * @param room the room to set.
+	 */
 	public static void setCurrentRoom(Room room) {
 		
 		currentRoom = room;

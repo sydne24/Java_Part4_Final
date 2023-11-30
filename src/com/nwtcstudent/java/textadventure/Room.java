@@ -1,5 +1,8 @@
 package com.nwtcstudent.java.textadventure;
 
+/**
+ * A room the player may enter and navigate.
+ */
 public class Room {
 	
 	// ### Fields ###
@@ -8,80 +11,126 @@ public class Room {
 	private String name;
 	private String description;
 	
-	private IFocusable NFeature;
-	private IFocusable EFeature;
-	private IFocusable SFeature;
-	private IFocusable WFeature;
+	private IFocusable nFeature;
+	private IFocusable eFeature;
+	private IFocusable sFeature;
+	private IFocusable wFeature;
 	
 	
 	// ### Constructor ###
 	
-	public Room(int doorID, String doorName, String doorDesc) {
+	/**
+	 * Create a new room.
+	 * @param roomID the room's id.
+	 * @param roomName the room's name.
+	 * @param roomDesc the room's description.
+	 */
+	public Room(int roomID, String roomName, String roomDesc) {
 		
-		id = doorID;
-		name = doorName;
-		description = doorDesc;
+		id = roomID;
+		name = roomName;
+		description = roomDesc;
 	}
 	
 	
 	// ### Methods ###
 	
+	/**
+	 * Set all features within the room
+	 * @param north the north feature.
+	 * @param east the east feature.
+	 * @param south the south feature.
+	 * @param west the west feature.
+	 */
 	public void setFeatures(IFocusable north, IFocusable east, IFocusable south, IFocusable west) {
 		
-		NFeature = north;
-		EFeature = east;
-		SFeature = south;
-		WFeature = west;
+		nFeature = north;
+		eFeature = east;
+		sFeature = south;
+		wFeature = west;
 	}
 
 	
 	// ### Properties ###
 	
+	/**
+	 * @return the room's id.
+	 */
 	public int getID() {
 		
 		return id;
 	}
 	
+	/**
+	 * @return the room's name.
+	 */
 	public String getName() {
 		
 		return name;
 	}
-
+	
+	/**
+	 * @return the room's description
+	 */
 	public String getDescription() {
 		
 		return description;
 	}
-
+	
+	/**
+	 * @return the room's north feature
+	 */
 	public IFocusable getNFeature() {
 		
-		return NFeature;
+		return nFeature;
 	}
-
+	
+	/**
+	 * @param nFeature the room's north feature
+	 */
 	public void setNFeature(IFocusable nFeature) {
-		NFeature = nFeature;
+		this.nFeature = nFeature;
 	}
-
+	
+	/**
+	 * @return the room's east feature
+	 */
 	public IFocusable getEFeature() {
-		return EFeature;
+		return eFeature;
 	}
-
+	
+	/**
+	 * @param eFeature the room's east feature
+	 */
 	public void setEFeature(IFocusable eFeature) {
-		EFeature = eFeature;
+		this.eFeature = eFeature;
 	}
-
+	
+	/**
+	 * @return the room's south feature
+	 */
 	public IFocusable getSFeature() {
-		return SFeature;
+		return sFeature;
 	}
-
+	
+	/**
+	 * @param sFeature the room's south feature
+	 */
 	public void setSFeature(IFocusable sFeature) {
-		SFeature = sFeature;
+		this.sFeature = sFeature;
 	}
-
+	
+	/**
+	 * @return the room's west feature
+	 */
 	public IFocusable getWFeature() {
-		return WFeature;
+		return wFeature;
 	}
-
-	public void setWFeature(IFocusable wFeatuer) {
-		WFeature = wFeatuer;
+	
+	/**
+	 * @param wFeature the room's west feature
+	 */
+	public void setWFeature(IFocusable wFeature) {
+		this.wFeature = wFeature;
 	}
 }

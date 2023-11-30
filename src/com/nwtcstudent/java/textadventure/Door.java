@@ -16,6 +16,13 @@ public class Door implements IFocusable {
 	
 	// ### Constructor ###
 	
+	/**
+	 * Sets up a door object.
+	 * @param doorID the door's id.
+	 * @param doorName the door's name.
+	 * @param doorDesc the door's description.
+	 * @param doorValue the door's value. This determines what level of lock is needed to open the door.
+	 */
 	public Door(int doorID, String doorName, String doorDesc, int doorValue) {
 		
 		id = doorID;
@@ -32,7 +39,11 @@ public class Door implements IFocusable {
 	
 	// ### Methods ###
 	
-	// Set the rooms being connected by this door
+	/**
+	 * Sets the rooms being connected by this door.
+	 * @param room1 the room to connect from.
+	 * @param room2 the room to connect to.
+	 */
 	public void setRooms(Room room1, Room room2) {
 		
 		connectedRooms.put(room1.getID(), room1);
@@ -60,36 +71,61 @@ public class Door implements IFocusable {
 	
 	// ### Properties ###
 	
+	/**
+	 * @return the door's id.
+	 */
+	@Override
 	public int getID() {
 		
 		return id;
 	}
 	
+	/**
+	 * @return the door's name.
+	 */
+	@Override
 	public String getName() {
 		
 		return name;
 	}
 	
+	/**
+	 * @param doorName the name of the door.
+	 */
 	public void setName(String doorName) {
 		
 		name = doorName;
 	}
 	
+	/**
+	 * @return the door's description.
+	 */
+	@Override
 	public String getDescription() {
 		
 		return description;
 	}
 	
+	/**
+	 * @param doorDesc the description of the door
+	 */
 	public void setDescription(String doorDesc) {
 		
 		description = doorDesc;
 	}
 	
+	/**
+	 * @return the door's value.
+	 */
+	@Override
 	public int getValue() {
 		
 		return value;
 	}
 	
+	/**
+	 * @param doorValue the value of the door.
+	 */
 	public void setValue(int doorValue) {
 		
 		value = doorValue;
