@@ -13,6 +13,8 @@ public class Player {
 	private static String name;
 	private static Inventory inventory;
 	
+	private IFocusable currentFocus;
+	
 	
 	// ### Constructor ###
 	

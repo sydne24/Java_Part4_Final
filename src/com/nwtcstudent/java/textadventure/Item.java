@@ -97,8 +97,11 @@ public class Item implements IFocusable {
 	}
 	
 	@Override
-	public void interact() {
+	public void interact(IFocusable focus) {
 		
-		
+		if (focus != null) {
+			
+			Door door = (Door)focus;
+		}
 	}
 }

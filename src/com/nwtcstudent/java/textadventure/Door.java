@@ -134,8 +134,12 @@ public class Door implements IFocusable {
 	// When the door is interacted with, allow the player to enter
 	//TODO: Add lock/key interaction
 	@Override
-	public void interact() {
+	public void interact(IFocusable focus) {
 		
+		if (focus != null) {
+			
+			
+		}
 		Controller.setCurrentRoom(enterDoor(Controller.getCurrentRoom()));
 	}
 }

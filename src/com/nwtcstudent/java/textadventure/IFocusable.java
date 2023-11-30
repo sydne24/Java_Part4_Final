@@ -29,5 +29,5 @@ public interface IFocusable {
 	/**
 	 * Defines interaction between the player and this object.
 	 */
-	public void interact();
+	public void interact(IFocusable focus);
 }
