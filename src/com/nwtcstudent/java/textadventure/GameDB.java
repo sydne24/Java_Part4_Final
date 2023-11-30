@@ -44,7 +44,7 @@ public class GameDB {
 		// Enabled to recreate the database
 		// The database is not provided through github (for now), so this must be called at least the first time the application is run to initially create the database
 		// Delete or do not include the "foobar" database folder when you upload to github, in order to reduce the file size
-		//repairDB();
+		repairDB();
 	}
 	
 	

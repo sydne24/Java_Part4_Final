@@ -29,6 +29,9 @@ public class Controller {
 	private static Room currentRoom;
 	private static Item currentItem;
 	
+	// Storytelling/Messages
+	GameInfo story;
+	
 	// Moved scanner instantiation to the controller's constructor for consistency
 	static Scanner myScan;
 
@@ -53,13 +56,23 @@ public class Controller {
     	initializeRooms();
     	initializeDoors();
     	
+    	// Initialize the story teller
+    	story = new GameInfo();
+    	
     	// Create the input scanner
     	myScan = new Scanner(System.in);
     	
-    	while (!gameOver) {
-    		
-    		
-    	}
+    	// Introductory messages
+    	System.out.println(story.getHeaderTitle());
+    	System.out.println(story.getIntroMessage());
+    	System.out.println(story.getHelpMessage());
+    	
+    	// Primary game loop. Handle the inputs in the verb-noun parser and have them call methods in the Controller class or a separate interaction class.
+//    	while (!gameOver) {
+//    		
+//    		
+//    	}
+    	
     	
 	}
 	
