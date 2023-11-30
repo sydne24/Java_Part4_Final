@@ -10,7 +10,7 @@ public class Item implements IFocusable {
 	/**
 	 * Type of an item. Determines basic behavior/interaction with the environment.
 	 */
-	public enum ItemType { KEY, NOTE }
+	public enum ItemType { KEY, NOTE, VANITY, FOOD }
 
 	private int id;
 	private String name;
