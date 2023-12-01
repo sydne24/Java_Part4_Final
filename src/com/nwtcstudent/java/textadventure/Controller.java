@@ -14,7 +14,7 @@ public class Controller {
 	// ### Fields ###
 	
 	// Game logger
-	private GameLogger logger;
+	private static GameLogger logger;
 	
 	// Database
 	private GameDB db;
@@ -23,14 +23,14 @@ public class Controller {
 	private static HashMap<Integer, Item> itemList;
 	private static HashMap<Integer, Room> roomList;
 	private static HashMap<Integer, Door> doorList;
+    private static boolean gameOver = false;
 	
 	// Game states
-	private boolean gameOver = false;
 	private static Room currentRoom;
 	private static Item currentItem;
 	
 	// Moved scanner instantiation to the controller's constructor for consistency
-	static Scanner myScan;
+	public static Scanner myScan;
 
 	
 	// ### Constructor ###
@@ -52,6 +52,7 @@ public class Controller {
     	initializeItems();
     	initializeRooms();
     	initializeDoors();
+    	currentRoom = roomList.values().iterator().next();
     	
     	// Create the input scanner
     	myScan = new Scanner(System.in);
@@ -64,14 +65,66 @@ public class Controller {
     	
     	
     	
-    	// Primary game loop. Handle the inputs in the verb-noun parser and have them call methods in the Controller class or a separate interaction class.
-//    	while (!gameOver) {
-//    		
-//    		
-//    	}
-    	
-    	
-	}
+    	// Primary game loop.
+    	  // Start the game loop
+        while (!gameOver) {
+            displayCurrentState();
+            handleUserInput();
+        }
+
+        // Close the scanner when the game is finished
+        myScan.close();
+    }
+
+    private void displayCurrentState() {
+        // Display current room description
+        System.out.println(currentRoom.getDescription());
+
+        // Display available options or prompt for user input
+        System.out.println("Available options:");
+        System.out.println("1. Look around");
+        System.out.println("2. Use item");
+        System.out.println("3. Move to another room");
+        System.out.println("4. Quit");
+    }
+
+    private void handleUserInput() {
+        // Get user input
+        String input = myScan.nextLine().toLowerCase();
+
+        // Handle user input
+        switch (input) {
+            case "1":
+                lookAround();
+                break;
+            case "2":
+                useItem();
+                break;
+            case "3":
+                move();
+                break;
+            case "4":
+                endGame();
+                break;
+            default:
+                System.out.println("Invalid input. Try again.");
+        }
+    }
+
+    private void lookAround() {
+        // Implement look around logic
+        System.out.println("You look around the room. What do you see?");
+    }
+
+    private void useItem() {
+        // Implement use item logic
+        System.out.println("You try to use an item. What do you want to use?");
+    }
+
+    private void move() {
+        // Implement move logic
+        System.out.println("You try to move to another room. Where do you want to go?");
+    }
 	
 	
 	// ### Methods ###
@@ -79,10 +132,10 @@ public class Controller {
 	// Game Logic Methods
 	
     public static void endGame() {
-    	
+        gameOver = true;
     	
         System.out.println(GameInfo.getExitMessage());
-        System.exit(0);
+
     }
     
     
