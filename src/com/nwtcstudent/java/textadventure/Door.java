@@ -138,8 +138,11 @@ public class Door implements IFocusable {
 		
 		if (focus != null) {
 			
-			
+			// Assume the door is being used by an item
+			// Feel free to change if you have other ideas
+			Item keyItem = (Item)focus;
 		}
+		
 		Controller.setCurrentRoom(enterDoor(Controller.getCurrentRoom()));
 	}
 }

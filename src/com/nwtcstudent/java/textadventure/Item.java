@@ -101,6 +101,8 @@ public class Item implements IFocusable {
 		
 		if (focus != null) {
 			
+			// Assume the item is being used on a door
+			// Feel free to change if you have other ideas
 			Door door = (Door)focus;
 		}
 	}
