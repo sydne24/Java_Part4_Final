@@ -5,15 +5,22 @@ package com.nwtcstudent.java.textadventure;
  */
 public class GameInfo {
 	
+	// ### Fields ###
+	
+	// The name of the game
+	private static String name = "GAME TITLE";
+	
+	// ### Methods ###
+	
 	/**
 	 * @return a stylized header for the game.
 	 */
-	public String getHeaderTitle() {
+	public static String getHeaderTitle() {
 		
-		String message = " _____________________________\n"
+		String message = String.format(" _____________________________\n"
 				+ "\n"
-				+ "|         GAME TITLE          |\n"
-				+ " _____________________________\n";
+				+ "|         %s          |\n"
+				+ " _____________________________\n", name);
 		
 		return message;
 	}
@@ -21,7 +28,7 @@ public class GameInfo {
 	/**
 	 * @return an introductory message to start the actual game.
 	 */
-	public String getIntroMessage() {
+	public static String getIntroMessage() {
 		
 		String message = "You find yourself in a vacant room...\nYou notice three doors to the NORTH, WEST, and EAST.";
 		return message;
@@ -30,14 +37,32 @@ public class GameInfo {
 	/**
 	 * @return the ending message for when the player completes the game.
 	 */
-	public String getEndMessage() {
+	public static String getEndMessage() {
 		
-		return null;
+		String message = "You walk into the field and continue your adventure...";
+		return message;
 	}
 	
-	public String getHelpMessage() {
+	/**
+	 * @return the exit message for when the game exits.
+	 */
+	public static String getExitMessage() {
+		
+		String message = String.format("Thank you for playing %s!", name);
+		return message;
+	}
+	
+	public static String getHelpMessage() {
 		
 		String message = "\n(Type HELP for a list of commands) \n";
 		return message;
+	}
+	
+	
+	// ### Properties ###
+	
+	public String getName() {
+		
+		return name;
 	}
 }

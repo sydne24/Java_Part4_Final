@@ -50,7 +50,11 @@ public class Door implements IFocusable {
 		connectedRooms.put(room2.getID(), room2);
 	}
 	
-	// Enter through the door connecting two rooms
+	/**
+	 * Enter through the door connecting two rooms.
+	 * @param currentRoom the current room.
+	 * @return the new room.
+	 */
 	public Room enterDoor(Room currentRoom) {
 		
 		// Loop through the two rooms
@@ -132,17 +136,27 @@ public class Door implements IFocusable {
 	}
 
 	// When the door is interacted with, allow the player to enter
+	// Alternatively, if the door is an END point, trigger game-ending code
 	//TODO: Add lock/key interaction
 	@Override
 	public void interact(IFocusable focus) {
 		
-		if (focus != null) {
+		// If the id is -1, this means the door is an END point
+		if (id == -1) {
 			
-			// Assume the door is being used by an item
-			// Feel free to change if you have other ideas
-			Item keyItem = (Item)focus;
+			System.out.println(GameInfo.getEndMessage());
+			Controller.endGame();
 		}
-		
-		Controller.setCurrentRoom(enterDoor(Controller.getCurrentRoom()));
+		else {
+			
+			if (focus != null) {
+				
+				// Assume the door is being used by an item
+				// Feel free to change if you have other ideas
+				Item keyItem = (Item)focus;
+			}
+			
+			Controller.setCurrentRoom(enterDoor(Controller.getCurrentRoom()));
+		}
 	}
 }
