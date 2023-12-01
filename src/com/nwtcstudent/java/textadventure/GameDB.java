@@ -259,6 +259,12 @@ public class GameDB {
 					
 					// Code reaching here means the validation failed.
 					// No extra error handling is needed as safe data is provided initially.
+					
+					// If this code is instead an END point, add the end flag
+					if (rs.getString(dir[i]).equals("END")) {
+						
+						featureStrList[i] = new String[] {"END", "-1"};
+					}
 				}
 			}
 			
@@ -293,11 +299,12 @@ public class GameDB {
 					feature = doors.get(featureID);
 				}
 				
-				// TODO: If the feature is an end point, add proper game-ending code to run
+				// If the feature is an end point, add a new ending door
 				if (featureType.equals("END")) {
 					
-					// Placeholder method. Should probably be called from the Controller class instead of here.
-					endGame();
+					// Add an ending area to this spot
+					// The ID of -1 is a flag variable which will tell the game to end when it is read
+					feature = new Door(featureID, "Field", "You see field for miles ahead.", 0);
 				}
 				
 				// Add the feature (null, item, or door) to the features array.
@@ -307,13 +314,5 @@ public class GameDB {
 			// Set the features to the room as provided by the database.
 			rooms.get(id).setFeatures(features[0], features[1], features[2], features[3]);
 		}
-	}
-	
-	/**
-	 * Placeholder method. Should probably be called from the Controller class instead of here.
-	 */
-	public void endGame() {
-		
-		System.out.println("This was a temporary stub method. Call the method from the Controller class.");
 	}
 }
