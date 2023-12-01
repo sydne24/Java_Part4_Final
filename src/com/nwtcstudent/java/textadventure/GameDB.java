@@ -96,22 +96,21 @@ public class GameDB {
 		// In the ROOM's "NORTH/EAST/SOUTH/WEST" fields, give the item type in UPPERCASE, then an underscore, then the item/room's ID
 		
 		// Item
-		stmt.executeUpdate("INSERT INTO Item VALUES(0, 'Rusty Key', 'An old key. I wonder if it can be used anywhere?', 'The rusty key fits into the lock and the door opens', 'KEY', 1)");
-		stmt.executeUpdate("INSERT INTO Item VALUES(1, 'Crumpled Note', 'An old balled-up note', 'The faded words reveal, ''Aging has a wonderful beauty...''', 'NOTE', 0)");
-		stmt.executeUpdate("INSERT INTO Item VALUES(2, 'Golden Key', 'A golden key fit for royalty', 'The key fits snugly into its lock, and the door opens', 'KEY', 2)");
-		stmt.executeUpdate("INSERT INTO Item VALUES(3, 'Clipboard', 'A plain clipboard. It does not seem to belong in this room.', 'Hastily written words recall, ''In the kingdom of the blind, the one-eyed man is king''', 'NOTE', 0)");
-		stmt.executeUpdate("INSERT INTO Item VALUES(4, 'Crowbar', 'Just beat it', 'You smash the crowbar into the door. It easily pops out of its frame.', 'KEY', 3)");
-		
+		stmt.executeUpdate("INSERT INTO Item VALUES(0, 'Moonlit Dagger', 'A dagger that glows softly in the moonlight. Can be used to unlock secret passages.', 'The moonlit dagger effortlessly cuts through obstacles.', 'KEY', 1)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(1, 'Phoenix Feather', 'A feather from a mythical phoenix. Resurrects the player if they meet an untimely demise.', 'The phoenix feather pulses with life, reviving you from the brink of death.', 'KEY', 0)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(2, 'Spectral Lantern', 'A lantern that reveals invisible messages and paths. Useful in dark or mysterious areas.', 'The spectral lantern illuminates hidden messages and unveils concealed paths.', 'KEY', 2)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(3, 'Fey Amulet', 'An amulet that allows communication with forest spirits. They might provide hints or guidance.', 'The fey amulet resonates with nature, connecting you to the wisdom of the forest spirits.', 'KEY', 0)");
+
 		// Room
-		stmt.executeUpdate("INSERT INTO Room VALUES(0, 'Main Room', 'The room feels dark and hollow. You have no idea how you got here.', 'DOOR_0', 'DOOR_1', 'ITEM_0', 'ITEM_1')");
-		stmt.executeUpdate("INSERT INTO Room VALUES(1, 'Overgrown Room', 'The walls are caked in moss. Their bioluminescence dimly lights the room to reveal several flowers.', '', 'ITEM_3', 'DOOR_0', 'ITEM_2')");
-		stmt.executeUpdate("INSERT INTO Room VALUES(2, 'Stone Room', 'It''s cold and damp in here. The walls are cracked and let in small amounts of light.', 'ITEM_4', 'DOOR_2', '', 'DOOR_1')");
-		stmt.executeUpdate("INSERT INTO Room VALUES(3, 'The Outside World', 'Sun shines down onto you and the field ahead. You''ve found your escape.', 'END', 'END', 'END', 'DOOR_2')");
-		
+		stmt.executeUpdate("INSERT INTO Room VALUES(0, 'Enchanted Garden', 'A room filled with glowing flowers and talking trees. You can sense magic in the air.', 'DOOR_0', 'DOOR_1', 'ITEM_0', 'ITEM_1')");
+		stmt.executeUpdate("INSERT INTO Room VALUES(1, 'Library of Whispers', 'An ancient library where books float and share their stories when approached. Dusty tomes line the shelves.', '', 'ITEM_3', 'DOOR_0', 'ITEM_2')");
+		stmt.executeUpdate("INSERT INTO Room VALUES(2, 'Crystal Cavern', 'A cavern illuminated by shimmering crystals. The air is filled with a mystical glow.', 'ITEM_4', 'DOOR_2', '', 'DOOR_1')");
+		stmt.executeUpdate("INSERT INTO Room VALUES(3, 'Sky Bridge', 'A room suspended in the sky with floating platforms. Wisps of clouds surround you.', 'END', 'END', 'END', 'DOOR_2')");
+
 		// Door
-		stmt.executeUpdate("INSERT INTO Door VALUES(0, 'Overgrown Door', 'A door covered in greenery and flora.', 1, 0, 1)");
-		stmt.executeUpdate("INSERT INTO Door VALUES(1, 'Barricaded Door', 'An old saferoom door with a singular peephole.', 2, 0, 2)");
-		stmt.executeUpdate("INSERT INTO Door VALUES(2, 'Weak Door', 'A door barely kept on its hinges. Light seeps through the gaps in its unstable frame.', 3, 2, 3)");
+		stmt.executeUpdate("INSERT INTO Door VALUES(0, 'Time-Warp Gate', 'A door leading to a different era. Solving a riddle opens the gate, transporting players to a bygone age.', 1, 0, 1)");
+		stmt.executeUpdate("INSERT INTO Door VALUES(1, 'Illusionary Portal', 'A door that appears as a solid wall. Players must find a hidden symbol to reveal the true entrance.', 2, 0, 2)");
+		stmt.executeUpdate("INSERT INTO Door VALUES(2, 'Celestial Archway', 'A door adorned with constellations. Players unlock it by aligning the stars in a constellation puzzle.', 3, 2, 3)");
 	}
 	
 	/**
