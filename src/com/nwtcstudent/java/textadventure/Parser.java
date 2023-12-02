@@ -56,7 +56,7 @@ public class Parser {
 		}
 		
 		//TODO: move or delete -- depending on where functionality will be written
-	    if (input.toString().toLowerCase() == "exit") {
+	    if (input.toString().equalsIgnoreCase("exit")) {
 	    		Controller.endGame();
 	    }
 	    

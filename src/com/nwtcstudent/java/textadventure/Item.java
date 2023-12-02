@@ -19,6 +19,8 @@ public class Item implements IFocusable {
 	private ItemType type;
 	private int value;
 	
+	private static Player player = Player.getInstance();
+	
 	
 	// ### Constructor ###
 	
@@ -99,11 +101,36 @@ public class Item implements IFocusable {
 	@Override
 	public void interact(IFocusable focus) {
 		
-		if (focus != null) {
-			
-			// Assume the item is being used on a door
-			// Feel free to change if you have other ideas
-			Door door = (Door)focus;
+		switch(type){
+			case FOOD:
+				System.out.println("You have eaten the " + name);
+				player.inventory.removeItem(this);
+				break;
+			case VANITY:
+				System.out.println("You have put on the " + name);
+				description = usedDescription;
+				break;
+			case NOTE:
+				System.out.println("The note reads: " + description);
+				break;
+			case KEY:
+				if (focus instanceof Door)
+				{
+					if (value == focus.getValue())
+					{
+						System.out.println("You have unlocked the door.");
+						((Door) focus).setValue(0);
+						((Door) focus).setDescription("An unlocked door.");
+						player.inventory.removeItem(this);
+					}
+					else if (focus.getValue() == 0)
+						System.out.println("This door is already unlocked.");
+					else
+						System.out.println("This key does not fit into the lock, there must be another.");
+				}
+				else 
+					System.out.println("The key cannot be used on this.");
+				break;
 		}
 	}
 }

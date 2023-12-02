@@ -10,22 +10,23 @@ public class Player {
 	
 	// ### Fields ###
 	
-	private static String name;
-	private static Inventory inventory;
+	private static Player instance = new Player();
+	
+	private String name;
+	public Inventory inventory = new Inventory();
 	
 	private IFocusable currentFocus;
 	
+	// ### Methods ###
 	
-	// ### Constructor ###
+	public void setName(String playerName)
+	{
+		instance.name = playerName;
+	}
 	
-	/**
-	 * Initializes the player's values.
-	 * @param playerName the name of the player.
-	 */
-	public Player(String playerName) {
-		
-		name = playerName;
-		inventory = new Inventory();
+	public String getName()
+	{
+		return instance.name;
 	}
 	
 	// ### Nested Class ###
@@ -64,6 +65,16 @@ public class Player {
 		}
 		
 		/**
+		 * Print all items in the inventory.
+		 */
+		public void checkInventory()
+		{
+			String joined = getAllItems().toString().replace("[", "").replace("]", " ");
+			
+			System.out.println(joined);
+		}
+		
+		/**
 		 * @param itemIndex the index of the item list.
 		 * @return an item at the requested index.
 		 */
@@ -87,5 +98,19 @@ public class Player {
 			
 			items.add(i);
 		}
+		
+		/**
+		 * Remove an item from the inventory.
+		 * @param i the item to be removed.
+		 */
+		public void removeItem(Item i) {
+			
+			items.remove(i);
+		}
+	}
+	
+	public static Player getInstance() {
+		
+		return instance;
 	}
 }

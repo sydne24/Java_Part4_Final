@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 import org.apache.logging.log4j.Level;
 
+import java.time.LocalDateTime;  
+import java.time.format.DateTimeFormatter;  
+
 /**
  * The Controller class initializes and controls the flow of the game
  */
@@ -15,6 +18,9 @@ public class Controller {
 	
 	// Game logger
 	private static GameLogger logger;
+	
+	//Player
+	private static Player player;
 	
 	// Database
 	private GameDB db;
@@ -45,6 +51,9 @@ public class Controller {
 		logger = GameLogger.getInstance();
     	logger.log("Game Started", Level.INFO);
     	
+    	//Initialize player
+    	player = Player.getInstance();
+    	
     	// Create an instance of the database
     	db = new GameDB();
     	
@@ -59,10 +68,14 @@ public class Controller {
     	
     	// Introductory messages
     	System.out.println(GameInfo.getHeaderTitle());
+    	
+    	//Player information
+    	System.out.println("Enter your name: ");
+    	String input = myScan.nextLine();
+    	player.setName(input);
+    	System.out.println("Thank you for playing " + player.getName());
     	System.out.println(GameInfo.getIntroMessage());
     	System.out.println(GameInfo.getHelpMessage());
-    	
-    	
     	
     	
     	// Primary game loop.
