@@ -82,7 +82,6 @@ public class Controller {
     	  // Start the game loop
         while (!gameOver) {
             displayCurrentState();
-            handleUserInput();
         }
 
         // Close the scanner when the game is finished
@@ -99,29 +98,6 @@ public class Controller {
         System.out.println("2. Use item");
         System.out.println("3. Move to another room");
         System.out.println("4. Quit");
-    }
-
-    private void handleUserInput() {
-        // Get user input
-        String input = myScan.nextLine().toLowerCase();
-
-        // Handle user input
-        switch (input) {
-            case "1":
-                lookAround();
-                break;
-            case "2":
-                useItem();
-                break;
-            case "3":
-                move();
-                break;
-            case "4":
-                endGame();
-                break;
-            default:
-                System.out.println("Invalid input. Try again.");
-        }
     }
 
     private void lookAround() {
