@@ -21,7 +21,7 @@ public class Door implements IFocusable {
 	 * @param doorID the door's id.
 	 * @param doorName the door's name.
 	 * @param doorDesc the door's description.
-	 * @param doorValue the door's value. This determines what level of lock is needed to open the door.
+	 * @param doorValue the door's value. This determines what level of key is needed to open the door.
 	 */
 	public Door(int doorID, String doorName, String doorDesc, int doorValue) {
 		
@@ -147,15 +147,11 @@ public class Door implements IFocusable {
 			System.out.println(GameInfo.getEndMessage());
 			Controller.endGame();
 		}
+		else if (value != 0)
+		{
+			System.out.println("This door is locked, try using a key to open it.");
+		}
 		else {
-			
-			if (focus != null) {
-				
-				// Assume the door is being used by an item
-				// Feel free to change if you have other ideas
-				Item keyItem = (Item)focus;
-			}
-			
 			Controller.setCurrentRoom(enterDoor(Controller.getCurrentRoom()));
 		}
 	}
