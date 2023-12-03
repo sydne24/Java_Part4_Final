@@ -1,0 +1,131 @@
+12-03-2023 11:48:35.540 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-03-2023 11:48:35.541 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
+12-03-2023 11:48:35.611 FATAL [com.nwtcstudent.java.textadventure.GameLogger] - An error has occurred and the application had to exit!
+
+Cause of Error: Failed to create database 'foobar', see the next exception for details.
+
+Location:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+
+Full Stack Trace:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.Util.seeNextException(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedConnection.createDatabase(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
+	org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	org.apache.derby.jdbc.BasicEmbeddedDataSource40.getConnection(Unknown Source)
+	org.apache.derby.jdbc.BasicEmbeddedDataSource40.getConnection(Unknown Source)
+	com.nwtcstudent.java.textadventure.GameDB.<init>(GameDB.java:41)
+	com.nwtcstudent.java.textadventure.Controller.<init>(Controller.java:58)
+	com.nwtcstudent.java.textadventure.Main.main(Main.java:31)
+12-03-2023 11:48:35.611 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit
+12-03-2023 11:48:46.997 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-03-2023 11:48:47.044 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
+12-03-2023 11:48:50.918 FATAL [com.nwtcstudent.java.textadventure.GameLogger] - An error has occurred and the application had to exit!
+
+Cause of Error: Failed to create database 'foobar', see the next exception for details.
+
+Location:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+
+Full Stack Trace:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.Util.seeNextException(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedConnection.createDatabase(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
+	org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	org.apache.derby.jdbc.BasicEmbeddedDataSource40.getConnection(Unknown Source)
+	org.apache.derby.jdbc.BasicEmbeddedDataSource40.getConnection(Unknown Source)
+	com.nwtcstudent.java.textadventure.GameDB.<init>(GameDB.java:41)
+	com.nwtcstudent.java.textadventure.Controller.<init>(Controller.java:58)
+	com.nwtcstudent.java.textadventure.Main.main(Main.java:31)
+12-03-2023 11:48:50.919 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit
+12-03-2023 11:50:16.425 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-03-2023 11:50:16.474 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
+12-03-2023 11:50:20.379 FATAL [com.nwtcstudent.java.textadventure.GameLogger] - An error has occurred and the application had to exit!
+
+Cause of Error: Failed to create database 'foobar', see the next exception for details.
+
+Location:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+
+Full Stack Trace:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.Util.seeNextException(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedConnection.createDatabase(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
+	org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	org.apache.derby.jdbc.BasicEmbeddedDataSource40.getConnection(Unknown Source)
+	org.apache.derby.jdbc.BasicEmbeddedDataSource40.getConnection(Unknown Source)
+	com.nwtcstudent.java.textadventure.GameDB.<init>(GameDB.java:41)
+	com.nwtcstudent.java.textadventure.Controller.<init>(Controller.java:58)
+	com.nwtcstudent.java.textadventure.Main.main(Main.java:31)
+12-03-2023 11:50:20.381 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit
+12-03-2023 11:51:29.327 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-03-2023 11:51:29.329 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
+12-03-2023 11:51:29.396 FATAL [com.nwtcstudent.java.textadventure.GameLogger] - An error has occurred and the application had to exit!
+
+Cause of Error: Failed to create database 'foobar', see the next exception for details.
+
+Location:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+
+Full Stack Trace:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.Util.seeNextException(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedConnection.createDatabase(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedConnection.<init>(Unknown Source)
+	org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	org.apache.derby.jdbc.InternalDriver$1.run(Unknown Source)
+	java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+	org.apache.derby.jdbc.InternalDriver.getNewEmbedConnection(Unknown Source)
+	org.apache.derby.jdbc.InternalDriver.connect(Unknown Source)
+	org.apache.derby.jdbc.BasicEmbeddedDataSource40.getConnection(Unknown Source)
+	org.apache.derby.jdbc.BasicEmbeddedDataSource40.getConnection(Unknown Source)
+	com.nwtcstudent.java.textadventure.GameDB.<init>(GameDB.java:41)
+	com.nwtcstudent.java.textadventure.Controller.<init>(Controller.java:58)
+	com.nwtcstudent.java.textadventure.Main.main(Main.java:31)
+12-03-2023 11:51:29.396 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit
+12-03-2023 12:31:02.373 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-03-2023 12:31:50.549 FATAL [com.nwtcstudent.java.textadventure.GameLogger] - An error has occurred and the application had to exit!
+
+Cause of Error: Cannot invoke "java.util.Scanner.nextLine()" because "com.nwtcstudent.java.textadventure.Controller.myScan" is null
+
+Location:
+	com.nwtcstudent.java.textadventure.Parser.GetInput(Parser.java:24)
+
+Full Stack Trace:
+	com.nwtcstudent.java.textadventure.Parser.GetInput(Parser.java:24)
+	com.nwtcstudent.java.textadventure.Main.main(Main.java:33)
+12-03-2023 12:32:01.128 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit
+12-03-2023 12:32:27.377 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-03-2023 12:34:04.644 FATAL [com.nwtcstudent.java.textadventure.GameLogger] - An error has occurred and the application had to exit!
+
+Cause of Error: Cannot invoke "java.util.Scanner.nextLine()" because "com.nwtcstudent.java.textadventure.Controller.myScan" is null
+
+Location:
+	com.nwtcstudent.java.textadventure.Parser.GetInput(Parser.java:24)
+
+Full Stack Trace:
+	com.nwtcstudent.java.textadventure.Parser.GetInput(Parser.java:24)
+	com.nwtcstudent.java.textadventure.Main.main(Main.java:33)
+12-03-2023 12:36:52.837 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit
+12-03-2023 12:38:06.181 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-03-2023 12:51:34.356 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-03-2023 13:12:52.803 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit
