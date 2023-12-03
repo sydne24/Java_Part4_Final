@@ -16,12 +16,11 @@ public class Parser {
 	/**
 	 * @return a String array with 2 elements. [0] verb, [1] noun.
 	 */
-	public static String[] GetInput() {
+	public static Command GetInput() {
 		boolean matchFound = false;
 		String noun = "";
 		String verb = "";
-		String[] phrase = new String[2]; //creates array to store noun & verb in
-		//TODO: consider returning embedded class with noun and verb properties instead of an array - get team feedback on preference
+		Command phrase = new Command();
 		
 		//TODO: 27 & 29 are only used in testing - remove before release
 		//Scanner myScan = new Scanner(System.in);
@@ -71,21 +70,21 @@ public class Parser {
 				}
 			}
 			
-			//TODO: account for incomplete input (missing noun/verb)
+			//account for incomplete input (missing noun/verb)
 			if (noun.length() == 0 || noun.length() == 0) {
 				System.out.println("Unknown command.");
 				GetInput();
 			}
 	
-		//if have noun and verb, set matchFound to true
+			//if have noun and verb, set matchFound to true
 			if (noun.length() > 0 && verb.length() > 0) {
 				matchFound = true;
 			}
 		}
 		
 	    //set and return phrase
-	    phrase[0] = verb;
-	    phrase[1] = noun;
+		phrase.verb = verb;
+		phrase.noun = noun;
 		
 		return phrase;
 	}
@@ -120,4 +119,30 @@ public class Parser {
 		}
 		return noun;
 	}
+
+	
+	/**
+	 * Nested class to return the parsed verb/noun command out for use
+	 * @return String Command.verb & String Command.noun
+	 */
+	//1.7 - use of nested class
+	static class Command {
+		private String noun;
+		private String verb;
+		
+		public String getNoun() {
+			return noun;
+		}
+		public void setNoun(String noun) {
+			this.noun = noun;
+		}
+		public String getVerb() {
+			return verb;
+		}
+		public void setVerb(String verb) {
+			this.verb = verb;
+		}
+		
+	}
 }
+
