@@ -1,5 +1,7 @@
 package com.nwtcstudent.java.textadventure;
 
+import java.util.Scanner;
+
 public class Parser {
 	
 	//Declare libraries
@@ -21,7 +23,10 @@ public class Parser {
 		String[] phrase = new String[2]; //creates array to store noun & verb in
 		//TODO: consider returning embedded class with noun and verb properties instead of an array - get team feedback on preference
 		
+		//TODO: 27 & 29 are only used in testing - remove before release
+		//Scanner myScan = new Scanner(System.in);
 		String input = Controller.myScan.nextLine(); //get input
+		//String input = myScan.nextLine();
 		
 		while (!matchFound) {
 		
@@ -47,7 +52,7 @@ public class Parser {
 		    	GetInput();
 		    }
 			
-			String cleanedInput[] = input.split("//s"); //creates array with parts of input split by space
+			String cleanedInput[] = input.split("\\s+"); //creates array with parts of input split by space
 				
 			//TODO: account for multiple verb/noun inputs?
 				//include prompt for which they'd like to use?
@@ -87,22 +92,19 @@ public class Parser {
 	
 	private static String getVerb(String input) {
 		String getVerb = "";
-		for (int z = 0; z < useLib.length; z++) {
-			if (input == useLib[z]) {
+		for (String checkWord : useLib) {
+			if (input.equals(checkWord)) {
 				getVerb = "use";
-				break;
 			}
 		}
-		for (int z = 0; z < lookLib.length; z++) {
-			if (input == lookLib[z]) {
+		for (String checkWord : lookLib) {
+			if (input.equals(checkWord)) {
 				getVerb = "look";
-				break;
 			}
 		}
-		for (int z = 0; z < moveLib.length; z++) {
-			if (input == moveLib[z]) {
+		for (String checkWord : moveLib) {
+			if (input.equals(checkWord)) {
 				getVerb = "move";
-				break;
 			}
 		}
 		return getVerb;
@@ -110,8 +112,8 @@ public class Parser {
 
 	private static String getNoun (String input) {
 		String noun = "";		
-		for (int z = 0; z < nounLib.length; z++) {
-			if (input == nounLib[z]) {
+		for (String checkWord : nounLib) {
+			if (input.equals(checkWord)) {
 				noun = input;
 				break;
 			}
