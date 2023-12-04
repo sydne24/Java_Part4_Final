@@ -35,7 +35,7 @@ public class Controller {
 	private static Room currentRoom;
 	private static Item currentItem;
 	
-	// Moved scanner instantiation to the controller's constructor for consistency
+	// Scanner for user input
 	public static Scanner myScan;
 
 	
@@ -47,57 +47,67 @@ public class Controller {
 	 */
 	public Controller() throws SQLException {
 		
-		// Start up the logger
-		logger = GameLogger.getInstance();
-    	logger.log("Game Started", Level.INFO);
+		// Sets up all the initial variables for starting the game
+		setup();
     	
-    	//Initialize player
-    	player = Player.getInstance();
+    	// ### Introduction ###
     	
-    	// Create an instance of the database
-    	db = new GameDB();
-    	
-    	// Initialize all the items, rooms, and doors for the game
-    	initializeItems();
-    	initializeRooms();
-    	initializeDoors();
-    	currentRoom = roomList.values().iterator().next();
-    	
-    	// Create the input scanner
-    	myScan = new Scanner(System.in);
-    	
-    	// Introductory messages
+    	// Game title header
     	System.out.println(GameInfo.getHeaderTitle());
     	
-    	//Player information
+    	// Player information entry
     	System.out.println("Enter your name: ");
     	String input = myScan.nextLine();
     	player.setName(input);
-    	System.out.println("Thank you for playing " + player.getName());
+    	
+    	// Introductory messages
     	System.out.println(GameInfo.getIntroMessage());
     	System.out.println(GameInfo.getHelpMessage());
     	
     	
-    	// Primary game loop.
-    	  // Start the game loop
+    	// Start the primary game loop.
         while (!gameOver) {
-            displayCurrentState();
+        	
+        	// Get and act on user input
+            input = myScan.next();
+        	Parser.parseInput(input);
+            
         }
 
         // Close the scanner when the game is finished
         myScan.close();
     }
+	
+	private void setup() throws SQLException {
+		
+		// Start up the logger
+		logger = GameLogger.getInstance();
+		logger.log("Game Started", Level.INFO);
+		
+		//Initialize player
+		player = Player.getInstance();
+		
+		// Create an instance of the database
+		db = new GameDB();
+		
+		// Initialize all the items, rooms, and doors for the game
+		initializeItems();
+		initializeRooms();
+		initializeDoors();
+		
+		// Set the current room to room 0 (starting room)
+		currentRoom = roomList.get(0);
+		
+		// Create the input scanner
+		myScan = new Scanner(System.in);
+	}
 
     private void displayCurrentState() {
-        // Display current room description
-        System.out.println(currentRoom.getDescription());
+    	// Room description will be given when the player decides to LOOK AROUND / LOOK ROOM / INSPECT ROOM / etc
+//        // Display current room description
+//        System.out.println(currentRoom.getDescription());
 
-        // Display available options or prompt for user input
-        System.out.println("Available options:");
-        System.out.println("1. Look around");
-        System.out.println("2. Use item");
-        System.out.println("3. Move to another room");
-        System.out.println("4. Quit");
+        
     }
 
     private void lookAround() {
@@ -115,16 +125,14 @@ public class Controller {
         System.out.println("You try to move to another room. Where do you want to go?");
     }
 	
-	
 	// ### Methods ###
 	
 	// Game Logic Methods
 	
     public static void endGame() {
-        gameOver = true;
     	
+        gameOver = true;
         System.out.println(GameInfo.getExitMessage());
-
     }
     
     
