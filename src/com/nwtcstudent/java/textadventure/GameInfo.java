@@ -42,7 +42,7 @@ public class GameInfo {
 	 */
 	public static String getEndMessage() {
 		
-		String message = "You walk into the field and continue your adventure...";
+		String message = "\nYou walk into the field and continue your adventure...";
 		return message;
 	}
 	
@@ -51,13 +51,13 @@ public class GameInfo {
 	 */
 	public static String getExitMessage() {
 		
-		String message = String.format("Thank you for playing %s, %s!", name, player.getName());
+		String message = String.format("\nThank you for playing %s, %s!", name, player.getName());
 		return message;
 	}
 	
 	public static String getHelpMessage() {
 		
-		String message = "\n(Type HELP for a list of commands) \n";
+		String message = "\n(Type HELP for a list of commands)";
 		return message;
 	}
 	
@@ -75,7 +75,7 @@ public class GameInfo {
 				+ "\nLOOK AROUND: Describe the environment around you"
 				+ "\nEXIT: Exit the game"
 				+ "\n\nThere are many additional alternative commands you can use, such as EAT [FOOD], to specify how you would like to interact."
-				+ "\n------------------------------------------------------------------";
+				+ "\n------------------------------------------------------------------\n";
 				
 				
 //				"// Display available options or prompt for user input\r\n"
