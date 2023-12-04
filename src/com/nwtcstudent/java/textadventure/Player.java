@@ -5,12 +5,12 @@ import java.util.ArrayList;
 /**
  * Information regarding the player.
  */
-public class Player {
+public final class Player {
 
 	
 	// ### Fields ###
 	
-	private static Player instance = new Player();
+	private static final Player instance = new Player();
 	
 	private String name;
 	public Inventory inventory = new Inventory();
