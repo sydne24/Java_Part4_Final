@@ -11,7 +11,7 @@ public class Parser {
 	private static String lookLib[] = new String[] {"look", "inspect", "describe", "what"};
 	private static String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl"};
 	private static String nounLib[] = new String[] {"north", "south", "east", "west"};
-	//declare noun library - values are added with initializeNounLibrary() in Controller during setup()
+	//declare noun library - values are added with initializeItemLibrary() in Controller during setup()
 	static ArrayList<String> itemLib = new ArrayList<String>();
 	
 	// PARSER METHOD
