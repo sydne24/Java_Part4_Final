@@ -96,23 +96,25 @@ public class GameDB {
 		// Feel free to replace everything already set here when creating the new room/door/item map
 		
 		// In the ROOM's "NORTH/EAST/SOUTH/WEST" fields, give the item type in UPPERCASE, then an underscore, then the item/room's ID
-		
-		// Item
-		stmt.executeUpdate("INSERT INTO Item VALUES(0, 'Moonlit Dagger', 'A dagger that glows softly in the moonlight. Can be used to unlock secret passages.', 'The moonlit dagger effortlessly cuts through obstacles.', 'KEY', 1)");
-		stmt.executeUpdate("INSERT INTO Item VALUES(1, 'Phoenix Feather', 'A feather from a mythical phoenix. Resurrects the player if they meet an untimely demise.', 'The phoenix feather pulses with life, reviving you from the brink of death.', 'KEY', 0)");
-		stmt.executeUpdate("INSERT INTO Item VALUES(2, 'Spectral Lantern', 'A lantern that reveals invisible messages and paths. Useful in dark or mysterious areas.', 'The spectral lantern illuminates hidden messages and unveils concealed paths.', 'KEY', 2)");
-		stmt.executeUpdate("INSERT INTO Item VALUES(3, 'Fey Amulet', 'An amulet that allows communication with forest spirits. They might provide hints or guidance.', 'The fey amulet resonates with nature, connecting you to the wisdom of the forest spirits.', 'KEY', 0)");
 
+		// Item
+		stmt.executeUpdate("INSERT INTO Item VALUES(0, 'Moonlit Dagger', 'A dagger that glows softly in the moonlight. Can be used to unlock secret passages.', 'The moonlit dagger flew into the slot.', 'KEY', 2)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(1, 'Mystic Amulet', 'A mysterious amulet adorned with ancient symbols. Unlocks the Time-Warp Gate.', 'The amulet resonates with mystical energy, granting access to the secrets of time.', 'VANITY', 1)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(2, 'Spectral Lantern', 'A lantern that reveals invisible messages and paths. Useful in dark or mysterious areas.', 'The spectral lantern illuminates hidden messages and unveils concealed paths.', 'KEY', 3)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(3, 'Heavenly Pizza', 'A box containing your favorite pizza, crafted by celestial chefs. Each bite is pure bliss.', 'The heavenly aroma of your favorite pizza fills the air, bringing unparalleled joy with every slice.', 'FOOD', 4)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(4, 'Mysterious Note', 'A note from the heavens, carrying words of joy and wisdom. It radiates a celestial warmth.', 'The note just says... We've been trying to reach you about your cars extended warranty... You faintly begin to hear Rick Roll music growing louder in the backround...', 'NOTE', 5)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(5, 'Divine Key', 'A radiant key infused with celestial energy. Unlocks the secrets of the heavens.', 'The divine key emanates a gentle glow as it fits perfectly into the lock.', 'KEY', 4)");
 		// Room
 		stmt.executeUpdate("INSERT INTO Room VALUES(0, 'Enchanted Garden', 'A room filled with glowing flowers and talking trees. You can sense magic in the air.', 'DOOR_0', 'DOOR_1', 'ITEM_0', 'ITEM_1')");
 		stmt.executeUpdate("INSERT INTO Room VALUES(1, 'Library of Whispers', 'An ancient library where books float and share their stories when approached. Dusty tomes line the shelves.', '', 'ITEM_3', 'DOOR_0', 'ITEM_2')");
 		stmt.executeUpdate("INSERT INTO Room VALUES(2, 'Crystal Cavern', 'A cavern illuminated by shimmering crystals. The air is filled with a mystical glow.', 'ITEM_4', 'DOOR_2', '', 'DOOR_1')");
-		stmt.executeUpdate("INSERT INTO Room VALUES(3, 'Sky Bridge', 'A room suspended in the sky with floating platforms. Wisps of clouds surround you.', 'END', 'END', 'END', 'DOOR_2')");
+		stmt.executeUpdate("INSERT INTO Room VALUES(3, 'Celestial Heavens', 'A heavenly realm filled with soft clouds and radiant light. Floating platforms lead to a central gathering place. Amidst the celestial beauty, a box with a familiar aroma and a note from the heavens await your discovery.', 'ITEM_3', 'ITEM_5', 'DOOR_3', 'DOOR_2')");
 
 		// Door
-		stmt.executeUpdate("INSERT INTO Door VALUES(0, 'Time-Warp Gate', 'A door leading to a different era. Solving a riddle opens the gate, transporting players to a bygone age.', 1, 0, 1)");
-		stmt.executeUpdate("INSERT INTO Door VALUES(1, 'Illusionary Portal', 'A door that appears as a solid wall. Players must find a hidden symbol to reveal the true entrance.', 2, 0, 2)");
+		stmt.executeUpdate("INSERT INTO Door VALUES(0, 'Time-Warp Gate', 'A door leading to a different era. There are drawings of a monarch with a special glowing amulet.', 1, 0, 1)");
+		stmt.executeUpdate("INSERT INTO Door VALUES(1, 'Illusionary Portal', 'A door that appears as a solid wall. There appears to be a slot for a dagger.', 2, 0, 2)");
 		stmt.executeUpdate("INSERT INTO Door VALUES(2, 'Celestial Archway', 'A door adorned with constellations. Players unlock it by aligning the stars in a constellation puzzle.', 3, 2, 3)");
+		stmt.executeUpdate("INSERT INTO Door VALUES(3, 'Divine Door', 'An ethereal door radiating celestial light. Through the blinding light you notice that there is a slot for a key.', 4, 3, 0)");
 	}
 	
 	/**
