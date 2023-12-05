@@ -23,6 +23,7 @@ public class Main {
 	public static void main(String[] args) {
 		// Logging
 		logger.log("Logging started.", Level.INFO);
+		// 6-1: try catch block
 		// Exception handling block
 		try {
 			// Run the game

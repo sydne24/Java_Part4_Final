@@ -14,6 +14,7 @@ public class Item implements IFocusable {
 	//1.8 - Use of enumerations
 	public enum ItemType { KEY, NOTE, VANITY, FOOD }
 
+	//2.2 - example of encapsulation
 	private int id;
 	private String name;
 	private String description;

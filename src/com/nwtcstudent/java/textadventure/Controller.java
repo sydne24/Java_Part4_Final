@@ -89,6 +89,7 @@ public class Controller {
 		initializeItems();
 		initializeRooms();
 		initializeDoors();
+		initializeItemLibrary();
 		
 		// Set the current room to room 0 (starting room)
 		Player.setCurrentRoom(roomList.get(0));
@@ -262,6 +263,15 @@ public class Controller {
  		
  		doorList = db.getDoors(roomList);
  		db.setRoomFeatures(itemList, roomList, doorList);
+ 	}
+ 	
+ 	/**
+ 	 * Initializes the named item list for the Parser
+ 	 */
+ 	public void initializeItemLibrary() {
+ 		for (Item i : Controller.itemList.values()) {
+ 			Parser.itemLib.add(i.getName());
+ 		}
  	}
  	
 	

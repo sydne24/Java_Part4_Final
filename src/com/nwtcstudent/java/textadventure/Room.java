@@ -6,7 +6,7 @@ package com.nwtcstudent.java.textadventure;
 public class Room {
 	
 	// ### Fields ###
-	
+	// 2-2: example of encapsulation
 	private int id;
 	private String name;
 	private String description;
