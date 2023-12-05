@@ -152,7 +152,7 @@ public class Door implements IFocusable {
 			System.out.println("This door is locked, try using a key to open it.");
 		}
 		else {
-			Controller.setCurrentRoom(enterDoor(Controller.getCurrentRoom()));
+			Player.setCurrentRoom(enterDoor(Player.getCurrentRoom()));
 		}
 	}
 }

@@ -175,6 +175,18 @@ public class GameInfo {
 		return message;
 	}
 	
+	public static String getDoorLockedMessage() {
+		
+		String message = "This door is locked.";
+		return message;
+	}
+	
+	public static String getLocationNotFoundMessage() {
+		
+		String message = "Please provide a location to move to.";
+		return message;
+	}
+	
 	
 	// ### Properties ###
 	

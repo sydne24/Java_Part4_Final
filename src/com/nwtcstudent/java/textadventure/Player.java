@@ -15,7 +15,10 @@ public final class Player {
 	private String name;
 	public Inventory inventory = new Inventory();
 	
-	private IFocusable currentFocus;
+	// Player/Game states
+	private static IFocusable currentFocus;
+	private static Room currentRoom;
+	private static Item currentItem;
 	
 	// ### Methods ###
 	
@@ -108,6 +111,57 @@ public final class Player {
 			
 			items.remove(i);
 		}
+	}
+	
+	/**
+	 * @return the object the player is currently focusing on.
+	 */
+	public static IFocusable getCurrentFocus() {
+		
+		return currentFocus;
+	}
+	
+	/**
+	 * Sets the player's focus.
+	 * @param the object to focus on.
+	 */
+	public static void setCurrentFocus(IFocusable f) {
+		
+		currentFocus = f;
+	}
+	
+	/**
+	 * @return the room the player is currently in.
+	 */
+	public static Room getCurrentRoom() {
+		
+		return currentRoom;
+	}
+	
+	/**
+	 * Sets the room the player is currently in.
+	 * @param room the room to set.
+	 */
+	public static void setCurrentRoom(Room r) {
+		
+		currentRoom = r;
+	}
+	
+	/**
+	 * @return the item the player is currently holding.
+	 */
+	public static Item getCurrentItem() {
+		
+		return currentItem;
+	}
+	
+	/**
+	 * Sets the item the player is currently holding.
+	 * @param the item to be held.
+	 */
+	public static void setCurrentItem(Item i) {
+		
+		currentItem = i;
 	}
 	
 	public static Player getInstance() {
