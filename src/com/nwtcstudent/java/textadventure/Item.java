@@ -3,6 +3,7 @@ package com.nwtcstudent.java.textadventure;
 /**
  * The Item class defines items the player can add to their inventory and use.
  */
+//1.2 - Polymorphic class structure
 public class Item implements IFocusable {
 	
 	// ### Fields ###
@@ -10,6 +11,7 @@ public class Item implements IFocusable {
 	/**
 	 * Type of an item. Determines basic behavior/interaction with the environment.
 	 */
+	//1.8 - Use of enumerations
 	public enum ItemType { KEY, NOTE, VANITY, FOOD }
 
 	private int id;
@@ -98,6 +100,7 @@ public class Item implements IFocusable {
 		return value;
 	}
 	
+	//1.4 - Use of overridden methods
 	@Override
 	public void interact(IFocusable focus) {
 		
@@ -114,6 +117,7 @@ public class Item implements IFocusable {
 				System.out.println("The note reads: " + description);
 				break;
 			case KEY:
+				// 2.5 - Valid object comparison
 				if (focus instanceof Door)
 				{
 					if (value == focus.getValue())
@@ -133,4 +137,23 @@ public class Item implements IFocusable {
 				break;
 		}
 	}
+		
+		//1.3 - Use of overloaded methods
+		public void interact() {
+			switch(type){
+				case FOOD:
+					System.out.println("You have eaten the " + name);
+					player.inventory.removeItem(this);
+					break;
+				case VANITY:
+					System.out.println("You have put on the " + name);
+					description = usedDescription;
+					break;
+				case NOTE:
+					System.out.println("The note reads: " + description);
+					break;
+				case KEY:
+					System.out.println("You are not near something you can use the key on.");
+			}
+		}
 }

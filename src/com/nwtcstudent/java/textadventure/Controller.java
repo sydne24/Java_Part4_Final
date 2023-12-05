@@ -4,10 +4,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import java.util.Scanner;
-import org.apache.logging.log4j.Level;
-
-import java.time.LocalDateTime;  
-import java.time.format.DateTimeFormatter;  
+import org.apache.logging.log4j.Level; 
 
 /**
  * The Controller class initializes and controls the flow of the game
@@ -38,7 +35,6 @@ public class Controller {
 	// Scanner for user input
 	public static Scanner myScan;
 
-	
 	// ### Constructor ###
 	
 	/**
@@ -61,6 +57,8 @@ public class Controller {
     	player.setName(input);
     	
     	// Introductory messages
+    	System.out.println(GameInfo.getPlayerMessage());
+    	System.out.println(GameInfo.getChristmasMessage());
     	System.out.println(GameInfo.getIntroMessage());
     	System.out.println(GameInfo.getHelpMessage());
     	

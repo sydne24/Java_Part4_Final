@@ -39,6 +39,7 @@ public final class Player {
 		// ### Fields ###
 		
 		// Items in the inventory
+		// 3.2 - Use of an Array List
 		private ArrayList<Item> items;
 		
 		
