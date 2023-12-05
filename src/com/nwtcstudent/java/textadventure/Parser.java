@@ -40,6 +40,14 @@ public class Parser {
 	    	System.out.println(GameInfo.getAvailableCommands());
 	    	return null;
 	    }
+	    
+	    // Calls look around function if command includes phrase "look around"
+	    if (input.contains("look around") ||
+	    		input.contains("look room") ||
+	    		input.contains("inspect room")) {
+	    	Controller.lookAround();
+	    	return null;
+	    }
 		
 		String cleanedInput[] = input.split("\\s+"); //creates array with parts of input split by space
 			

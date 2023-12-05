@@ -67,7 +67,8 @@ public class Controller {
         while (!gameOver) {
         	
         	// Get and act on user input
-            input = myScan.next();
+        	// nextLine is required to pass entire input string to the Parser
+            input = myScan.nextLine();
         	Parser.parseInput(input);
             
         }
@@ -100,17 +101,19 @@ public class Controller {
 		myScan = new Scanner(System.in);
 	}
 
-    private void displayCurrentState() {
+    static void lookAround() {
     	// Room description will be given when the player decides to LOOK AROUND / LOOK ROOM / INSPECT ROOM / etc
-//        // Display current room description
-//        System.out.println(currentRoom.getDescription());
-
-        
-    }
-
-    private void lookAround() {
-        // Implement look around logic
-        System.out.println("You look around the room. What do you see?");
+    	// Display current room description
+    	System.out.println(currentRoom.getDescription());
+    	//Display current room features
+    	//NORTH
+    	System.out.println("To the north is a " + currentRoom.getNFeature().getName());
+    	//EAST
+    	System.out.println("To the east is a " + currentRoom.getEFeature().getName());
+    	//SOUTH
+    	System.out.println("To the south is a " + currentRoom.getSFeature().getName());
+    	//WEST
+    	System.out.println("To the west is a " + currentRoom.getWFeature().getName());
     }
 
     private void useItem() {
