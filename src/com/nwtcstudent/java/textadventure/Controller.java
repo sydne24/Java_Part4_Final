@@ -16,7 +16,7 @@ public class Controller {
 	// Game logger
 	private static GameLogger logger;
 	
-	//Player
+	// Player
 	private static Player player;
 	
 	// Database
