@@ -58,3 +58,6 @@ Full Stack Trace:
 12-05-2023 12:09:43.943 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
 12-05-2023 12:21:54.872 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
 12-05-2023 12:21:54.874 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
+12-05-2023 13:50:46.928 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-05-2023 13:50:46.930 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
+12-05-2023 13:52:22.336 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit

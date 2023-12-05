@@ -1,5 +1,7 @@
 package com.nwtcstudent.java.textadventure;
 
+import java.util.ArrayList;
+
 public class Parser {
 	
 	// Declare libraries
@@ -9,6 +11,8 @@ public class Parser {
 	private static String lookLib[] = new String[] {"look", "inspect", "describe", "what"};
 	private static String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl"};
 	private static String nounLib[] = new String[] {"north", "south", "east", "west"};
+	//declare noun library - values are added with initializeNounLibrary() in Controller during setup()
+	static ArrayList<String> itemLib = new ArrayList<String>();
 	
 	// PARSER METHOD
 	/**
@@ -48,16 +52,23 @@ public class Parser {
 	    	Controller.lookAround();
 	    	return null;
 	    }
+	    
+	    //searches for named items
+		for (String checkWord : itemLib) {
+			if (input.contains(checkWord)) {
+				noun = checkWord;
+				break;
+			}
+		}
+	    
+	    
 		
 		String cleanedInput[] = input.split("\\s+"); //creates array with parts of input split by space
-			
-		// TODO: account for multiple verb/noun inputs?
-			//include prompt for which they'd like to use?
 		
 		// 3.5 - Valid example of a foreach statement
 		// Loop through split input array
 		for (String word : cleanedInput) {
-				//if you want to make it more complicated, you could restrict comparisons to word size instead of scanning the whole library
+			//if you want to make it more complicated, you could restrict comparisons to word size instead of scanning the whole library
 			
 			//only searches and assigns verb or noun if one hasn't already been assigned
 			if (verb.length() < 1) {
@@ -107,7 +118,9 @@ public class Parser {
 	}
 
 	private static String getNoun (String input) {
-		String noun = "";		
+		String noun = "";	
+		
+		
 		for (String checkWord : nounLib) {
 			if (input.equals(checkWord)) {
 				noun = input;
@@ -142,4 +155,6 @@ public class Parser {
 		
 	}
 }
+
+
 

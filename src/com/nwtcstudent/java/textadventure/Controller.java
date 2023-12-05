@@ -89,10 +89,11 @@ public class Controller {
 		// Create an instance of the database
 		db = new GameDB();
 		
-		// Initialize all the items, rooms, and doors for the game
+		// Initialize all the items, rooms, doors, and Parser's item library for the game
 		initializeItems();
 		initializeRooms();
 		initializeDoors();
+		initializeNounLibrary();
 		
 		// Set the current room to room 0 (starting room)
 		currentRoom = roomList.get(0);
@@ -117,12 +118,12 @@ public class Controller {
     }
 
     private void useItem() {
-        // Implement use item logic
+        // TODO: Implement use item logic
         System.out.println("You try to use an item. What do you want to use?");
     }
 
     private void move() {
-        // Implement move logic
+        // TODO: Implement move logic
         System.out.println("You try to move to another room. Where do you want to go?");
     }
 	
@@ -155,6 +156,12 @@ public class Controller {
  	public void initializeRooms() throws SQLException {
  		
  		roomList = db.getRooms();
+ 	}
+ 	
+ 	public void initializeNounLibrary() {
+		for (Item i : Controller.itemList.values()) {
+			Parser.itemLib.add(i.getName());
+		}
  	}
  	
  	/**
