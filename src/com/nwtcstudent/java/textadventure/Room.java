@@ -133,4 +133,12 @@ public class Room {
 	public void setWFeature(IFocusable wFeature) {
 		this.wFeature = wFeature;
 	}
+	
+	/**
+	 * @return all features of the room
+	 */
+	public IFocusable[] getFeatures() {
+		
+		return new IFocusable[] {nFeature, eFeature, sFeature, wFeature};
+	}
 }

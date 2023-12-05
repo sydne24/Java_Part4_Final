@@ -16,7 +16,7 @@ public class Controller {
 	// Game logger
 	private static GameLogger logger;
 	
-	// Player
+	//Player
 	private static Player player;
 	
 	// Database
@@ -27,10 +27,6 @@ public class Controller {
 	private static HashMap<Integer, Room> roomList;
 	private static HashMap<Integer, Door> doorList;
     private static boolean gameOver = false;
-	
-	// Game states
-	private static Room currentRoom;
-	private static Item currentItem;
 	
 	// Scanner for user input
 	public static Scanner myScan;
@@ -89,14 +85,13 @@ public class Controller {
 		// Create an instance of the database
 		db = new GameDB();
 		
-		// Initialize all the items, rooms, doors, and Parser's item library for the game
+		// Initialize all the items, rooms, and doors for the game
 		initializeItems();
 		initializeRooms();
 		initializeDoors();
-		initializeNounLibrary();
 		
 		// Set the current room to room 0 (starting room)
-		currentRoom = roomList.get(0);
+		Player.setCurrentRoom(roomList.get(0));
 		
 		// Create the input scanner
 		myScan = new Scanner(System.in);
@@ -105,32 +100,133 @@ public class Controller {
     static void lookAround() {
     	// Room description will be given when the player decides to LOOK AROUND / LOOK ROOM / INSPECT ROOM / etc
     	// Display current room description
-    	System.out.println(currentRoom.getDescription());
+    	System.out.println(Player.getCurrentRoom().getDescription());
     	//Display current room features
+    	
     	//NORTH
-    	System.out.println("To the north is a " + currentRoom.getNFeature().getName());
+    	if (Player.getCurrentRoom().getNFeature() != null)
+    		System.out.println("To the north is a " + Player.getCurrentRoom().getNFeature().getName());
+    	
     	//EAST
-    	System.out.println("To the east is a " + currentRoom.getEFeature().getName());
+    	if (Player.getCurrentRoom().getEFeature() != null) 
+    		System.out.println("To the east is a " + Player.getCurrentRoom().getEFeature().getName());
+    	
     	//SOUTH
-    	System.out.println("To the south is a " + currentRoom.getSFeature().getName());
+    	if (Player.getCurrentRoom().getSFeature() != null)
+    		System.out.println("To the south is a " + Player.getCurrentRoom().getSFeature().getName());
+    	
     	//WEST
-    	System.out.println("To the west is a " + currentRoom.getWFeature().getName());
+    	if (Player.getCurrentRoom().getWFeature() != null)
+    		System.out.println("To the west is a " + Player.getCurrentRoom().getWFeature().getName());
     }
 
     private void useItem() {
-        // TODO: Implement use item logic
+        // Implement use item logic
         System.out.println("You try to use an item. What do you want to use?");
     }
 
+    /**
+     * Try to move towards the player's current focus (an item or door)
+     */
     private void move() {
-        // TODO: Implement move logic
-        System.out.println("You try to move to another room. Where do you want to go?");
+    	
+    	if (Player.getCurrentFocus() != null) {
+    		
+    		int dir = -1;
+    		
+    		// Get all features of the current room
+    		IFocusable[] features = Player.getCurrentRoom().getFeatures();
+    		for (int i = 0; i < features.length; i++) {
+    			
+    			// Find which feature the player is trying to focus on
+    			if (features[i] != null && features[i] == Player.getCurrentFocus()) {
+    				
+    				dir = i;
+    			}
+    		}
+    		
+    		switch (dir) {
+    		
+    		case 0:
+    			move("north");
+    			break;
+    		case 1:
+    			move("east");
+    			break;
+    		case 2:
+    			move("south");
+    			break;
+    		case 3:
+    			move("west");
+    			break;
+    		default:
+    			System.out.println(GameInfo.getLocationNotFoundMessage());
+    			break;
+    		}
+    	}
+    	else {
+    		
+    		System.out.println(GameInfo.getLocationNotFoundMessage());
+    	}	
+    }
+    
+    /**
+     * Try to move through a door
+     * @param door the door to move through
+     */
+    private void move(Door door) {
+    	
+    	if (door.getValue() == 0) {
+    		
+    		Player.setCurrentRoom(door.enterDoor(Player.getCurrentRoom()));
+    	}
+    	else {
+    		
+    		System.out.println(GameInfo.getDoorLockedMessage());
+    	}
+    }
+    
+    /**
+     * Try to move north/south/east/west
+     * @param location north, south, east, or west
+     */
+    private void move(String location) {
+    	
+    	IFocusable item = null;
+    	
+    	switch (location) {
+    	case "north": 
+    		item = Player.getCurrentRoom().getNFeature();
+    		break;
+    	case "east":
+    		item = Player.getCurrentRoom().getEFeature();
+    		break;
+    	case "south":
+    		item = Player.getCurrentRoom().getSFeature();
+    		break;
+    	case "west":
+    		item = Player.getCurrentRoom().getWFeature();
+    		break;
+    	}
+    	
+    	// If something was found in that corner, set it to the current focus
+    	if (item != null) {
+    		
+    		System.out.println("In the " + location + " side of the room you find a " + item.getName());
+    		Player.setCurrentFocus(item);
+    	}
+    	else {
+    		System.out.println("There is nothing in this part of the room.");
+    	}
     }
 	
 	// ### Methods ###
 	
 	// Game Logic Methods
 	
+    /**
+     * Ends the game
+     */
     public static void endGame() {
     	
         gameOver = true;
@@ -156,12 +252,6 @@ public class Controller {
  	public void initializeRooms() throws SQLException {
  		
  		roomList = db.getRooms();
- 	}
- 	
- 	public void initializeNounLibrary() {
-		for (Item i : Controller.itemList.values()) {
-			Parser.itemLib.add(i.getName());
-		}
  	}
  	
  	/**
@@ -191,29 +281,5 @@ public class Controller {
 	public static HashMap<Integer, Room> getRooms() {
 		
 		return roomList;
-	}
-	
-	/**
-	 * @return the room the player is currently in.
-	 */
-	public static Room getCurrentRoom() {
-		
-		return currentRoom;
-	}
-	/**
-	 * Sets the room the player is currently in.
-	 * @param room the room to set.
-	 */
-	public static void setCurrentRoom(Room room) {
-		
-		currentRoom = room;
-    	//TODO: instantiate player and inventory
-    	
-    	String input = "";
-    	
-    	//start input loop?
-    	
-    	//TODO: 
-    	
 	}
 }
