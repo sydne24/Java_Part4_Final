@@ -58,3 +58,148 @@ Full Stack Trace:
 12-05-2023 12:09:43.943 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
 12-05-2023 12:21:54.872 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
 12-05-2023 12:21:54.874 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
+12-05-2023 14:58:16.125 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-05-2023 14:58:16.127 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
+12-05-2023 14:58:16.785 FATAL [com.nwtcstudent.java.textadventure.GameLogger] - An error has occurred and the application had to exit!
+
+Cause of Error: Syntax error: Encountered "ve" at line 1, column 167.
+
+Location:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+
+Full Stack Trace:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.execute(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.executeLargeUpdate(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.executeUpdate(Unknown Source)
+	com.nwtcstudent.java.textadventure.GameDB.repairDB(GameDB.java:105)
+	com.nwtcstudent.java.textadventure.GameDB.<init>(GameDB.java:49)
+	com.nwtcstudent.java.textadventure.Controller.setup(Controller.java:86)
+	com.nwtcstudent.java.textadventure.Controller.<init>(Controller.java:43)
+	com.nwtcstudent.java.textadventure.Main.main(Main.java:29)
+12-05-2023 14:58:16.785 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit
+12-05-2023 14:59:03.152 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-05-2023 14:59:03.154 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
+12-05-2023 14:59:03.749 FATAL [com.nwtcstudent.java.textadventure.GameLogger] - An error has occurred and the application had to exit!
+
+Cause of Error: Syntax error: Encountered "ve" at line 1, column 167.
+
+Location:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+
+Full Stack Trace:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.execute(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.executeLargeUpdate(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.executeUpdate(Unknown Source)
+	com.nwtcstudent.java.textadventure.GameDB.repairDB(GameDB.java:105)
+	com.nwtcstudent.java.textadventure.GameDB.<init>(GameDB.java:49)
+	com.nwtcstudent.java.textadventure.Controller.setup(Controller.java:86)
+	com.nwtcstudent.java.textadventure.Controller.<init>(Controller.java:43)
+	com.nwtcstudent.java.textadventure.Main.main(Main.java:29)
+12-05-2023 14:59:03.749 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit
+12-05-2023 14:59:26.977 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-05-2023 14:59:26.979 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
+12-05-2023 14:59:27.752 FATAL [com.nwtcstudent.java.textadventure.GameLogger] - An error has occurred and the application had to exit!
+
+Cause of Error: Syntax error: Encountered "ve" at line 1, column 167.
+
+Location:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+
+Full Stack Trace:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.execute(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.executeLargeUpdate(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.executeUpdate(Unknown Source)
+	com.nwtcstudent.java.textadventure.GameDB.repairDB(GameDB.java:105)
+	com.nwtcstudent.java.textadventure.GameDB.<init>(GameDB.java:49)
+	com.nwtcstudent.java.textadventure.Controller.setup(Controller.java:86)
+	com.nwtcstudent.java.textadventure.Controller.<init>(Controller.java:43)
+	com.nwtcstudent.java.textadventure.Main.main(Main.java:29)
+12-05-2023 14:59:27.753 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit
+12-05-2023 15:01:36.626 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-05-2023 15:01:36.628 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
+12-05-2023 15:01:37.228 FATAL [com.nwtcstudent.java.textadventure.GameLogger] - An error has occurred and the application had to exit!
+
+Cause of Error: Syntax error: Encountered "t" at line 1, column 139.
+
+Location:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+
+Full Stack Trace:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.execute(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.executeLargeUpdate(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.executeUpdate(Unknown Source)
+	com.nwtcstudent.java.textadventure.GameDB.repairDB(GameDB.java:107)
+	com.nwtcstudent.java.textadventure.GameDB.<init>(GameDB.java:49)
+	com.nwtcstudent.java.textadventure.Controller.setup(Controller.java:86)
+	com.nwtcstudent.java.textadventure.Controller.<init>(Controller.java:43)
+	com.nwtcstudent.java.textadventure.Main.main(Main.java:29)
+12-05-2023 15:01:37.228 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit
+12-05-2023 15:02:49.132 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-05-2023 15:02:49.134 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
+12-05-2023 15:02:49.624 FATAL [com.nwtcstudent.java.textadventure.GameLogger] - An error has occurred and the application had to exit!
+
+Cause of Error: Syntax error: Encountered "t" at line 1, column 139.
+
+Location:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+
+Full Stack Trace:
+	org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.Util.generateCsSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.TransactionResourceImpl.wrapInSQLException(Unknown Source)
+	org.apache.derby.impl.jdbc.TransactionResourceImpl.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedConnection.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.ConnectionChild.handleException(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.execute(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.executeLargeUpdate(Unknown Source)
+	org.apache.derby.impl.jdbc.EmbedStatement.executeUpdate(Unknown Source)
+	com.nwtcstudent.java.textadventure.GameDB.repairDB(GameDB.java:107)
+	com.nwtcstudent.java.textadventure.GameDB.<init>(GameDB.java:49)
+	com.nwtcstudent.java.textadventure.Controller.setup(Controller.java:86)
+	com.nwtcstudent.java.textadventure.Controller.<init>(Controller.java:43)
+	com.nwtcstudent.java.textadventure.Main.main(Main.java:29)
+12-05-2023 15:02:49.624 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit
+12-05-2023 15:03:29.212 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-05-2023 15:03:29.214 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
+12-05-2023 15:03:29.751 FATAL [com.nwtcstudent.java.textadventure.GameLogger] - An error has occurred and the application had to exit!
+
+Cause of Error: No enum constant com.nwtcstudent.java.textadventure.Item.ItemType.Vanity
+
+Location:
+	java.base/java.lang.Enum.valueOf(Enum.java:273)
+
+Full Stack Trace:
+	java.base/java.lang.Enum.valueOf(Enum.java:273)
+	com.nwtcstudent.java.textadventure.Item$ItemType.valueOf(Item.java:1)
+	com.nwtcstudent.java.textadventure.GameDB.getItems(GameDB.java:142)
+	com.nwtcstudent.java.textadventure.Controller.initializeItems(Controller.java:245)
+	com.nwtcstudent.java.textadventure.Controller.setup(Controller.java:89)
+	com.nwtcstudent.java.textadventure.Controller.<init>(Controller.java:43)
+	com.nwtcstudent.java.textadventure.Main.main(Main.java:29)
+12-05-2023 15:03:29.751 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Exit
+12-05-2023 15:05:41.346 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Logging started.
+12-05-2023 15:05:41.348 INFO  [com.nwtcstudent.java.textadventure.GameLogger] - Game Started
