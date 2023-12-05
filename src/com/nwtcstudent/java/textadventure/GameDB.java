@@ -34,8 +34,10 @@ public class GameDB {
 
 		
 		// Set up the database
+		// 10.1 - Implementation of a database with basic CRUD operations
 		ds = new EmbeddedDataSource();
 		ds.setDatabaseName("foobar");
+		// 10.2 - Proper opening and closure of a Database resource
 		ds.setCreateDatabase("create");
 		
 		conn = ds.getConnection();
