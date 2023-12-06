@@ -409,18 +409,20 @@ public class Controller {
  	/**
  	 * Try to get a focusable based on the player's current focus
  	 */
- 	public void getFocusable() {
+ 	public IFocusable getFocusable() {
  		
  		IFocusable focus = player.getCurrentFocus();
  		
  		if (focus != null) {
  			
- 			getFocusable(focus.getName());
+ 			return getFocusable(focus.getName());
  		}
  		else {
  			
  			System.out.println("Please focus on or specify an object to interact with.");
  		}
+ 		
+ 		return null;
  	}
  	
  	/**
