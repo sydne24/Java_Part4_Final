@@ -100,7 +100,7 @@ public final class Parser {
 
 		//handles msc noun inspections
 		else if (verb.equals("look") && noun.length() > 0){
-			controller.move(noun);
+			controller.inspect(noun);
 		}
 		
 		//TAKE commands
