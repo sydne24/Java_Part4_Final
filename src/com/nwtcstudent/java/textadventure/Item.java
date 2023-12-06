@@ -151,6 +151,14 @@ public class Item implements IFocusable, Comparable<Item> {
 						player.getInventory().removeItem(this);
 						System.out.println(usedDescription + "\nYou can now use this door!");
 					}
+					else if (door.getValue() > 0) {
+						
+						System.out.println("That is the wrong key.");
+					}
+					else {
+						
+						System.out.println("This door is already unlocked.");
+					}
 				}
 				else {
 					
