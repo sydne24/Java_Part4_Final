@@ -148,12 +148,15 @@ public final class Player {
 		 */
 		public void checkInventory()
 		{
+			// Sort items by name before checking
+			items.sort(new IFocusable.CompareItemNames());
+			
 			// Create stringbuilder to hold item data
-			StringBuilder output = new StringBuilder("");
+			StringBuilder output = new StringBuilder("\nYour Inventory:");
 			
 			// Append item data to string
 			// 4.1 Use of a variable in a lambda expression
-			getAllItems().forEach(x -> output.append("\nName: " + x.getName() + "\tID: " + x.getID()));
+			getAllItems().forEach(x -> output.append("\n - " + x.getName()));
 			
 			System.out.println(output.toString());
 		}

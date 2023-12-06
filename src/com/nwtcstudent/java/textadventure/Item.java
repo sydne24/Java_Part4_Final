@@ -1,10 +1,12 @@
 package com.nwtcstudent.java.textadventure;
 
+import java.util.Comparator;
+
 /**
  * The Item class defines items the player can add to their inventory and use.
  */
 // 1.2 Polymorphic class structure with use of parent classes and interfaces
-public class Item implements IFocusable {
+public class Item implements IFocusable, Comparable<Item> {
 	
 	// ### Fields ###
 	
@@ -151,5 +153,17 @@ public class Item implements IFocusable {
 					System.out.println("Try focusing on a door before using this key.");
 				}
 		}
+	}
+
+	// 1.9 Proper use of @Override notation
+	// 3.4 Use of the Comparator or Comparable interface
+	/**
+	 * Compare items by their names
+	 * @return the difference between the two item's names
+	 */
+	@Override
+	public int compareTo(Item o) {
+		
+		return this.getName().compareTo(o.getName());
 	}
 }

@@ -71,7 +71,6 @@ public class Controller {
         	// 8.1 Demonstration of reading/writing data from the console
             input = myScan.nextLine();
         	parser.parseInput(input);
-            
         }
 
         // Close the scanner when the game is finished
@@ -155,6 +154,7 @@ public class Controller {
     		for (int i = 0; i < features.length; i++) {
     			
     			// Find which feature the player is trying to focus on
+    			// 2.5 Valid object comparison in at least one scenario
     			if (features[i] != null && features[i] == player.getCurrentFocus()) {
     				
     				dir = i;
@@ -270,6 +270,7 @@ public class Controller {
     		// Loop through the features and compare to the item
     		for (int i = 0; i < features.length; i++) {
     			
+    			// 2.5 Valid object comparison in at least one scenario
     			if (item == features[i]) {
     				
     				// Switch based on the location (NORTH/EAST/SOUTH/WEST), removing the item from that location
