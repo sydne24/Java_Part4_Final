@@ -81,26 +81,31 @@ public final class Parser {
 		//BEGIN COMMAND CALLS WITH PARSED INPUT
 		//LOOK commands
 		if (verb == "look" && noun == "") {
-			Controller.inspect();
+			controller.inspect();
 		}
 		if (verb == "look" && noun == "room" ||
 			verb == "look" && noun == "around") {
-			Controller.lookAround();
+			controller.lookAround();
 		}
 		else if (verb == "look" && noun.length() > 0) {
-			Controller.inspect(noun);
+			controller.inspect(noun);
 		}
 		
 		//USE commands
 		//TODO: finish logic
 		if (verb == "use") {
-			IFocusable obj = null;
+			IFocusable obj;
 			if (noun == "") {
-				obj = Controller.getFocusable(); 
-				//TODO: finish logic after hotfix from Nate
+				//if no noun specified, get recent focusable object or kick out for player feedback
+				obj = controller.getFocusable(); 
+				if (obj != null) {
+					//interact with focusable object
+					obj.interact();
+				}
 			}
 			else if (noun.length() > 0) {
-				
+				obj = controller.getFocusable(noun);
+				obj.interact();
 			}
 		}
 		
