@@ -1,5 +1,9 @@
 package com.nwtcstudent.java.textadventure;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * A room the player may enter and navigate.
  */
@@ -134,6 +138,7 @@ public class Room {
 		this.wFeature = wFeature;
 	}
 	
+	// 3.5 Valid use of a foreach statement
 	/**
 	 * Attempt to get a feature from the list of features
 	 * @param featureName the name of the feature to return. 
@@ -141,18 +146,34 @@ public class Room {
 	 */
 	public IFocusable getFeature(String featureName) {
 		
-		IFocusable foundFeature = null;
+		// Wrapper in order to get value from the lambda expression
+		var featureWrapper = new Object() {IFocusable foundFeature = null;};
 		
-		for (IFocusable f : getFeatures()) {
-			
+		// Convert the features array to a list
+		List<IFocusable> features = Arrays.asList(getFeatures());
+		
+		// Search the feature list for the requested feature
+		// 2.1 Use of lambda expressions in at least 5 scenarios
+		// 3.5 Valid use of a foreach statement
+		features.forEach(f -> {
 			if (f.getName().toLowerCase().equals(featureName.toLowerCase())) {
-				
-				foundFeature = f;
-				break;
+			
+			featureWrapper.foundFeature = f;
 			}
-		}
+		});
 		
-		return foundFeature;
+		
+		// Standard for each code
+//		for (IFocusable f : getFeatures()) {
+//			
+//			if (f.getName().toLowerCase().equals(featureName.toLowerCase())) {
+//				
+//				foundFeature = f;
+//				break;
+//			}
+//		}
+		
+		return featureWrapper.foundFeature;
 	}
 	
 	/**

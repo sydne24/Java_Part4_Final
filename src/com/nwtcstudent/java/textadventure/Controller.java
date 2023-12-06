@@ -439,8 +439,8 @@ public class Controller {
  	 * Initializes the named item list for the Parser
  	 */
  	public void initializeItemLibrary() {
+ 		// 2.1 Use of lambda expressions in at least 5 scenarios
  		// 3.5 Valid use of a foreach statement
- 		// 2.1 Use of lambda expressions inat least 5 scenarios
  		itemList.values().forEach(i -> parser.addItemToLib(i));
  	}
  	
