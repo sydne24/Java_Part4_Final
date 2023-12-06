@@ -16,7 +16,7 @@ public class GameInfo {
 	// ### Fields ###
 	
 	// The name of the game
-	private static String name = "GAME TITLE";
+	private static String name = "VEIL";
 	
 	// Player reference
 	static Player player = Player.getInstance();
@@ -52,7 +52,7 @@ public class GameInfo {
 		
 		String message = String.format(" _____________________________\n"
 				+ "\n"
-				+ "|         %s          |\n"
+				+ "|             %s            |\n"
 				+ " _____________________________\n", name);
 		
 		return message;
@@ -128,7 +128,7 @@ public class GameInfo {
 	 */
 	public static String getEndMessage() {
 		
-		String message = "\nYou walk into the field and continue your adventure...";
+		String message = "\nA feeling of indescribable peace washes over you as the famous pop singer, Rick Astley, appears before you and begins singing you a song... THE END! Thanks for playing!!!";
 		return message;
 	}
 	

@@ -103,25 +103,24 @@ public class GameDB {
 		// In the ROOM's "NORTH/EAST/SOUTH/WEST" fields, give the item type in UPPERCASE, then an underscore, then the item/room's ID
 
 		// Item
-		stmt.executeUpdate("INSERT INTO Item VALUES(0, 'Moonlit Dagger', 'A dagger that glows softly in the moonlight. Can be used to unlock secret passages.', 'The moonlit dagger flies into the slot. The Time-Warp Gate garbles to life!', 'KEY', 2)");
-		stmt.executeUpdate("INSERT INTO Item VALUES(1, 'Mystic Amulet', 'A mysterious amulet adorned with ancient symbols. Unlocks the Time-Warp Gate.', 'The amulet resonates with mystical energy, granting access to the secrets of time. The gateway is open!', 'KEY', 1)");
-		stmt.executeUpdate("INSERT INTO Item VALUES(2, 'Spectral Lantern', 'A glowing source of light. You feel magical energy radiating from it.', 'The spectral lantern illuminates hidden messages and unveils concealed paths. The archway is open!', 'KEY', 3)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(0, 'Moonlit Dagger', 'A dagger that glows softly in the moonlight. Can be used to unlock secret passages.', 'The moonlit dagger flies into the slot. The Illusionary Portal garbles to life!', 'KEY', 2)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(1, 'Mystic Amulet', 'A mysterious amulet adorned with ancient symbols. Looks like it might unlock something...', 'The amulet resonates with mystical energy, granting access to the secrets of time. The Time-Warp Gate is open!', 'KEY', 1)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(2, 'Spectral Lantern', 'A glowing source of light. You feel magical energy radiating from it.', 'The spectral lantern illuminates hidden messages and unveils concealed paths. The Celestial Archway is open!', 'KEY', 3)");
 		stmt.executeUpdate("INSERT INTO Item VALUES(3, 'Heavenly Pizza', 'A box containing your favorite pizza, crafted by celestial chefs. Each bite is pure bliss.', 'The heavenly aroma of your favorite pizza fills the air, bringing unparalleled joy with every slice.', 'FOOD', 7)");
 		stmt.executeUpdate("INSERT INTO Item VALUES(4, 'Mysterious Note', 'A note from the heavens, carrying words of joy and wisdom. It radiates a celestial warmth.', 'The note just says... We''ve been trying to reach you about your car''s extended warranty... You faintly begin to hear Rick Roll music growing louder in the backround...', 'NOTE', 5)");
-		stmt.executeUpdate("INSERT INTO Item VALUES(5, 'Divine Key', 'A radiant key infused with celestial energy. Unlocks the secrets of the heavens.', 'The divine key emanates a gentle glow as it fits perfectly into the lock. A feeling of indescribable peace washes over you as the famous pop singer, Rick Astley, appears before you and begins singing you a song... THE END! Thanks for playing!!!', 'KEY', 4)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(5, 'Divine Key', 'A radiant key infused with celestial energy. Unlocks the secrets of the heavens.', 'The divine key emanates a gentle glow as it fits perfectly into the lock.', 'KEY', 4)");
 		stmt.executeUpdate("INSERT INTO Item VALUES(6, 'Enigmatic Orange Wig', 'A vibrant orange wig that somehow looks familiar...', 'As you put on the wig, you can''t help but think of Rick Astley''s infamous song known as The Rick Roll...', 'VANITY', 0)");
 
 		// Room
 		stmt.executeUpdate("INSERT INTO Room VALUES(0, 'Enchanted Garden', 'A room filled with glowing flowers and talking trees. You can sense magic in the air.', 'DOOR_0', 'DOOR_1', 'ITEM_0', 'ITEM_1')");
 		stmt.executeUpdate("INSERT INTO Room VALUES(1, 'Library of Whispers', 'An ancient library where books float and share their stories when approached. Dusty tomes line the shelves.', '', 'ITEM_2', 'DOOR_0', '')");
 		stmt.executeUpdate("INSERT INTO Room VALUES(2, 'Crystal Cavern', 'A cavern illuminated by shimmering crystals. The air is filled with a mystical glow. Amidst the glimmering beauty, a box with a familiar aroma and a mysterious note await your discovery.', 'ITEM_6', 'DOOR_2', 'ITEM_3', 'DOOR_1')");
-		stmt.executeUpdate("INSERT INTO Room VALUES(3, 'Celestial Heavens', 'A heavenly realm filled with soft clouds and radiant light. Floating platforms lead to a central gathering place.', 'ITEM_4', 'ITEM_5', 'DOOR_3', 'DOOR_2')");
+		stmt.executeUpdate("INSERT INTO Room VALUES(3, 'Celestial Heavens', 'A heavenly realm filled with soft clouds and radiant light. Floating platforms lead to a central gathering place.', 'ITEM_4', 'ITEM_5', 'END', 'DOOR_2')");
 
 		// Door
 		stmt.executeUpdate("INSERT INTO Door VALUES(0, 'Time-Warp Gate', 'A door leading to a different era. There are drawings of a monarch with a special glowing amulet.', 1, 0, 1)");
 		stmt.executeUpdate("INSERT INTO Door VALUES(1, 'Illusionary Portal', 'A door that appears as a solid wall. There appears to be a slot for a dagger.', 2, 0, 2)");
 		stmt.executeUpdate("INSERT INTO Door VALUES(2, 'Celestial Archway', 'A door adorned with constellations. It is too dark to see inside. Perhaps a light source would help...', 3, 2, 3)");
-		stmt.executeUpdate("INSERT INTO Door VALUES(3, 'Divine Door', 'An ethereal door radiating celestial light. Through the blinding light you notice that there is a slot for a key.', 4, 3, 0)");
 	}
 	
 	/**
@@ -314,7 +313,7 @@ public class GameDB {
 					
 					// Add an ending area to this spot
 					// The ID of -1 is a flag variable which will tell the game to end when it is read
-					feature = new Door(featureID, "Field", "You see field for miles ahead.", 0);
+					feature = new Door(featureID, "Divine Door", "An ethereal door radiating celestial light. Through the blinding light you notice that there is a slot for a key.", 4);
 				}
 				
 				// Add the feature (null, item, or door) to the features array.
