@@ -156,6 +156,11 @@ public final class Parser {
 				}
 			}
 		}
+		
+		//INVALID INPUT
+		if (verb.equals("")) {
+			System.out.println("I'm sorry, I don't understand. What would you like to do?");
+		}
 	}
 	
 	private String getVerb(String input) {
