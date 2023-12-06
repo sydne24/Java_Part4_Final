@@ -15,7 +15,7 @@ public final class Parser {
 	private String useLib[] = new String[] {"use", "open", "eat", "wear",  "drop", "destroy"};
 	private String takeLib[] = new String[] {"pick", "take"};
 	private String lookLib[] = new String[] {"look", "check", "inspect", "describe", "what", "investigate"};
-	private String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl"};
+	private String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl", "go"};
 	private String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory", "around", "room", "dagger", "amulet", "lantern", "pizza", "note", "key", "wig", "door", "gate", "portal", "archway"};
 	
 	//declare noun library - values are added with initializeItemLibrary() in Controller during setup()
@@ -50,6 +50,11 @@ public final class Parser {
 	    		input.equals("help please") ||
 	    		input.equals("please help") ) {
 	    	System.out.println(GameInfo.getAvailableCommands());
+	    }
+	    
+	    // Displays inventory if only 'inventory' is entered
+	    if (input.equals("inventory")) {
+	    	checkInventory();
 	    }
 	    
 	    // Searches for named items as phrase before splitting input string
