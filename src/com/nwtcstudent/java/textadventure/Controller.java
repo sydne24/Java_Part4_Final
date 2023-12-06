@@ -65,7 +65,6 @@ public class Controller {
         	// Get and act on user input
         	// nextLine is required to pass entire input string to the Parser
             input = myScan.nextLine();
-            take(itemList.get(1));
         	Parser.parseInput(input);
             
         }
