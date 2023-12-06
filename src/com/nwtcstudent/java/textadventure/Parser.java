@@ -15,7 +15,7 @@ public final class Parser {
 	private String useLib[] = new String[] {"use", "open", "eat", "wear", "pick", "drop", "destroy", "take"};
 	private String lookLib[] = new String[] {"look", "check", "inspect", "describe", "what"};
 	private String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl"};
-	private String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory"};
+	private String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory", "around", "dagger", "amulet", "lantern", "pizza", "note", "key", "wig"};
 	
 	//declare noun library - values are added with initializeItemLibrary() in Controller during setup()
 	// 3.2 Use of an array list
@@ -25,34 +25,37 @@ public final class Parser {
 	/**
 	 * 
 	 * @param input the input to be parsed.
-	 * @return a String array with 2 elements. [0] verb, [1] noun.
+	 * @return a Command object with properties noun and verb
 	 */
+	//TODO: this no longer needs to return anything - all action is called from other classes and handled outside this class
 	public Command parseInput(String input) {
 		
-		boolean matchFound = false;
 		String noun = "";
 		String verb = "";
 		Command phrase = new Command();
+		//converts input to lowercase and trims white space
+		input = input.toLowerCase().trim(); 
 		
-		// TODO: 27 & 29 are only used in testing - remove before release
-		
-		input = input.toLowerCase().trim(); //converts input to lowercase and trims whitepace
-		
-		// Calls exit function if player enters 'exit'
-	    if (input.equals("exit")) {
-	    	
+		// Calls exit function if player enters 'exit', 'end', or 'close', or common variants
+	    if (input.equals("exit") ||
+	    		input.equals("end") ||
+	    		input.equals("end game") ||
+	    		input.equals("close") ||
+	    		input.equals("close game") ) {
 	    	Controller.endGame();
 	    	return null;
 	    }
 	    
 	    // Calls help function if player enters 'help'
-	    if (input.equals("help")) {
-	    	
+	    if (input.equals("help") ||
+	    		input.equals("help please") ||
+	    		input.equals("please help") ) {
 	    	System.out.println(GameInfo.getAvailableCommands());
 	    	return null;
 	    }
 	    
 	    // Calls look around function if command includes phrase "look around"
+	    //TODO: consider moving this into the noun/verb parse logic - all of these words have been added to the action/item dictionaries
 	    if (input.contains("look around") ||
 	    		input.contains("look room") ||
 	    		input.contains("inspect room")) {
@@ -68,8 +71,6 @@ public final class Parser {
 			}
 		}
 	    
-	    
-		
 		String cleanedInput[] = input.split("\\s+"); //creates array with parts of input split by space
 		
 		// 3.5 - Valid example of a foreach statement
@@ -91,16 +92,11 @@ public final class Parser {
 			
 			System.out.println("Unknown command.");
 		}
-
-		// If have noun and verb, set matchFound to true
-		if (noun.length() > 0 && verb.length() > 0) {
-			matchFound = true;
-		}
 		
 	    // Set and return phrase
 		phrase.verb = verb;
 		phrase.noun = noun;
-		
+		//TODO: this no longer needs to return any information - instead it will call action methods
 		return phrase;
 	}
 	
@@ -143,6 +139,7 @@ public final class Parser {
 	 * @return String Command.verb & String Command.noun
 	 */
 	//1.7 - use of nested class
+	//TODO: this class may no longer be utilized - double check and remove if this is the case
 	static class Command {
 		private String noun;
 		private String verb;
