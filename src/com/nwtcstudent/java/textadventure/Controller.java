@@ -67,6 +67,8 @@ public class Controller {
         	
         	// Get and act on user input
         	// nextLine is required to pass entire input string to the Parser
+        	
+        	// 8.1 Demonstration of reading/writing data from the console
             input = myScan.nextLine();
         	parser.parseInput(input);
             
@@ -104,6 +106,8 @@ public class Controller {
 		
 		// Create the input scanner
 		myScan = new Scanner(System.in);
+		
+		db.closeDB();
 	}
 	
 	/**
@@ -308,6 +312,7 @@ public class Controller {
     public static void endGame() {
     	
         gameOver = true;
+        
         System.out.println(GameInfo.getExitMessage());
     }
     
@@ -346,6 +351,7 @@ public class Controller {
  	 * Initializes the named item list for the Parser
  	 */
  	public void initializeItemLibrary() {
+ 		// 3.5 Valid use of a foreach statement
  		for (Item i : Controller.itemList.values()) {
  			parser.addItemToLib(i);
  		}

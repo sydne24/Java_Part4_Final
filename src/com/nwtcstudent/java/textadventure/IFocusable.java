@@ -3,6 +3,7 @@ package com.nwtcstudent.java.textadventure;
 /**
  * Describes an object that can be focused on/interacted with.
  */
+// 1.2 Polymorphic class structure with use of parent classes and interfaces
 public interface IFocusable {
 	
 	// Primary functions of all IFocusable objects
@@ -29,5 +30,5 @@ public interface IFocusable {
 	/**
 	 * Defines interaction between the player and this object.
 	 */
-	public void interact(IFocusable focus);
+	public void interact();
 }
