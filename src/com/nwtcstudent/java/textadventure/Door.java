@@ -2,9 +2,15 @@ package com.nwtcstudent.java.textadventure;
 
 import java.util.HashMap;
 
+/**
+ * A door the player can enter, which connects two rooms
+ */
+// 1.2 Polymorphic class structure with use of parent classes and interfaces
 public class Door implements IFocusable {
 	
 	// ### Fields ###
+	// 2.2 - example of encapsulation
+	Player player = Player.getInstance();
 	
 	private int id;
 	private String name;
@@ -134,25 +140,31 @@ public class Door implements IFocusable {
 		
 		value = doorValue;
 	}
-
-	// When the door is interacted with, allow the player to enter
-	// Alternatively, if the door is an END point, trigger game-ending code
-	//TODO: Add lock/key interaction
+	
+	/**
+	 * When the door is interacted with, allow the player to enter
+	 * Alternatively, if the door is an END point, trigger game-ending code
+	 */
 	@Override
-	public void interact(IFocusable focus) {
+	public void interact() {
 		
 		// If the id is -1, this means the door is an END point
 		if (id == -1 && value == 0) {
+
+		player.setCurrentFocus(this);
 			
 			System.out.println(GameInfo.getEndMessage());
 			Controller.endGame();
 		}
+		// If the door's value is 0, this means it is unlocked. Otherwise, it is locked
 		else if (value != 0)
 		{
-			System.out.println("This door is locked, try using a key to open it.");
+			System.out.println("This door is locked. Maybe a key could open it?.");
 		}
 		else {
-			Controller.setCurrentRoom(enterDoor(Controller.getCurrentRoom()));
+			
+			player.setCurrentRoom(enterDoor(player.getCurrentRoom()));
+			System.out.println("You have entered the " + player.getCurrentRoom().getName());
 		}
 	}
 }

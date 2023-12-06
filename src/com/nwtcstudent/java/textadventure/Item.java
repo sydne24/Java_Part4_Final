@@ -1,19 +1,22 @@
 package com.nwtcstudent.java.textadventure;
 
+import java.util.Comparator;
+
 /**
  * The Item class defines items the player can add to their inventory and use.
  */
-//1.2 - Polymorphic class structure
-public class Item implements IFocusable {
+// 1.2 Polymorphic class structure with use of parent classes and interfaces
+public class Item implements IFocusable, Comparable<Item> {
 	
 	// ### Fields ###
 	
 	/**
 	 * Type of an item. Determines basic behavior/interaction with the environment.
 	 */
-	//1.8 - Use of enumerations
+	// 1.8 - Use of enumerations
 	public enum ItemType { KEY, NOTE, VANITY, FOOD }
 
+	// 2.2 - Example of encapsulation
 	private int id;
 	private String name;
 	private String description;
@@ -100,60 +103,85 @@ public class Item implements IFocusable {
 		return value;
 	}
 	
-	//1.4 - Use of overridden methods
-	@Override
-	public void interact(IFocusable focus) {
+	// 1.4 Use of Overriden Methods
+	/**
+	 * Specifies the item's interaction
+	 */
+	public void interact() {
 		
-		switch(type){
-			case FOOD:
-				System.out.println("You have eaten the " + name);
-				player.inventory.removeItem(this);
-				break;
-			case VANITY:
-				System.out.println("You have put on the " + name);
-				description = usedDescription;
-				break;
-			case NOTE:
-				System.out.println("The note reads: " + description);
-				break;
-			case KEY:
-				// 2.5 - Valid object comparison
-				if (focus instanceof Door)
-				{
-					if (value == focus.getValue())
-					{
-						System.out.println("You have unlocked the door.");
-						((Door) focus).setValue(0);
-						((Door) focus).setDescription("An unlocked door.");
-						player.inventory.removeItem(this);
-					}
-					else if (focus.getValue() == 0)
-						System.out.println("This door is already unlocked.");
-					else
-						System.out.println("This key does not fit into the lock, there must be another.");
-				}
-				else 
-					System.out.println("The key cannot be used on this.");
-				break;
-		}
-	}
-		
-		//1.3 - Use of overloaded methods
-		public void interact() {
+		// Check if the item exists in the player's inventory
+		if (player.getInventory().getItem(this) != null) {
+			
 			switch(type){
-				case FOOD:
-					System.out.println("You have eaten the " + name);
-					player.inventory.removeItem(this);
-					break;
-				case VANITY:
-					System.out.println("You have put on the " + name);
-					description = usedDescription;
-					break;
-				case NOTE:
-					System.out.println("The note reads: " + description);
-					break;
-				case KEY:
-					System.out.println("You are not near something you can use the key on.");
+			
+			// Eat the food
+			case FOOD:
+				System.out.println(usedDescription);
+				player.getInventory().removeItem(this);
+				break;
+				
+			// Wear vanity item (if it is not already worn)
+			case VANITY:
+				
+				if (this.value == 0) {
+					
+					System.out.println(usedDescription);
+					player.getInventory().removeItem(this);
+				}
+				else {
+					
+					System.out.println("You are already wearing this item");
+				}
+				break;
+			// Read the note
+			case NOTE:
+				System.out.println(usedDescription);
+				break;
+				
+			// Try to open a door with the key
+			case KEY:
+				IFocusable currentFocus = player.getCurrentFocus();
+				if (currentFocus != null && currentFocus.getClass() == Door.class) {
+					
+					Door door = (Door)currentFocus;
+					if (door.getValue() == this.value) {
+						
+						// Unlock the door
+						door.setValue(0);
+						player.getInventory().removeItem(this);
+						System.out.println(usedDescription + "\nYou can now use this door!");
+					}
+					else if (door.getValue() > 0) {
+						
+						System.out.println("That is the wrong key.");
+					}
+					else {
+						
+						System.out.println("This door is already unlocked.");
+					}
+				}
+				else {
+					
+					System.out.println("Try focusing on a door before using this key.");
+				}
 			}
 		}
+		// Information given if the item doesn't exist in the player's inventory
+		else {
+			
+			System.out.println("The requested item is not in your inventory.");
+		}
+	}
+
+	// 1.9 Proper use of @Override notation
+	// 3.4 Use of the Comparator or Comparable interface
+	/**
+	 * Compare items by their names
+	 * @return the difference between the two item's names
+	 */
+	@Override
+	public int compareTo(Item o) {
+		
+		return this.getName().compareTo(o.getName());
+	}
 }

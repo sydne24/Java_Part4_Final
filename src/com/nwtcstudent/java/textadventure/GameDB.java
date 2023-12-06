@@ -4,10 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.apache.derby.impl.sql.execute.ConstraintInfo;
 import org.apache.derby.jdbc.EmbeddedDataSource;
 
 import com.nwtcstudent.java.textadventure.Item.ItemType;
@@ -44,13 +42,20 @@ public class GameDB {
 		stmt = conn.createStatement();
 		
 		// Enabled to recreate the database
-		// The database is not provided through github (for now), so this must be called at least the first time the application is run to initially create the database
-		// Delete or do not include the "foobar" database folder when you upload to github, in order to reduce the file size
 		repairDB();
 	}
 	
-	
 	// ### Methods ###
+	
+	/**
+	 * Close the database connection
+	 * @throws SQLException
+	 */
+	public void closeDB() throws SQLException {
+		
+		// 10.2 - Proper opening and closure of a Database resource
+		conn.close();
+	}
 	
 	/**
 	 * Reset the database. Not called in the standard program execution.

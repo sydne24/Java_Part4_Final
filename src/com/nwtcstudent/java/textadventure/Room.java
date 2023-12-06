@@ -1,12 +1,16 @@
 package com.nwtcstudent.java.textadventure;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * A room the player may enter and navigate.
  */
 public class Room {
 	
 	// ### Fields ###
-	
+	// 2-2: example of encapsulation
 	private int id;
 	private String name;
 	private String description;
@@ -132,5 +136,51 @@ public class Room {
 	 */
 	public void setWFeature(IFocusable wFeature) {
 		this.wFeature = wFeature;
+	}
+	
+	// 3.5 Valid use of a foreach statement
+	/**
+	 * Attempt to get a feature from the list of features
+	 * @param featureName the name of the feature to return. 
+	 * @return the feature, or null if none is found.
+	 */
+	public IFocusable getFeature(String featureName) {
+		
+		// Wrapper in order to get value from the lambda expression
+		var featureWrapper = new Object() {IFocusable foundFeature = null;};
+		
+		// Convert the features array to a list
+		List<IFocusable> features = Arrays.asList(getFeatures());
+		
+		// Search the feature list for the requested feature
+		// 2.1 Use of lambda expressions in at least 5 scenarios
+		// 3.5 Valid use of a foreach statement
+		features.forEach(f -> {
+			if (f != null && f.getName().toLowerCase().equals(featureName.toLowerCase())) {
+			
+			featureWrapper.foundFeature = f;
+			}
+		});
+		
+		
+		// Standard for each code
+//		for (IFocusable f : getFeatures()) {
+//			
+//			if (f.getName().toLowerCase().equals(featureName.toLowerCase())) {
+//				
+//				foundFeature = f;
+//				break;
+//			}
+//		}
+		
+		return featureWrapper.foundFeature;
+	}
+	
+	/**
+	 * @return all features of the room
+	 */
+	public IFocusable[] getFeatures() {
+		
+		return new IFocusable[] {nFeature, eFeature, sFeature, wFeature};
 	}
 }
