@@ -147,6 +147,9 @@ public class Controller {
     		
     		System.out.println(currentFocus.getDescription());
     	}
+    	else {
+    		System.out.println("What would you like to look at?");
+    	}
     }
     
     /**
