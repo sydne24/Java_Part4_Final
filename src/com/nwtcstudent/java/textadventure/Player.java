@@ -232,7 +232,7 @@ public final class Player {
 			// 2.1 Use of lambda expressions in at least 5 scenarios
 			// 3.5 Valid use of a foreach statement
 			items.forEach(i -> {
-				if (i.getName().toLowerCase().equals(item.toLowerCase())) {
+				if (i != null && i.getName().toLowerCase().equals(item.toLowerCase())) {
 					
 					foundItemWrapper.foundItem = i;
 					}
