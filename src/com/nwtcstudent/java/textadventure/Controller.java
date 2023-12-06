@@ -410,6 +410,13 @@ public class Controller {
  			
  			focus = player.getInventory().getItem(noun);
  		}
+ 		
+ 		// If the focus is still null, warn the user
+ 		if (focus == null) {
+ 			
+ 			System.out.println("Please focus on or specify an object to interact with.");
+ 		}
+ 		
  		return focus;
  	}
  	
@@ -425,10 +432,6 @@ public class Controller {
  		if (focus != null) {
  			
  			return getFocusable(focus.getName());
- 		}
- 		else {
- 			
- 			System.out.println("Please focus on or specify an object to interact with.");
  		}
  		
  		return null;
