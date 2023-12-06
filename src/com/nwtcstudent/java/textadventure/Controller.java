@@ -407,23 +407,20 @@ public class Controller {
  	}
  	
  	/**
- 	 * Try to get am item from the item list by its name
- 	 * @param itemName the name of the door
- 	 * @return the item, or null if none was found
+ 	 * Try to get a focusable based on the player's current focus
  	 */
- 	public Item getItem(String itemName) {
+ 	public void getFocusable() {
  		
- 		Item foundItem = null;
+ 		IFocusable focus = player.getCurrentFocus();
  		
- 		for (Item item : itemList.values()) {
+ 		if (focus != null) {
  			
- 			if (item.getName().equals(itemName)) {
- 				
- 				foundItem = item;
- 			}
+ 			getFocusable(focus.getName());
  		}
- 		
- 		return foundItem;
+ 		else {
+ 			
+ 			System.out.println("Please focus on or specify an object to interact with.");
+ 		}
  	}
  	
  	/**

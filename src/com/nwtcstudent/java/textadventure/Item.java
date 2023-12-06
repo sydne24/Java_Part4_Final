@@ -161,7 +161,7 @@ public class Item implements IFocusable, Comparable<Item> {
 		// Information given if the item doesn't exist in the player's inventory
 		else {
 			
-			System.out.println("You don't have this item.");
+			System.out.println("The requested item is not in your inventory.");
 		}
 	}
 
