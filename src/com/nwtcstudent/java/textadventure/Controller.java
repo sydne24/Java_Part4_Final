@@ -65,6 +65,7 @@ public class Controller {
         	// Get and act on user input
         	// nextLine is required to pass entire input string to the Parser
             input = myScan.nextLine();
+            take(itemList.get(1));
         	Parser.parseInput(input);
             
         }
@@ -275,9 +276,17 @@ public class Controller {
     				
     				// Add the item to the player's inventory
     				player.getInventory().storeItem(item);
+    				
+    				// Exit the loop
     				break;
     			}
+    			// If i is 3 (last comparable feature) and still doesn't match, the item must not exist in the room
+    			else if (i == 3) {
+    				
+    				System.out.println("The item you wish to take couldn't be found here.");
+    			}
     		}
+    		
     	}
     }
     
