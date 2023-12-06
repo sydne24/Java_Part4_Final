@@ -6,6 +6,8 @@ public class Door implements IFocusable {
 	
 	// ### Fields ###
 	// 2.2 - example of encapsulation
+	Player player = Player.getInstance();
+	
 	private int id;
 	private String name;
 	private String description;
@@ -152,7 +154,7 @@ public class Door implements IFocusable {
 			System.out.println("This door is locked, try using a key to open it.");
 		}
 		else {
-			Player.setCurrentRoom(enterDoor(Player.getCurrentRoom()));
+			player.setCurrentRoom(enterDoor(player.getCurrentRoom()));
 		}
 	}
 }

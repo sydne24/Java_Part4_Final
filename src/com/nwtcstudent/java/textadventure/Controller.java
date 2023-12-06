@@ -14,10 +14,10 @@ public class Controller {
 	// ### Fields ###
 	
 	// Game logger
-	private static GameLogger logger;
+	private static GameLogger logger = GameLogger.getInstance();
 	
 	//Player
-	private static Player player;
+	private static Player player = Player.getInstance();
 	
 	// Database
 	private GameDB db;
@@ -73,14 +73,16 @@ public class Controller {
         myScan.close();
     }
 	
+	// ### Methods ###
+	
+	/**
+	 * Set up the game
+	 * @throws SQLException
+	 */
 	private void setup() throws SQLException {
 		
 		// Start up the logger
-		logger = GameLogger.getInstance();
 		logger.log("Game Started", Level.INFO);
-		
-		//Initialize player
-		player = Player.getInstance();
 		
 		// Create an instance of the database
 		db = new GameDB();
@@ -92,33 +94,36 @@ public class Controller {
 		initializeItemLibrary();
 		
 		// Set the current room to room 0 (starting room)
-		Player.setCurrentRoom(roomList.get(0));
+		player.setCurrentRoom(roomList.get(0));
 		
 		// Create the input scanner
 		myScan = new Scanner(System.in);
 	}
-
+	
+	/**
+	 * Retrieve data about the current room.
+	 */
     static void lookAround() {
     	// Room description will be given when the player decides to LOOK AROUND / LOOK ROOM / INSPECT ROOM / etc
     	// Display current room description
-    	System.out.println(Player.getCurrentRoom().getDescription());
+    	System.out.println(player.getCurrentRoom().getDescription());
     	//Display current room features
     	
     	//NORTH
-    	if (Player.getCurrentRoom().getNFeature() != null)
-    		System.out.println("To the north is a " + Player.getCurrentRoom().getNFeature().getName());
+    	if (player.getCurrentRoom().getNFeature() != null)
+    		System.out.println("To the north is a " + player.getCurrentRoom().getNFeature().getName());
     	
     	//EAST
-    	if (Player.getCurrentRoom().getEFeature() != null) 
-    		System.out.println("To the east is a " + Player.getCurrentRoom().getEFeature().getName());
+    	if (player.getCurrentRoom().getEFeature() != null) 
+    		System.out.println("To the east is a " + player.getCurrentRoom().getEFeature().getName());
     	
     	//SOUTH
-    	if (Player.getCurrentRoom().getSFeature() != null)
-    		System.out.println("To the south is a " + Player.getCurrentRoom().getSFeature().getName());
+    	if (player.getCurrentRoom().getSFeature() != null)
+    		System.out.println("To the south is a " + player.getCurrentRoom().getSFeature().getName());
     	
     	//WEST
-    	if (Player.getCurrentRoom().getWFeature() != null)
-    		System.out.println("To the west is a " + Player.getCurrentRoom().getWFeature().getName());
+    	if (player.getCurrentRoom().getWFeature() != null)
+    		System.out.println("To the west is a " + player.getCurrentRoom().getWFeature().getName());
     }
 
     private void useItem() {
@@ -131,18 +136,19 @@ public class Controller {
      */
     private void move() {
     	
-    	if (Player.getCurrentFocus() != null) {
+    	if (player.getCurrentFocus() != null) {
     		
     		int dir = -1;
     		
     		// Get all features of the current room
-    		IFocusable[] features = Player.getCurrentRoom().getFeatures();
+    		IFocusable[] features = player.getCurrentRoom().getFeatures();
     		for (int i = 0; i < features.length; i++) {
     			
     			// Find which feature the player is trying to focus on
-    			if (features[i] != null && features[i] == Player.getCurrentFocus()) {
+    			if (features[i] != null && features[i] == player.getCurrentFocus()) {
     				
     				dir = i;
+    				break;
     			}
     		}
     		
@@ -175,15 +181,16 @@ public class Controller {
      * Try to move through a door
      * @param door the door to move through
      */
-    private void move(Door door) {
+    private void move(IFocusable feature) {
     	
-    	if (door.getValue() == 0) {
+    	if (feature != null) {
     		
-    		Player.setCurrentRoom(door.enterDoor(Player.getCurrentRoom()));
+    		player.setCurrentFocus(feature);
+    		System.out.println("You see a " + feature.getName());
     	}
     	else {
     		
-    		System.out.println(GameInfo.getDoorLockedMessage());
+    		System.out.println(GameInfo.getLocationNotFoundMessage());
     	}
     }
     
@@ -193,36 +200,87 @@ public class Controller {
      */
     private void move(String location) {
     	
-    	IFocusable item = null;
+    	IFocusable feature = null;
     	
     	switch (location) {
     	case "north": 
-    		item = Player.getCurrentRoom().getNFeature();
+    		feature = player.getCurrentRoom().getNFeature();
     		break;
     	case "east":
-    		item = Player.getCurrentRoom().getEFeature();
+    		feature = player.getCurrentRoom().getEFeature();
     		break;
     	case "south":
-    		item = Player.getCurrentRoom().getSFeature();
+    		feature = player.getCurrentRoom().getSFeature();
     		break;
     	case "west":
-    		item = Player.getCurrentRoom().getWFeature();
+    		feature = player.getCurrentRoom().getWFeature();
     		break;
     	}
     	
     	// If something was found in that corner, set it to the current focus
-    	if (item != null) {
+    	if (feature != null) {
     		
-    		System.out.println("In the " + location + " side of the room you find a " + item.getName());
-    		Player.setCurrentFocus(item);
+    		player.setCurrentFocus(feature);
+    		System.out.println("You see a " + feature.getName());
     	}
     	else {
     		System.out.println("There is nothing in this part of the room.");
     	}
     }
-	
-	// ### Methods ###
-	
+    
+    // Try to take the last focused item
+    public void take() {
+    	
+    	if (player.getCurrentFocus() != null && player.getCurrentFocus().getClass() == Item.class) {
+    		
+    		Item item = (Item)player.getCurrentFocus();
+    		take(item);
+    	}
+    	else {
+    		System.out.println("Please specify an item.");
+    	}
+    }
+    
+    // Try to take the specified item
+    public void take(Item item) {
+    	
+    	if (item != null) {
+    		
+    		// Get a reference to the current room
+    		Room currentRoom = player.getCurrentRoom();
+    		
+    		// Get features from the room
+    		IFocusable features[] = currentRoom.getFeatures();
+    		
+    		// Loop through the features and compare to the item
+    		for (int i = 0; i < features.length; i++) {
+    			
+    			if (item == features[i]) {
+    				
+    				// Switch based on the location (NORTH/EAST/SOUTH/WEST), removing the item from that location
+    				switch (i) {
+    				case 0:
+    					currentRoom.setNFeature(null);
+    					break;
+    				case 1:
+    					currentRoom.setEFeature(null);
+    					break;
+    				case 2:
+    					currentRoom.setSFeature(null);
+    					break;
+    				case 3:
+    					currentRoom.setWFeature(null);
+    					break;
+    				}
+    				
+    				// Add the item to the player's inventory
+    				player.getInventory().storeItem(item);
+    				break;
+    			}
+    		}
+    	}
+    }
+    
 	// Game Logic Methods
 	
     /**
