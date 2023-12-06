@@ -113,7 +113,7 @@ public class Controller {
 	/**
 	 * Retrieve data about the current room.
 	 */
-    public static void lookAround() {
+    public void lookAround() {
     	
     	// Room description will be given when the player decides to LOOK AROUND / LOOK ROOM / INSPECT ROOM / etc
     	// Display current room description
@@ -140,7 +140,7 @@ public class Controller {
     /**
      * Inspect the player's current focus
      */
-    public static void inspect() {
+    public void inspect() {
     	
     	IFocusable currentFocus = player.getCurrentFocus();
     	if (currentFocus != null) {
@@ -153,7 +153,7 @@ public class Controller {
      * Set the player's focus to the item and inspect it
      * @param focus the object to focus on
      */
-    public static void inspect(String focusName) {
+    public void inspect(String focusName) {
     	
     	IFocusable focus = player.getCurrentRoom().getFeature(focusName);
     	
@@ -395,7 +395,7 @@ public class Controller {
  	 * @param noun the name of the focusable object
  	 * @return the focusable, or null if none was found
  	 */
- 	public static IFocusable getFocusable(String noun) {
+ 	public IFocusable getFocusable(String noun) {
  		
  		IFocusable focus = player.getCurrentRoom().getFeature(noun);
  		
@@ -409,18 +409,20 @@ public class Controller {
  	/**
  	 * Try to get a focusable based on the player's current focus
  	 */
- 	public static void getFocusable() {
+ 	public IFocusable getFocusable() {
  		
  		IFocusable focus = player.getCurrentFocus();
  		
  		if (focus != null) {
  			
- 			getFocusable(focus.getName());
+ 			return getFocusable(focus.getName());
  		}
  		else {
  			
  			System.out.println("Please focus on or specify an object to interact with.");
  		}
+ 		
+ 		return null;
  	}
  	
  	/**
