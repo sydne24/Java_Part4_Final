@@ -16,8 +16,11 @@ public class Controller {
 	// Game logger
 	private static GameLogger logger = GameLogger.getInstance();
 	
-	//Player
+	// Player
 	private static Player player = Player.getInstance();
+	
+	// Data parser
+	private static Parser parser = Parser.getInstance();
 	
 	// Database
 	private GameDB db;
@@ -65,7 +68,7 @@ public class Controller {
         	// Get and act on user input
         	// nextLine is required to pass entire input string to the Parser
             input = myScan.nextLine();
-        	Parser.parseInput(input);
+        	parser.parseInput(input);
             
         }
 
@@ -93,6 +96,9 @@ public class Controller {
 		initializeDoors();
 		initializeItemLibrary();
 		
+		// Set controller reference within the parser
+		parser.setController(this);
+		
 		// Set the current room to room 0 (starting room)
 		player.setCurrentRoom(roomList.get(0));
 		
@@ -103,7 +109,7 @@ public class Controller {
 	/**
 	 * Retrieve data about the current room.
 	 */
-    static void lookAround() {
+    public void lookAround() {
     	// Room description will be given when the player decides to LOOK AROUND / LOOK ROOM / INSPECT ROOM / etc
     	// Display current room description
     	System.out.println(player.getCurrentRoom().getDescription());
@@ -126,7 +132,7 @@ public class Controller {
     		System.out.println("To the west is a " + player.getCurrentRoom().getWFeature().getName());
     }
 
-    private void useItem() {
+	public void useItem() {
         // Implement use item logic
         System.out.println("You try to use an item. What do you want to use?");
     }
@@ -134,7 +140,7 @@ public class Controller {
     /**
      * Try to move towards the player's current focus (an item or door)
      */
-    private void move() {
+	public void move() {
     	
     	if (player.getCurrentFocus() != null) {
     		
@@ -181,7 +187,7 @@ public class Controller {
      * Try to move through a door
      * @param door the door to move through
      */
-    private void move(IFocusable feature) {
+	public void move(IFocusable feature) {
     	
     	if (feature != null) {
     		
@@ -198,7 +204,7 @@ public class Controller {
      * Try to move north/south/east/west
      * @param location north, south, east, or west
      */
-    private void move(String location) {
+	public void move(String location) {
     	
     	IFocusable feature = null;
     	
@@ -228,7 +234,9 @@ public class Controller {
     	}
     }
     
-    // Try to take the last focused item
+    /**
+     * Try to take the last focused item
+     */
     public void take() {
     	
     	if (player.getCurrentFocus() != null && player.getCurrentFocus().getClass() == Item.class) {
@@ -241,7 +249,10 @@ public class Controller {
     	}
     }
     
-    // Try to take the specified item
+    /**
+     * Try to take the specified item
+     * @param item the item to take.
+     */
     public void take(Item item) {
     	
     	if (item != null) {
@@ -336,7 +347,7 @@ public class Controller {
  	 */
  	public void initializeItemLibrary() {
  		for (Item i : Controller.itemList.values()) {
- 			Parser.itemLib.add(i.getName().toLowerCase());
+ 			parser.addItemToLib(i);
  		}
  	}
  	
@@ -346,7 +357,7 @@ public class Controller {
  	/**
  	 * @return all items available in the game.
  	 */
-	public static HashMap<Integer, Item> getItems() {
+	public HashMap<Integer, Item> getItems() {
 		
 		return itemList;
 	}
@@ -354,7 +365,7 @@ public class Controller {
 	/**
 	 * @return all rooms available in the game.
 	 */
-	public static HashMap<Integer, Room> getRooms() {
+	public HashMap<Integer, Room> getRooms() {
 		
 		return roomList;
 	}

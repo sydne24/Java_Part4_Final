@@ -4,15 +4,18 @@ import java.util.ArrayList;
 
 public class Parser {
 	
+	// Parser singleton and controller reference
+	private static final Parser instance = new Parser();
+	private Controller controller;
+	
 	// Declare libraries
 	// NOTE: input will be split by space, so phrases like "pick up" will be split into "pick" and "up" in the input array
-	// NOTE: input will be converted to all lower case to be compared - DO NOT add capitals to new dictionary entries
-	private static String useLib[] = new String[] {"use", "open", "eat", "wear", "pick", "drop", "destroy", "take"};
-	private static String lookLib[] = new String[] {"look", "check", "inspect", "describe", "what"};
-	private static String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl"};
-	private static String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory"};
+	private String useLib[] = new String[] {"use", "open", "eat", "wear", "pick", "drop", "destroy", "take"};
+	private String lookLib[] = new String[] {"look", "check", "inspect", "describe", "what"};
+	private String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl"};
+	private String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory"};
 	//declare noun library - values are added with initializeItemLibrary() in Controller during setup()
-	static ArrayList<String> itemLib = new ArrayList<String>();
+	private ArrayList<String> itemLib = new ArrayList<String>();
 	
 	// PARSER METHOD
 	/**
@@ -20,7 +23,7 @@ public class Parser {
 	 * @param input the input to be parsed.
 	 * @return a String array with 2 elements. [0] verb, [1] noun.
 	 */
-	public static Command parseInput(String input) {
+	public Command parseInput(String input) {
 		
 		boolean matchFound = false;
 		String noun = "";
@@ -49,7 +52,7 @@ public class Parser {
 	    if (input.contains("look around") ||
 	    		input.contains("look room") ||
 	    		input.contains("inspect room")) {
-	    	Controller.lookAround();
+	    	controller.lookAround();
 	    	return null;
 	    }
 	    
@@ -97,7 +100,7 @@ public class Parser {
 		return phrase;
 	}
 	
-	private static String getVerb(String input) {
+	private String getVerb(String input) {
 		String getVerb = "";
 		for (String checkWord : useLib) {
 			if (input.equals(checkWord)) {
@@ -117,7 +120,7 @@ public class Parser {
 		return getVerb;
 	}
 
-	private static String getNoun (String input) {
+	private String getNoun (String input) {
 		String noun = "";	
 		
 		
@@ -153,6 +156,28 @@ public class Parser {
 			this.verb = verb;
 		}
 		
+	}
+	
+	/**
+	 * @return the singleton instance of the Parser
+	 */
+	public static Parser getInstance() {
+		
+		return instance;
+	}
+	
+	/**
+	 * Set the reference to the controller
+	 * @param c the controller object
+	 */
+	public void setController(Controller c) {
+		
+		controller = c;
+	}
+	
+	public void addItemToLib(Item i) {
+		
+		itemLib.add(i.getName().toLowerCase());
 	}
 }
 
