@@ -175,6 +175,10 @@ public class Parser {
 		controller = c;
 	}
 	
+	/**
+	 * Adds items to the library of available item names
+	 * @param i the item to be added
+	 */
 	public void addItemToLib(Item i) {
 		
 		itemLib.add(i.getName().toLowerCase());
