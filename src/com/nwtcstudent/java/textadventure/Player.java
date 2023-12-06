@@ -156,6 +156,8 @@ public final class Player {
 			StringBuilder output = new StringBuilder("\nYour Inventory:");
 			
 			// Append item data to string
+			// 2.1 Use of lambda expressions in at least 5 scenarios
+			// 3.5 Valid use of a foreach statement
 			// 4.1 Use of a variable in a lambda expression
 			getAllItems().forEach(x -> output.append("\n - " + x.getName()));
 			
@@ -186,21 +188,33 @@ public final class Player {
 		 * @param i the item requested
 		 * @return the item, or null if it could not be found
 		 */
-		public Item getItem(Item i) {
+		public Item getItem(Item item) {
 			
-			Item foundItem = null;
+			// Wrapper in order to get value from the lambda expression
+			var foundItemWrapper = new Object(){Item foundItem = null;};
 			
+			// Find the item that matches the searched item
+			// 2.1 Use of lambda expressions in at least 5 scenarios
+			// 2.5 Valid object comparison in at least one scenario
 			// 3.5 Valid use of a foreach statement
-			for (Item item : items) {
-				
-				// 2.5 Valid object comparison in at least one scenario
-				if (i == item) {
+			items.forEach(i -> {
+				if (item == i) {
 					
-					foundItem = item;
-				}
-			}
+					foundItemWrapper.foundItem = i;
+					}
+				});
 			
-			return foundItem;
+			// Standard for each code
+//			for (Item item : items) {
+//				
+//				// 2.5 Valid object comparison in at least one scenario
+//				if (i == item) {
+//					
+//					foundItem = item;
+//				}
+//			}
+			
+			return foundItemWrapper.foundItem;
 		}
 		
 		// 1.3 Use of overloaded method
@@ -209,19 +223,31 @@ public final class Player {
 		 * @param i the name of the item requested
 		 * @return the item, or null if it could not be found
 		 */
-		public Item getItem(String i) {
+		public Item getItem(String item) {
 			
-			Item foundItem = null;
+			// Wrapper in order to get value from the lambda expression
+			var foundItemWrapper = new Object() {Item foundItem = null;};
 			
-			for (Item item : items) {
-				
-				if (item.getName().equals(i)) {
+			// Find the item that matches the searched item
+			// 2.1 Use of lambda expressions in at least 5 scenarios
+			// 3.5 Valid use of a foreach statement
+			items.forEach(i -> {
+				if (i.getName().toLowerCase().equals(item.toLowerCase())) {
 					
-					foundItem = item;
-				}
-			}
+					foundItemWrapper.foundItem = i;
+					}
+				});
 			
-			return foundItem;
+			// Standard for each code
+//			for (Item item : items) {
+//				
+//				if (item.getName().toLowerCase().equals(i.toLowerCase())) {
+//					
+//					foundItem = item;
+//				}
+//			}
+			
+			return foundItemWrapper.foundItem;
 		}
 		
 		/**
