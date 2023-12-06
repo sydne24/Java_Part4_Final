@@ -55,6 +55,7 @@ public final class Parser {
 	    // Displays inventory if only 'inventory' is entered
 	    if (input.equals("inventory")) {
 	    	checkInventory();
+	    	return;
 	    }
 	    
 	    // Searches for named items as phrase before splitting input string
