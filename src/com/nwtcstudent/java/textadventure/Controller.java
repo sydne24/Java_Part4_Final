@@ -430,7 +430,10 @@ public class Controller {
  	 */
  	public void initializeItemLibrary() {
  		// 3.5 Valid use of a foreach statement
- 		for (Item i : Controller.itemList.values()) {
+ 		for (IFocusable i : Controller.itemList.values()) {
+ 			parser.addItemToLib(i);
+ 		}
+ 		for (IFocusable i : Controller.doorList.values()) {
  			parser.addItemToLib(i);
  		}
  	}
@@ -452,5 +455,13 @@ public class Controller {
 	public HashMap<Integer, Room> getRooms() {
 		
 		return roomList;
+	}
+	
+	/**
+	 * @return all doors available in the game.
+	 */
+	public HashMap<Integer, Door> getDoors() {
+	
+	return doorList;
 	}
 }

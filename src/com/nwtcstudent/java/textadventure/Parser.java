@@ -228,7 +228,7 @@ public final class Parser {
 	 * Adds items to the library of available item names
 	 * @param i the item to be added
 	 */
-	public void addItemToLib(Item i) {
+	public void addItemToLib(IFocusable i) {
 		
 		itemLib.add(i.getName().toLowerCase());
 	}
