@@ -149,6 +149,7 @@ public final class Player {
 		public void checkInventory()
 		{
 			// Sort items by name before checking
+			// 2.5 Valid object comparison in at least one scenario
 			items.sort(new IFocusable.CompareItemNames());
 			
 			// Create stringbuilder to hold item data
@@ -192,6 +193,7 @@ public final class Player {
 			// 3.5 Valid use of a foreach statement
 			for (Item item : items) {
 				
+				// 2.5 Valid object comparison in at least one scenario
 				if (i == item) {
 					
 					foundItem = item;

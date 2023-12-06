@@ -108,8 +108,12 @@ public class Item implements IFocusable, Comparable<Item> {
 	 * Specifies the item's interaction
 	 */
 	public void interact() {
-		switch(type){
 		
+		// Check if the item exists in the player's inventory
+		if (player.getInventory().getItem(this) != null) {
+			
+			switch(type){
+			
 			// Eat the food
 			case FOOD:
 				System.out.println(usedDescription);
@@ -152,6 +156,12 @@ public class Item implements IFocusable, Comparable<Item> {
 					
 					System.out.println("Try focusing on a door before using this key.");
 				}
+			}
+		}
+		// Information given if the item doesn't exist in the player's inventory
+		else {
+			
+			System.out.println("You don't have this item.");
 		}
 	}
 
