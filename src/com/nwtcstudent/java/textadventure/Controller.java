@@ -136,11 +136,6 @@ public class Controller {
     		System.out.println("To the west is a " + player.getCurrentRoom().getWFeature().getName());
     }
 
-	public void useItem() {
-        // Implement use item logic
-        System.out.println("You try to use an item. What do you want to use?");
-    }
-
     /**
      * Try to move towards the player's current focus (an item or door)
      */
