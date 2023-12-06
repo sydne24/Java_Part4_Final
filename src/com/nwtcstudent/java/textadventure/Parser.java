@@ -79,6 +79,7 @@ public final class Parser {
 		}
 		
 		//BEGIN COMMAND CALLS WITH PARSED INPUT
+		//LOOK commands
 		if (verb == "look" && noun == "") {
 			Controller.inspect();
 		}
@@ -88,6 +89,18 @@ public final class Parser {
 		}
 		else if (verb == "look" && noun.length() > 0) {
 			Controller.inspect(noun);
+		}
+		
+		//USE commands
+		//TODO: finish logic
+		if (verb == "use" ) {
+			
+		}
+		
+		//MOVE commands
+		//TODO: finish logic
+		if (verb == "move") {
+			
 		}
 		
 		// Account for incomplete input (missing noun/verb)
