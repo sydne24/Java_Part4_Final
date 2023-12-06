@@ -311,6 +311,10 @@ public class Controller {
     		
     		item = (Item)requestedFocus;
     	}
+    	else {
+    		
+    		System.out.println("You cannot take that object.");
+    	}
     	
     	if (item != null) {
     		
