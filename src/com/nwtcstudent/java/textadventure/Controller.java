@@ -134,6 +134,77 @@ public class Controller {
     	if (player.getCurrentRoom().getWFeature() != null)
     		System.out.println("To the west is a " + player.getCurrentRoom().getWFeature().getName());
     }
+    
+    /**
+     * Inspect the player's current focus
+     */
+    public void inspect() {
+    	
+    	IFocusable currentFocus = player.getCurrentFocus();
+    	if (currentFocus != null) {
+    		
+    		System.out.println(currentFocus.getDescription());
+    	}
+    }
+    
+    /**
+     * Set the player's focus to the item and inspect it
+     * @param focus the object to focus on
+     */
+    public void inspect(IFocusable focus) {
+    	
+    	if (focus != null) {
+    		
+    		// List of features in the current room
+        	IFocusable[] features = player.getCurrentRoom().getFeatures();
+        	
+        	for (int i = 0; i < features.length; i++) {
+        		
+        		// Check if the requested focusable is in the current room
+        		if (features[i] == focus) {
+        			
+        			// Set the focus to the focusable and inspect it
+        			player.setCurrentFocus(focus);
+        	    	inspect();
+        	    	
+        	    	return;
+        		}
+        	}
+        	
+        	// This code will only be reached if the above code failed
+        	
+        	if (focus.getClass() == Item.class) {
+        		
+        		inventoryInspect((Item)focus);
+        	}
+        	else {
+        		
+        		System.out.println(GameInfo.getItemNotFoundMessage());
+        	}
+    	}
+    	else {
+    		
+    		System.out.println(GameInfo.getItemNotFoundMessage());
+    	}
+    }
+    
+    /**
+     * Inspect an item in the player's inventory
+     * @param item
+     */
+    public void inventoryInspect(Item item) {
+    	
+    	// Check if the item is in the player's inventory
+    	if (player.getInventory().getItem(item) != null) {
+    		
+    		// If it is, return the item's description
+    		System.out.println(item.getDescription());
+    	}
+    	else {
+    		
+    		System.out.println(GameInfo.getItemNotFoundMessage());
+    	}
+    }
 
     /**
      * Try to move towards the player's current focus (an item or door)

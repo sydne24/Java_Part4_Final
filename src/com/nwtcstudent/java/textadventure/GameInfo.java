@@ -1,7 +1,6 @@
 package com.nwtcstudent.java.textadventure;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -188,6 +187,12 @@ public class GameInfo {
 	public static String getLocationNotFoundMessage() {
 		
 		String message = "You are not currently focused on an object, or the location could not be found.";
+		return message;
+	}
+	
+	public static String getItemNotFoundMessage() {
+		
+		String message = "That object could not be found.";
 		return message;
 	}
 	
