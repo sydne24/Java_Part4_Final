@@ -108,7 +108,7 @@ public class Item implements IFocusable {
 		switch(type){
 			case FOOD:
 				System.out.println("You have eaten the " + name);
-				player.inventory.removeItem(this);
+				player.getInventory().removeItem(this);
 				break;
 			case VANITY:
 				System.out.println("You have put on the " + name);
@@ -126,7 +126,7 @@ public class Item implements IFocusable {
 						System.out.println("You have unlocked the door.");
 						((Door) focus).setValue(0);
 						((Door) focus).setDescription("An unlocked door.");
-						player.inventory.removeItem(this);
+						player.getInventory().removeItem(this);
 					}
 					else if (focus.getValue() == 0)
 						System.out.println("This door is already unlocked.");
@@ -144,7 +144,7 @@ public class Item implements IFocusable {
 			switch(type){
 				case FOOD:
 					System.out.println("You have eaten the " + name);
-					player.inventory.removeItem(this);
+					player.getInventory().removeItem(this);
 					break;
 				case VANITY:
 					System.out.println("You have put on the " + name);

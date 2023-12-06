@@ -120,7 +120,7 @@ public class GameInfo {
 	 */
 	public static String getIntroMessage() {
 		
-		String message = "\nYou find yourself in a vacant room...\nYou notice three doors to the NORTH, WEST, and EAST.";
+		String message = "\nYou find yourself in a vacant room...";
 		return message;
 	}
 	
@@ -151,17 +151,21 @@ public class GameInfo {
 	public static String getAvailableCommands() {
 		
 		String message = "\n------------------------------ HELP ------------------------------"
-				+ "\nCommands can be entered into the console with any mix of letter casing."
-				+ "\nTo interact with a specific object, write a suitable command followed by the object to interact with it."
-				+ "\nFor example, 'LOOK NORTH' to target a door, followed by 'OPEN DOOR' to open it."
+				+ "\nCommands can be entered into the console with any mix of letter casing"
+				+ "\nTo interact with a specific object, write a suitable command followed by the object to interact with it"
+				+ "\nFor example, 'LOOK NORTH' to target a locked door to the north, followed by 'USE KEY' to open it with the appropriate key"
 				+ "\n\nObject Commands:"
-				+ "\nLOOK/INSPECT [OBJECT]: Describe the given object"
-				+ "\nUSE/INTERACT [OBJECT]: Use the given object"
-				+ "\nMOVE [NORTH/EAST/SOUTH/WEST]: Focus on any object contained within the selected portion of a room"
+				+ "\nMOVE/LOOK/INSPECT: Describe the object you last focused on"
+				+ "\nMOVE/LOOK/INSPECT [OBJECT]: Focus on and describe the specified object"
+				+ "\nMOVE/LOOK/INSPECT [NORTH/EAST/SOUTH/WEST]: Focus on and describe the object in the specified area of the room"
+				+ "\nUSE/INTERACT: Interact with the object you last focused on"
+				+ "\nUSE/INTERACT [OBJECT]: Use the specified object. If applicable, will attempt to interact with the last focused object"
+				+ "\nMOVE [NORTH/EAST/SOUTH/WEST]: Focus on any object contained within the specified portion of a room"
+				+ "\nMOVE [OBJECT]: Focus on an object, given that it is in the room"
 				+ "\n\nOther Commands:"
+				+ "\nINVENTORY: View your inventory"
 				+ "\nLOOK AROUND: Describe the environment around you"
 				+ "\nEXIT: Exit the game"
-				+ "\n\nThere are many additional alternative commands you can use, such as EAT [FOOD], to specify how you would like to interact."
 				+ "\n------------------------------------------------------------------\n";
 				
 				
@@ -183,7 +187,7 @@ public class GameInfo {
 	
 	public static String getLocationNotFoundMessage() {
 		
-		String message = "Please provide a location to move to.";
+		String message = "You are not currently focused on an object, or the location could not be found.";
 		return message;
 	}
 	

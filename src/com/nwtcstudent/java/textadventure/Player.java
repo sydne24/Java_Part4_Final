@@ -13,23 +13,38 @@ public final class Player {
 	private static final Player instance = new Player();
 	
 	private String name;
-	public Inventory inventory = new Inventory();
+	private Inventory inventory = new Inventory();
 	
 	// Player/Game states
-	private static IFocusable currentFocus;
-	private static Room currentRoom;
-	private static Item currentItem;
+	private IFocusable currentFocus;
+	private Room currentRoom;
+	private Item currentItem;
 	
 	// ### Methods ###
 	
+	/**
+	 * Set the player's name
+	 * @param playerName the name to be set.
+	 */
 	public void setName(String playerName)
 	{
 		instance.name = playerName;
 	}
 	
+	/**
+	 * @return the player's name.
+	 */
 	public String getName()
 	{
 		return instance.name;
+	}
+	
+	/**
+	 * @return the player's inventory.
+	 */
+	public Inventory getInventory() {
+		
+		return inventory;
 	}
 	
 	// ### Nested Class ###
@@ -116,7 +131,7 @@ public final class Player {
 	/**
 	 * @return the object the player is currently focusing on.
 	 */
-	public static IFocusable getCurrentFocus() {
+	public IFocusable getCurrentFocus() {
 		
 		return currentFocus;
 	}
@@ -125,7 +140,7 @@ public final class Player {
 	 * Sets the player's focus.
 	 * @param the object to focus on.
 	 */
-	public static void setCurrentFocus(IFocusable f) {
+	public void setCurrentFocus(IFocusable f) {
 		
 		currentFocus = f;
 	}
@@ -133,7 +148,7 @@ public final class Player {
 	/**
 	 * @return the room the player is currently in.
 	 */
-	public static Room getCurrentRoom() {
+	public Room getCurrentRoom() {
 		
 		return currentRoom;
 	}
@@ -142,7 +157,7 @@ public final class Player {
 	 * Sets the room the player is currently in.
 	 * @param room the room to set.
 	 */
-	public static void setCurrentRoom(Room r) {
+	public void setCurrentRoom(Room r) {
 		
 		currentRoom = r;
 	}
@@ -150,7 +165,7 @@ public final class Player {
 	/**
 	 * @return the item the player is currently holding.
 	 */
-	public static Item getCurrentItem() {
+	public Item getCurrentItem() {
 		
 		return currentItem;
 	}
@@ -159,7 +174,7 @@ public final class Player {
 	 * Sets the item the player is currently holding.
 	 * @param the item to be held.
 	 */
-	public static void setCurrentItem(Item i) {
+	public void setCurrentItem(Item i) {
 		
 		currentItem = i;
 	}
