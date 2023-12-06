@@ -156,7 +156,7 @@ public class Room {
 		// 2.1 Use of lambda expressions in at least 5 scenarios
 		// 3.5 Valid use of a foreach statement
 		features.forEach(f -> {
-			if (f.getName().toLowerCase().equals(featureName.toLowerCase())) {
+			if (f != null && f.getName().toLowerCase().equals(featureName.toLowerCase())) {
 			
 			featureWrapper.foundFeature = f;
 			}
