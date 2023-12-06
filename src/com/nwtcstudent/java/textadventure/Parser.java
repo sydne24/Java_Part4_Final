@@ -16,7 +16,7 @@ public final class Parser {
 	private String takeLib[] = new String[] {"pick", "take"};
 	private String lookLib[] = new String[] {"look", "check", "inspect", "describe", "what", "investigate"};
 	private String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl"};
-	private String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory", "around", "room", "dagger", "amulet", "lantern", "pizza", "note", "key", "wig", "door"};
+	private String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory", "around", "room", "dagger", "amulet", "lantern", "pizza", "note", "key", "wig", "door", "gate", "portal", "archway"};
 	
 	//declare noun library - values are added with initializeItemLibrary() in Controller during setup()
 	// 3.2 Use of an array list
