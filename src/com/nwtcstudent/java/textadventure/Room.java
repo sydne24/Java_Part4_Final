@@ -145,7 +145,7 @@ public class Room {
 		
 		for (IFocusable f : getFeatures()) {
 			
-			if (f.getName().equals(featureName)) {
+			if (f.getName().toLowerCase().equals(featureName.toLowerCase())) {
 				
 				foundFeature = f;
 				break;

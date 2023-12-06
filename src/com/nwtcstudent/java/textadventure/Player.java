@@ -156,7 +156,9 @@ public final class Player {
 			StringBuilder output = new StringBuilder("\nYour Inventory:");
 			
 			// Append item data to string
+			// 3.5 Valid use of a foreach statement
 			// 4.1 Use of a variable in a lambda expression
+			// 2.1 Use of lambda expressions inat least 5 scenarios
 			getAllItems().forEach(x -> output.append("\n - " + x.getName()));
 			
 			System.out.println(output.toString());
@@ -215,7 +217,7 @@ public final class Player {
 			
 			for (Item item : items) {
 				
-				if (item.getName().equals(i)) {
+				if (item.getName().toLowerCase().equals(i.toLowerCase())) {
 					
 					foundItem = item;
 				}
