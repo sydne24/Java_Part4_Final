@@ -148,10 +148,10 @@ public class Door implements IFocusable {
 	@Override
 	public void interact() {
 		
+		// If the id is -1, this means the door is an END point
+		if (id == -1 && value == 0) {
+
 		player.setCurrentFocus(this);
-		
-		// If the door's id is -1, this means the door is an END point
-		if (id == -1) {
 			
 			System.out.println(GameInfo.getEndMessage());
 			Controller.endGame();

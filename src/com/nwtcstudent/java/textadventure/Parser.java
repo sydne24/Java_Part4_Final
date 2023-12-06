@@ -12,7 +12,7 @@ public final class Parser {
 	
 	// Declare libraries
 	// NOTE: input will be split by space, so phrases like "pick up" will be split into "pick" and "up" in the input array
-	private String useLib[] = new String[] {"use", "open", "eat", "wear",  "drop", "destroy"};
+	private String useLib[] = new String[] {"use", "open", "eat", "wear",  "drop", "destroy", "interact"};
 	private String takeLib[] = new String[] {"pick", "take"};
 	private String lookLib[] = new String[] {"look", "check", "inspect", "describe", "what", "investigate"};
 	private String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl", "go"};
@@ -155,6 +155,11 @@ public final class Parser {
 					controller.move(obj);
 				}
 			}
+		}
+		
+		//INVALID INPUT
+		if (verb.equals("")) {
+			System.out.println("I'm sorry, I don't understand. What would you like to do?");
 		}
 	}
 	
