@@ -12,7 +12,8 @@ public final class Parser {
 	
 	// Declare libraries
 	// NOTE: input will be split by space, so phrases like "pick up" will be split into "pick" and "up" in the input array
-	private String useLib[] = new String[] {"use", "open", "eat", "wear", "pick", "drop", "destroy", "take"};
+	private String useLib[] = new String[] {"use", "open", "eat", "wear",  "drop", "destroy"};
+	private String takeLib[] = new String[] {"pick", "take"};
 	private String lookLib[] = new String[] {"look", "check", "inspect", "describe", "what"};
 	private String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl"};
 	private String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory", "around", "room", "dagger", "amulet", "lantern", "pizza", "note", "key", "wig", "door"};
@@ -50,6 +51,10 @@ public final class Parser {
 	    		input.equals("help please") ||
 	    		input.equals("please help") ) {
 	    	System.out.println(GameInfo.getAvailableCommands());
+	    }
+	    
+	    if (input.equals("inventory")) {
+	    	//instance.inven
 	    }
 	    
 	    // Searches for named items as phrase before splitting input string
@@ -90,6 +95,14 @@ public final class Parser {
 			controller.inspect(noun);
 		}
 		
+		//TAKE commands
+		if (verb.equals("take") && noun.equals("")) {
+			controller.take();
+		}
+		else if (verb.equals("take") && noun.length() > 0) {
+			controller.take(noun);
+		}
+		
 		//USE commands
 		if (verb.equals("use")) {
 			IFocusable obj = null;
@@ -126,6 +139,7 @@ public final class Parser {
 				controller.move(obj);
 			}
 		}
+	}
 		
 		// Account for incomplete input (missing noun/verb)
 		//TODO: re-evaluate if this exact logic is needed with new commands
@@ -133,13 +147,6 @@ public final class Parser {
 //			
 //			System.out.println("Unknown command.");
 //		}
-		
-//		//TODO: this no longer needs to return any information - instead it will call action methods
-//	    // Set and return phrase
-//		phrase.verb = verb;
-//		phrase.noun = noun;
-//		return phrase;
-	}
 	
 	private String getVerb(String input) {
 		String getVerb = "";
@@ -156,6 +163,11 @@ public final class Parser {
 		for (String checkWord : moveLib) {
 			if (input.equals(checkWord)) {
 				getVerb = "move";
+			}
+		}
+		for (String checkWord : takeLib) {
+			if (input.equals(checkWord)) {
+				getVerb = "take";
 			}
 		}
 		return getVerb;
@@ -180,32 +192,6 @@ public final class Parser {
 		}
 		return noun;
 	}
-
-	
-	/**
-	 * Nested class to return the parsed verb/noun command out for use
-	 * @return String Command.verb & String Command.noun
-	 */
-	//1.7 - use of nested class
-	//TODO: this class may no longer be utilized - double check and remove if this is the case
-//	static class Command {
-//		private String noun;
-//		private String verb;
-//		
-//		public String getNoun() {
-//			return noun;
-//		}
-//		public void setNoun(String noun) {
-//			this.noun = noun;
-//		}
-//		public String getVerb() {
-//			return verb;
-//		}
-//		public void setVerb(String verb) {
-//			this.verb = verb;
-//		}
-//		
-//	}
 	
 	/**
 	 * @return the singleton instance of the Parser
