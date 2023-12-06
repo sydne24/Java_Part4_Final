@@ -442,6 +442,7 @@ public class Controller {
  		// 2.1 Use of lambda expressions in at least 5 scenarios
  		// 3.5 Valid use of a foreach statement
  		itemList.values().forEach(i -> parser.addItemToLib(i));
+ 		doorList.values().forEach(i -> parser.addItemToLib(i));
  	}
  	
 	
