@@ -257,6 +257,7 @@ public final class Player {
 		public void storeItem(Item i) {
 			
 			items.add(i);
+			System.out.println("You place the " + i.getName() + " into your bag.");
 		}
 		
 		/**

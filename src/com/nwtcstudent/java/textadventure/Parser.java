@@ -53,8 +53,9 @@ public final class Parser {
 	    	System.out.println(GameInfo.getAvailableCommands());
 	    }
 	    
+	    // Calls help function if player enters 'inventory'
 	    if (input.equals("inventory")) {
-	    	//instance.inven
+	    	checkInventory();
 	    }
 	    
 	    // Searches for named items as phrase before splitting input string
@@ -90,6 +91,10 @@ public final class Parser {
 		if (verb.equals("look") && noun.equals("room") ||
 			verb.equals("look") && noun.equals("around")) {
 			controller.lookAround();
+		}
+		if (verb.equals("look") && noun.equals("bag") ||
+			verb.equals("look") && noun.equals("inventory")) {
+			checkInventory();
 		}
 		else if (verb.equals("look") && noun.length() > 0) {
 			controller.inspect(noun);
@@ -191,6 +196,11 @@ public final class Parser {
 			}
 		}
 		return noun;
+	}
+	
+	private void checkInventory() {
+		//TODO: call check inventory
+		System.out.println("DEVS: Please locate and enter an inventory output method here - Parser.java line 202");
 	}
 	
 	/**
