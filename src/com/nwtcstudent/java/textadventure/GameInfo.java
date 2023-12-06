@@ -128,7 +128,7 @@ public class GameInfo {
 	 */
 	public static String getEndMessage() {
 		
-		String message = "\nYou walk into the field and continue your adventure...";
+		String message = "\nA feeling of indescribable peace washes over you as the famous pop singer, Rick Astley, appears before you and begins singing you a song... THE END! Thanks for playing!!!";
 		return message;
 	}
 	
