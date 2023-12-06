@@ -189,6 +189,14 @@ public class Controller {
     }
     
     /**
+     * Inspect the current room
+     */
+    public void roomInspect() {
+    	
+    	System.out.println(player.getCurrentRoom().getDescription());
+    }
+    
+    /**
      * Inspect an item in the player's inventory
      * @param item
      */
