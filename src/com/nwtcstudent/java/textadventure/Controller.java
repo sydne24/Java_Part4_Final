@@ -113,6 +113,7 @@ public class Controller {
 	 * Retrieve data about the current room.
 	 */
     public void lookAround() {
+    	
     	// Room description will be given when the player decides to LOOK AROUND / LOOK ROOM / INSPECT ROOM / etc
     	// Display current room description
     	System.out.println(player.getCurrentRoom().getDescription());
@@ -151,66 +152,32 @@ public class Controller {
      * Set the player's focus to the item and inspect it
      * @param focus the object to focus on
      */
-    public void inspect(IFocusable focus) {
+    public void inspect(String focusName) {
+    	
+    	IFocusable focus = player.getCurrentRoom().getFeature(focusName);
     	
     	if (focus != null) {
-    		
-    		// List of features in the current room
-        	IFocusable[] features = player.getCurrentRoom().getFeatures();
         	
-        	for (int i = 0; i < features.length; i++) {
-        		
-        		// Check if the requested focusable is in the current room
-        		if (features[i] == focus) {
-        			
-        			// Set the focus to the focusable and inspect it
-        			player.setCurrentFocus(focus);
-        	    	inspect();
-        	    	
-        	    	return;
-        		}
-        	}
-        	
-        	// This code will only be reached if the above code failed
-        	
-        	if (focus.getClass() == Item.class) {
-        		
-        		inventoryInspect((Item)focus);
-        	}
-        	else {
-        		
-        		System.out.println(GameInfo.getItemNotFoundMessage());
-        	}
+    		// If the focus isn't null, this means the item is in the room
+    		player.setCurrentFocus(focus);
+    		System.out.println(focus.getDescription());
     	}
     	else {
     		
-    		System.out.println(GameInfo.getItemNotFoundMessage());
-    	}
-    }
-    
-    /**
-     * Inspect the current room
-     */
-    public void roomInspect() {
-    	
-    	System.out.println(player.getCurrentRoom().getDescription());
-    }
-    
-    /**
-     * Inspect an item in the player's inventory
-     * @param item
-     */
-    public void inventoryInspect(Item item) {
-    	
-    	// Check if the item is in the player's inventory
-    	if (player.getInventory().getItem(item) != null) {
+    		// If the focus is still null, try to search the player inventory
+    		focus = player.getInventory().getItem(focusName);
     		
-    		// If it is, return the item's description
-    		System.out.println(item.getDescription());
-    	}
-    	else {
-    		
-    		System.out.println(GameInfo.getItemNotFoundMessage());
+    		if (focus != null) {
+    			
+    			// If the item is in the inventory, inspect it and set it to the current item
+    			System.out.println(focus.getDescription());
+    			player.setCurrentItem((Item)focus);
+    			
+    		}
+    		else {
+    			
+    			System.out.println(GameInfo.getItemNotFoundMessage());
+    		}
     	}
     }
 

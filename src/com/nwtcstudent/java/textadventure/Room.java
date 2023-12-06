@@ -135,6 +135,27 @@ public class Room {
 	}
 	
 	/**
+	 * Attempt to get a feature from the list of features
+	 * @param featureName the name of the feature to return. 
+	 * @return the feature, or null if none is found.
+	 */
+	public IFocusable getFeature(String featureName) {
+		
+		IFocusable foundFeature = null;
+		
+		for (IFocusable f : getFeatures()) {
+			
+			if (f.getName().equals(featureName)) {
+				
+				foundFeature = f;
+				break;
+			}
+		}
+		
+		return foundFeature;
+	}
+	
+	/**
 	 * @return all features of the room
 	 */
 	public IFocusable[] getFeatures() {
