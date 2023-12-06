@@ -93,8 +93,15 @@ public final class Parser {
 		
 		//USE commands
 		//TODO: finish logic
-		if (verb == "use" ) {
-			
+		if (verb == "use") {
+			IFocusable obj = null;
+			if (noun == "") {
+				obj = Controller.getFocusable(); 
+				//TODO: finish logic after hotfix from Nate
+			}
+			else if (noun.length() > 0) {
+				
+			}
 		}
 		
 		//MOVE commands

@@ -395,7 +395,7 @@ public class Controller {
  	 * @param noun the name of the focusable object
  	 * @return the focusable, or null if none was found
  	 */
- 	public IFocusable getFocusable(String noun) {
+ 	public static IFocusable getFocusable(String noun) {
  		
  		IFocusable focus = player.getCurrentRoom().getFeature(noun);
  		
@@ -409,7 +409,7 @@ public class Controller {
  	/**
  	 * Try to get a focusable based on the player's current focus
  	 */
- 	public void getFocusable() {
+ 	public static void getFocusable() {
  		
  		IFocusable focus = player.getCurrentFocus();
  		
