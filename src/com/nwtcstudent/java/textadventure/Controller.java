@@ -436,6 +436,9 @@ public class Controller {
  			
  			return getFocusable(focus.getName());
  		}
+ 		else {
+ 			System.out.println("What would you like to use?");
+ 		}
  		
  		return null;
  	}

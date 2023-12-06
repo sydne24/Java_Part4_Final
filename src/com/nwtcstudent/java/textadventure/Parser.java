@@ -43,6 +43,7 @@ public final class Parser {
 	    		input.equals("close") ||
 	    		input.equals("close game") ) {
 	    	Controller.endGame();
+	    	return;
 	    }
 	    
 	    // Calls help function if player enters 'help'
@@ -50,6 +51,7 @@ public final class Parser {
 	    		input.equals("help please") ||
 	    		input.equals("please help") ) {
 	    	System.out.println(GameInfo.getAvailableCommands());
+	    	return;
 	    }
 	    
 	    // Displays inventory if only 'inventory' is entered
