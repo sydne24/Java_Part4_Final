@@ -7,10 +7,10 @@ public class Parser {
 	// Declare libraries
 	// NOTE: input will be split by space, so phrases like "pick up" will be split into "pick" and "up" in the input array
 	// NOTE: input will be converted to all lower case to be compared - DO NOT add capitals to new dictionary entries
-	private static String useLib[] = new String[] {"open", "eat", "wear", "pick", "drop", "destroy"};
-	private static String lookLib[] = new String[] {"look", "inspect", "describe", "what"};
+	private static String useLib[] = new String[] {"use", "open", "eat", "wear", "pick", "drop", "destroy", "take"};
+	private static String lookLib[] = new String[] {"look", "check", "inspect", "describe", "what"};
 	private static String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl"};
-	private static String nounLib[] = new String[] {"north", "south", "east", "west"};
+	private static String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory"};
 	//declare noun library - values are added with initializeItemLibrary() in Controller during setup()
 	static ArrayList<String> itemLib = new ArrayList<String>();
 	

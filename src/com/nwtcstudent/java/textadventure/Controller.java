@@ -328,7 +328,7 @@ public class Controller {
  	 */
  	public void initializeItemLibrary() {
  		for (Item i : Controller.itemList.values()) {
- 			Parser.itemLib.add(i.getName());
+ 			Parser.itemLib.add(i.getName().toLowerCase());
  		}
  	}
  	
