@@ -10,6 +10,9 @@ public final class Player {
 	
 	// ### Fields ###
 	
+	// 1.5 Proper use of the Static keyword
+	// 1.6 Proper use of the final keyword
+	// 2.3 Proper use of the Singleton pattern
 	private static final Player instance = new Player();
 	
 	private String name;
@@ -45,87 +48,6 @@ public final class Player {
 	public Inventory getInventory() {
 		
 		return inventory;
-	}
-	
-	// ### Nested Class ###
-	
-	/**
-	 * The inventory of the player.
-	 */
-	public class Inventory {
-		
-		// ### Fields ###
-		
-		// Items in the inventory
-		// 3.2 - Use of an Array List
-		private ArrayList<Item> items;
-		
-		
-		// ### Constructor ###
-		
-		/**
-		 * Initialize the inventory.
-		 */
-		public Inventory() {
-			
-			items = new ArrayList<>();
-		}
-		
-		
-		// ### Methods ###
-		
-		/**
-		 * Get all items from the inventory.
-		 * @return all items from the items list.
-		 */
-		public ArrayList<Item> getAllItems() {
-			
-			return items;
-		}
-		
-		/**
-		 * Print all items in the inventory.
-		 */
-		public void checkInventory()
-		{
-			String joined = getAllItems().toString().replace("[", "").replace("]", " ");
-			
-			System.out.println(joined);
-		}
-		
-		/**
-		 * @param itemIndex the index of the item list.
-		 * @return an item at the requested index.
-		 */
-		public Item getItem(int itemIndex) {
-			
-			// Only try to retrieve the item if the requested index is within the bounds of the list
-			if (itemIndex >= 0 && itemIndex < items.size()) {
-				
-				return items.get(itemIndex);
-			}
-			
-			// Return null otherwise
-			return null;
-		}
-		
-		/**
-		 * Add an item to the inventory.
-		 * @param i the item to be added.
-		 */
-		public void storeItem(Item i) {
-			
-			items.add(i);
-		}
-		
-		/**
-		 * Remove an item from the inventory.
-		 * @param i the item to be removed.
-		 */
-		public void removeItem(Item i) {
-			
-			items.remove(i);
-		}
 	}
 	
 	/**
@@ -182,5 +104,116 @@ public final class Player {
 	public static Player getInstance() {
 		
 		return instance;
+	}
+	
+	// ### Nested Class ###
+	
+	// 1.7 Use of nested classes.
+	/**
+	 * The inventory of the player.
+	 */
+	public class Inventory {
+		
+		// ### Fields ###
+		
+		// Items in the inventory
+		// 3.2 - Use of an Array List
+		private ArrayList<Item> items;
+		
+		
+		// ### Constructor ###
+		
+		/**
+		 * Initialize the inventory.
+		 */
+		public Inventory() {
+			
+			items = new ArrayList<>();
+		}
+		
+		
+		// ### Methods ###
+		
+		/**
+		 * Get all items from the inventory.
+		 * @return all items from the items list.
+		 */
+		public ArrayList<Item> getAllItems() {
+			
+			return items;
+		}
+		
+		/**
+		 * Print all items in the inventory.
+		 */
+		public void checkInventory()
+		{
+			// Create stringbuilder to hold item data
+			StringBuilder output = new StringBuilder("");
+			
+			// Append item data to string
+			// 4.1 Use of a variable in a lambda expression
+			getAllItems().forEach(x -> output.append("\nName: " + x.getName() + "\tID: " + x.getID()));
+			
+			System.out.println(output.toString());
+		}
+		
+		// 1.3 Use of overloaded method
+		/**
+		 * Get an item by its index
+		 * @param itemIndex the index of the item list.
+		 * @return the item at the requested index.
+		 */
+		public Item getItem(int itemIndex) {
+			
+			// Only try to retrieve the item if the requested index is within the bounds of the list
+			if (itemIndex >= 0 && itemIndex < items.size()) {
+				
+				return items.get(itemIndex);
+			}
+			
+			// Return null otherwise
+			return null;
+		}
+		
+		// 1.3 Use of overloaded method
+		/**
+		 * Get an item by the item itself
+		 * @param i the item requested
+		 * @return the item, or null if it could not be found
+		 */
+		public Item getItem(Item i) {
+			
+			Item foundItem = null;
+			
+			// 3.5 Valid use of a foreach statement
+			for (Item item : items) {
+				
+				if (i == item) {
+					
+					foundItem = item;
+				}
+			}
+			
+			return foundItem;
+		}
+		
+		/**
+		 * Add an item to the inventory.
+		 * @param i the item to be added.
+		 */
+		public void storeItem(Item i) {
+			
+			items.add(i);
+		}
+		
+		/**
+		 * Remove an item from the inventory.
+		 * @param i the item to be removed.
+		 */
+		public void removeItem(Item i) {
+			
+			items.remove(i);
+		}
 	}
 }

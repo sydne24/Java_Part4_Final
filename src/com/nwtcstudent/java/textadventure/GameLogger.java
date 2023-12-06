@@ -28,7 +28,10 @@ public final class GameLogger {
 		logger.log(level, message);
 	}
 	
-	// 4.a / 4.9 -- Override of .toString(), proper use of @Override notation
+	// 1.4a / 4.9 -- Override of .toString(), proper use of @Override notation
+	/**
+	 * @return the name of the class
+	 */
 	@Override
 	public String toString() {
 		

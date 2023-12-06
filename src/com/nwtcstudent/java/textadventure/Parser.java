@@ -2,9 +2,11 @@ package com.nwtcstudent.java.textadventure;
 
 import java.util.ArrayList;
 
-public class Parser {
+public final class Parser {
 	
-	// Parser singleton and controller reference
+	// 1.5 Proper use of the Static keyword
+	// 1.6 Proper use of the final keyword
+	// 2.3 Proper use of the Singleton pattern
 	private static final Parser instance = new Parser();
 	private Controller controller;
 	
@@ -14,8 +16,10 @@ public class Parser {
 	private String lookLib[] = new String[] {"look", "check", "inspect", "describe", "what"};
 	private String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl"};
 	private String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory"};
+	
 	//declare noun library - values are added with initializeItemLibrary() in Controller during setup()
-	private ArrayList<String> itemLib = new ArrayList<String>();
+	// 3.2 Use of an array list
+	private ArrayList<String> itemLib = new ArrayList<>();
 	
 	// PARSER METHOD
 	/**

@@ -42,13 +42,20 @@ public class GameDB {
 		stmt = conn.createStatement();
 		
 		// Enabled to recreate the database
-		// The database is not provided through github (for now), so this must be called at least the first time the application is run to initially create the database
-		// Delete or do not include the "foobar" database folder when you upload to github, in order to reduce the file size
 		repairDB();
 	}
 	
-	
 	// ### Methods ###
+	
+	/**
+	 * Close the database connection
+	 * @throws SQLException
+	 */
+	public void closeDB() throws SQLException {
+		
+		// 10.2 - Proper opening and closure of a Database resource
+		conn.close();
+	}
 	
 	/**
 	 * Reset the database. Not called in the standard program execution.
@@ -102,7 +109,7 @@ public class GameDB {
 		stmt.executeUpdate("INSERT INTO Item VALUES(3, 'Heavenly Pizza', 'A box containing your favorite pizza, crafted by celestial chefs. Each bite is pure bliss.', 'The heavenly aroma of your favorite pizza fills the air, bringing unparalleled joy with every slice.', 'FOOD', 7)");
 		stmt.executeUpdate("INSERT INTO Item VALUES(4, 'Mysterious Note', 'A note from the heavens, carrying words of joy and wisdom. It radiates a celestial warmth.', 'The note just says... We''ve been trying to reach you about your car''s extended warranty... You faintly begin to hear Rick Roll music growing louder in the backround...', 'NOTE', 5)");
 		stmt.executeUpdate("INSERT INTO Item VALUES(5, 'Divine Key', 'A radiant key infused with celestial energy. Unlocks the secrets of the heavens.', 'The divine key emanates a gentle glow as it fits perfectly into the lock. A feeling of indescribable peace washes over you as the famous pop singer, Rick Astley, appears before you and begins singing you a song... THE END! Thanks for playing!!!', 'KEY', 4)");
-		stmt.executeUpdate("INSERT INTO Item VALUES(6, 'Enigmatic Orange Wig', 'A vibrant orange wig that somehow looks familiar...', 'As you put on the wig, you can''t help but think of Rick Astley''s infamous song known as The Rick Roll...', 'VANITY', 6)");
+		stmt.executeUpdate("INSERT INTO Item VALUES(6, 'Enigmatic Orange Wig', 'A vibrant orange wig that somehow looks familiar...', 'As you put on the wig, you can''t help but think of Rick Astley''s infamous song known as The Rick Roll...', 'VANITY', 0)");
 
 		// Room
 		stmt.executeUpdate("INSERT INTO Room VALUES(0, 'Enchanted Garden', 'A room filled with glowing flowers and talking trees. You can sense magic in the air.', 'DOOR_0', 'DOOR_1', 'ITEM_0', 'ITEM_1')");
