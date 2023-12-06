@@ -112,7 +112,7 @@ public class Controller {
 	/**
 	 * Retrieve data about the current room.
 	 */
-    public void lookAround() {
+    public static void lookAround() {
     	
     	// Room description will be given when the player decides to LOOK AROUND / LOOK ROOM / INSPECT ROOM / etc
     	// Display current room description
@@ -139,7 +139,7 @@ public class Controller {
     /**
      * Inspect the player's current focus
      */
-    public void inspect() {
+    public static void inspect() {
     	
     	IFocusable currentFocus = player.getCurrentFocus();
     	if (currentFocus != null) {
@@ -152,7 +152,7 @@ public class Controller {
      * Set the player's focus to the item and inspect it
      * @param focus the object to focus on
      */
-    public void inspect(String focusName) {
+    public static void inspect(String focusName) {
     	
     	IFocusable focus = player.getCurrentRoom().getFeature(focusName);
     	
