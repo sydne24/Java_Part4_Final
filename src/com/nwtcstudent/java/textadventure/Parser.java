@@ -63,7 +63,7 @@ public final class Parser {
 	    	return null;
 	    }
 	    
-	    //searches for named items
+	    // Searches for named items
 		for (String checkWord : itemLib) {
 			if (input.contains(checkWord)) {
 				noun = checkWord;
@@ -78,7 +78,7 @@ public final class Parser {
 		for (String word : cleanedInput) {
 			//if you want to make it more complicated, you could restrict comparisons to word size instead of scanning the whole library
 			
-			//only searches and assigns verb or noun if one hasn't already been assigned
+			// Only searches and assigns verb or noun if one hasn't already been assigned
 			if (verb.length() < 1) {
 				verb = getVerb(word);
 			}
