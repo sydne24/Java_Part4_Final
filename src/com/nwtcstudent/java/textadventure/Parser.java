@@ -90,8 +90,22 @@ public final class Parser {
 				 verb.equals("look") && noun.equals("inventory")) {
 			checkInventory();
 		}
+		//handles directionals - move/inspection direction are handled the same on the backend
+		else if (verb.equals("look") && noun.equals("north")){
+			controller.move(noun);
+		}
+		else if (verb.equals("look") && noun.equals("east")) {
+			controller.move(noun);
+		}
+		else if (verb.equals("look") && noun.equals("south")) {
+			controller.move(noun);
+		}
+		else if (verb.equals("look") && noun.equals("west")) {
+			controller.move(noun);
+		}
+		//handles msc noun inspections
 		else if (verb.equals("look") && noun.length() > 0){
-			controller.inspect(noun);
+			controller.move(noun);
 		}
 		
 		//TAKE commands
