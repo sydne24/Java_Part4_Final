@@ -182,7 +182,7 @@ public final class Player {
 		
 		// 1.3 Use of overloaded method
 		/**
-		 * Get an item by the item itself
+		 * Try to get an item by the item itself
 		 * @param i the item requested
 		 * @return the item, or null if it could not be found
 		 */
@@ -195,6 +195,27 @@ public final class Player {
 				
 				// 2.5 Valid object comparison in at least one scenario
 				if (i == item) {
+					
+					foundItem = item;
+				}
+			}
+			
+			return foundItem;
+		}
+		
+		// 1.3 Use of overloaded method
+		/**
+		 * Try to get an item by its name
+		 * @param i the name of the item requested
+		 * @return the item, or null if it could not be found
+		 */
+		public Item getItem(String i) {
+			
+			Item foundItem = null;
+			
+			for (Item item : items) {
+				
+				if (item.getName().equals(i)) {
 					
 					foundItem = item;
 				}
