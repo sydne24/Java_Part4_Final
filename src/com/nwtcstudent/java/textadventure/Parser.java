@@ -14,7 +14,7 @@ public final class Parser {
 	// NOTE: input will be split by space, so phrases like "pick up" will be split into "pick" and "up" in the input array
 	private String useLib[] = new String[] {"use", "open", "eat", "wear",  "drop", "destroy"};
 	private String takeLib[] = new String[] {"pick", "take"};
-	private String lookLib[] = new String[] {"look", "check", "inspect", "describe", "what"};
+	private String lookLib[] = new String[] {"look", "check", "inspect", "describe", "what", "investigate"};
 	private String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl"};
 	private String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory", "around", "room", "dagger", "amulet", "lantern", "pizza", "note", "key", "wig", "door"};
 	
@@ -28,12 +28,11 @@ public final class Parser {
 	 * @param input the input to be parsed.
 	 * @return a Command object with properties noun and verb
 	 */
-	//TODO: this no longer needs to return anything - all action is called from other classes and handled outside this class
 	public void parseInput(String input) {
 		
 		String noun = "";
 		String verb = "";
-		//Command phrase = new Command(); //TODO: remove if no longer needed
+
 		//converts input to lowercase and trims white space
 		input = input.toLowerCase().trim(); 
 		
@@ -51,11 +50,6 @@ public final class Parser {
 	    		input.equals("help please") ||
 	    		input.equals("please help") ) {
 	    	System.out.println(GameInfo.getAvailableCommands());
-	    }
-	    
-	    // Calls help function if player enters 'inventory'
-	    if (input.equals("inventory")) {
-	    	checkInventory();
 	    }
 	    
 	    // Searches for named items as phrase before splitting input string
@@ -92,11 +86,11 @@ public final class Parser {
 			verb.equals("look") && noun.equals("around")) {
 			controller.lookAround();
 		}
-		if (verb.equals("look") && noun.equals("bag") ||
-			verb.equals("look") && noun.equals("inventory")) {
+		else if (verb.equals("look") && noun.equals("bag") ||
+				 verb.equals("look") && noun.equals("inventory")) {
 			checkInventory();
 		}
-		else if (verb.equals("look") && noun.length() > 0) {
+		else if (verb.equals("look") && noun.length() > 0){
 			controller.inspect(noun);
 		}
 		
@@ -145,13 +139,6 @@ public final class Parser {
 			}
 		}
 	}
-		
-		// Account for incomplete input (missing noun/verb)
-		//TODO: re-evaluate if this exact logic is needed with new commands
-//		if (noun.length() == 0 || verb.length() == 0) {
-//			
-//			System.out.println("Unknown command.");
-//		}
 	
 	private String getVerb(String input) {
 		String getVerb = "";
@@ -200,7 +187,8 @@ public final class Parser {
 	
 	private void checkInventory() {
 		//TODO: call check inventory
-		System.out.println("DEVS: Please locate and enter an inventory output method here - Parser.java line 202");
+		Player.getInstance().getInventory().checkInventory();
+		//System.out.println("DEVS: Please locate and enter an inventory output method here - Parser.java line 202");
 	}
 	
 	/**
