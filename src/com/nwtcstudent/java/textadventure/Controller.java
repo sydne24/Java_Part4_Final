@@ -288,7 +288,7 @@ public class Controller {
     	if (player.getCurrentFocus() != null && player.getCurrentFocus().getClass() == Item.class) {
     		
     		Item item = (Item)player.getCurrentFocus();
-    		take(item);
+    		take(item.getName());
     	}
     	else {
     		System.out.println("Please specify an item.");
@@ -299,7 +299,15 @@ public class Controller {
      * Try to take the specified item
      * @param item the item to take.
      */
-    public void take(Item item) {
+    public void take(String itemName) {
+    	
+    	IFocusable requestedFocus = getFocusable(itemName);
+    	Item item = null;
+    	
+    	if (requestedFocus != null && requestedFocus.getClass() == Item.class) {
+    		
+    		item = (Item)requestedFocus;
+    	}
     	
     	if (item != null) {
     		
@@ -343,7 +351,6 @@ public class Controller {
     				System.out.println("The item you wish to take couldn't be found here.");
     			}
     		}
-    		
     	}
     }
     
@@ -406,8 +413,10 @@ public class Controller {
  		return focus;
  	}
  	
+ 	// 1.3 Use of overloaded methods and/or constructors
  	/**
  	 * Try to get a focusable based on the player's current focus
+ 	 * @return the focusable, or null if none was found
  	 */
  	public IFocusable getFocusable() {
  		
@@ -425,17 +434,14 @@ public class Controller {
  		return null;
  	}
  	
+ 	// 1.3 Use of overloaded methods and/or constructors
  	/**
  	 * Initializes the named item list for the Parser
  	 */
  	public void initializeItemLibrary() {
+ 		// 2.1 Use of lambda expressions in at least 5 scenarios
  		// 3.5 Valid use of a foreach statement
- 		for (IFocusable i : Controller.itemList.values()) {
- 			parser.addItemToLib(i);
- 		}
- 		for (IFocusable i : Controller.doorList.values()) {
- 			parser.addItemToLib(i);
- 		}
+ 		itemList.values().forEach(i -> parser.addItemToLib(i));
  	}
  	
 	
@@ -455,13 +461,5 @@ public class Controller {
 	public HashMap<Integer, Room> getRooms() {
 		
 		return roomList;
-	}
-	
-	/**
-	 * @return all doors available in the game.
-	 */
-	public HashMap<Integer, Door> getDoors() {
-	
-	return doorList;
 	}
 }
