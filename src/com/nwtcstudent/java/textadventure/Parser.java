@@ -15,7 +15,7 @@ public final class Parser {
 	private String useLib[] = new String[] {"use", "open", "eat", "wear", "pick", "drop", "destroy", "take"};
 	private String lookLib[] = new String[] {"look", "check", "inspect", "describe", "what"};
 	private String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl"};
-	private String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory", "around", "dagger", "amulet", "lantern", "pizza", "note", "key", "wig"};
+	private String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory", "around", "room", "dagger", "amulet", "lantern", "pizza", "note", "key", "wig", "door"};
 	
 	//declare noun library - values are added with initializeItemLibrary() in Controller during setup()
 	// 3.2 Use of an array list
@@ -28,11 +28,11 @@ public final class Parser {
 	 * @return a Command object with properties noun and verb
 	 */
 	//TODO: this no longer needs to return anything - all action is called from other classes and handled outside this class
-	public Command parseInput(String input) {
+	public void parseInput(String input) {
 		
 		String noun = "";
 		String verb = "";
-		Command phrase = new Command();
+		//Command phrase = new Command(); //TODO: remove if no longer needed
 		//converts input to lowercase and trims white space
 		input = input.toLowerCase().trim(); 
 		
@@ -43,7 +43,6 @@ public final class Parser {
 	    		input.equals("close") ||
 	    		input.equals("close game") ) {
 	    	Controller.endGame();
-	    	return null;
 	    }
 	    
 	    // Calls help function if player enters 'help'
@@ -51,19 +50,9 @@ public final class Parser {
 	    		input.equals("help please") ||
 	    		input.equals("please help") ) {
 	    	System.out.println(GameInfo.getAvailableCommands());
-	    	return null;
 	    }
 	    
-	    // Calls look around function if command includes phrase "look around"
-	    //TODO: consider moving this into the noun/verb parse logic - all of these words have been added to the action/item dictionaries
-	    if (input.contains("look around") ||
-	    		input.contains("look room") ||
-	    		input.contains("inspect room")) {
-	    	controller.lookAround();
-	    	return null;
-	    }
-	    
-	    // Searches for named items
+	    // Searches for named items as phrase before splitting input string
 		for (String checkWord : itemLib) {
 			if (input.contains(checkWord)) {
 				noun = checkWord;
@@ -87,17 +76,69 @@ public final class Parser {
 			}
 		}
 		
-		// Account for incomplete input (missing noun/verb)
-		if (noun.length() == 0 || verb.length() == 0) {
-			
-			System.out.println("Unknown command.");
+		//**BEGIN COMMAND CALLS WITH PARSED INPUT**
+		
+		//LOOK commands
+		if (verb.equals("look") && noun.equals("")) {
+			controller.inspect();
+		}
+		if (verb.equals("look") && noun.equals("room") ||
+			verb.equals("look") && noun.equals("around")) {
+			controller.lookAround();
+		}
+		else if (verb.equals("look") && noun.length() > 0) {
+			controller.inspect(noun);
 		}
 		
-	    // Set and return phrase
-		phrase.verb = verb;
-		phrase.noun = noun;
-		//TODO: this no longer needs to return any information - instead it will call action methods
-		return phrase;
+		//USE commands
+		if (verb.equals("use")) {
+			IFocusable obj = null;
+			if (noun.equals("")) {
+				//if no noun specified, get recent focusable object or kick out for player feedback
+				obj = controller.getFocusable(); 
+				if (obj != null) {
+					//interact with focusable object
+					obj.interact();
+				}
+			}
+			else if (noun.length() > 0) {
+				obj = controller.getFocusable(noun);
+				obj.interact();
+			}
+		}
+		
+		//MOVE commands
+		if (verb.equals("move") && noun.equals("")) {
+			controller.move();
+		}
+		else if (verb.equals("move") && noun.length() > 0) {
+			IFocusable obj = null;
+			//if MOVE DIRECTION
+			if ( (noun.equals("north")) ||
+				 (noun.equals("east")) ||
+				 (noun.equals("south")) ||
+				 (noun.equals("west")) ) {
+				controller.move(noun);
+			}
+			//if MOVE OBJECT
+			else {
+				obj = controller.getFocusable(noun);
+				controller.move(obj);
+			}
+		}
+		
+		// Account for incomplete input (missing noun/verb)
+		//TODO: re-evaluate if this exact logic is needed with new commands
+//		if (noun.length() == 0 || verb.length() == 0) {
+//			
+//			System.out.println("Unknown command.");
+//		}
+		
+//		//TODO: this no longer needs to return any information - instead it will call action methods
+//	    // Set and return phrase
+//		phrase.verb = verb;
+//		phrase.noun = noun;
+//		return phrase;
 	}
 	
 	private String getVerb(String input) {
@@ -123,10 +164,17 @@ public final class Parser {
 	private String getNoun (String input) {
 		String noun = "";	
 		
-		
 		for (String checkWord : nounLib) {
 			if (input.equals(checkWord)) {
 				noun = input;
+				
+			    // Searches for named items
+				for (String namedItem : itemLib) {
+					if (namedItem.contains(noun)) {
+						noun = namedItem;
+						break;
+					}
+				}
 				break;
 			}
 		}
@@ -140,24 +188,24 @@ public final class Parser {
 	 */
 	//1.7 - use of nested class
 	//TODO: this class may no longer be utilized - double check and remove if this is the case
-	static class Command {
-		private String noun;
-		private String verb;
-		
-		public String getNoun() {
-			return noun;
-		}
-		public void setNoun(String noun) {
-			this.noun = noun;
-		}
-		public String getVerb() {
-			return verb;
-		}
-		public void setVerb(String verb) {
-			this.verb = verb;
-		}
-		
-	}
+//	static class Command {
+//		private String noun;
+//		private String verb;
+//		
+//		public String getNoun() {
+//			return noun;
+//		}
+//		public void setNoun(String noun) {
+//			this.noun = noun;
+//		}
+//		public String getVerb() {
+//			return verb;
+//		}
+//		public void setVerb(String verb) {
+//			this.verb = verb;
+//		}
+//		
+//	}
 	
 	/**
 	 * @return the singleton instance of the Parser
