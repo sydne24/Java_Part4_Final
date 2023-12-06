@@ -124,7 +124,9 @@ public final class Parser {
 			}
 			else if (noun.length() > 0) {
 				obj = controller.getFocusable(noun);
-				obj.interact();
+				if (obj != null) {
+					obj.interact();
+				}
 			}
 		}
 		
@@ -144,7 +146,9 @@ public final class Parser {
 			//if MOVE OBJECT
 			else {
 				obj = controller.getFocusable(noun);
-				controller.move(obj);
+				if (obj != null) {
+					controller.move(obj);
+				}
 			}
 		}
 	}
