@@ -4,7 +4,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import java.util.Scanner;
-import org.apache.logging.log4j.Level; 
+import org.apache.logging.log4j.Level;
+import org.ietf.jgss.Oid; 
 
 /**
  * The Controller class initializes and controls the flow of the game
@@ -387,6 +388,42 @@ public class Controller {
  		
  		doorList = db.getDoors(roomList);
  		db.setRoomFeatures(itemList, roomList, doorList);
+ 	}
+ 	
+ 	/**
+ 	 * Try to get the requested focus
+ 	 * @param noun the name of the focusable object
+ 	 * @return the focusable, or null if none was found
+ 	 */
+ 	public IFocusable getFocusable(String noun) {
+ 		
+ 		IFocusable focus = player.getCurrentRoom().getFeature(noun);
+ 		
+ 		if (focus == null) {
+ 			
+ 			focus = player.getInventory().getItem(noun);
+ 		}
+ 		return focus;
+ 	}
+ 	
+ 	/**
+ 	 * Try to get am item from the item list by its name
+ 	 * @param itemName the name of the door
+ 	 * @return the item, or null if none was found
+ 	 */
+ 	public Item getItem(String itemName) {
+ 		
+ 		Item foundItem = null;
+ 		
+ 		for (Item item : itemList.values()) {
+ 			
+ 			if (item.getName().equals(itemName)) {
+ 				
+ 				foundItem = item;
+ 			}
+ 		}
+ 		
+ 		return foundItem;
  	}
  	
  	/**
