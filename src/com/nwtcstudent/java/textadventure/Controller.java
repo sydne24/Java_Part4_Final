@@ -112,7 +112,7 @@ public class Controller {
 	/**
 	 * Retrieve data about the current room.
 	 */
-    public void lookAround() {
+    public static void lookAround() {
     	// Room description will be given when the player decides to LOOK AROUND / LOOK ROOM / INSPECT ROOM / etc
     	// Display current room description
     	System.out.println(player.getCurrentRoom().getDescription());
@@ -138,7 +138,7 @@ public class Controller {
     /**
      * Inspect the player's current focus
      */
-    public void inspect() {
+    public static void inspect() {
     	
     	IFocusable currentFocus = player.getCurrentFocus();
     	if (currentFocus != null) {

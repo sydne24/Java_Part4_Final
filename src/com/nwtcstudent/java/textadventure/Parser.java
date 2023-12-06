@@ -15,7 +15,7 @@ public final class Parser {
 	private String useLib[] = new String[] {"use", "open", "eat", "wear", "pick", "drop", "destroy", "take"};
 	private String lookLib[] = new String[] {"look", "check", "inspect", "describe", "what"};
 	private String moveLib[] = new String[] {"open", "through", "move", "walk", "run", "skip", "jump", "dance", "crawl"};
-	private String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory", "around", "dagger", "amulet", "lantern", "pizza", "note", "key", "wig"};
+	private String nounLib[] = new String[] {"north", "south", "east", "west", "bag", "inventory", "around", "room", "dagger", "amulet", "lantern", "pizza", "note", "key", "wig"};
 	
 	//declare noun library - values are added with initializeItemLibrary() in Controller during setup()
 	// 3.2 Use of an array list
@@ -54,16 +54,7 @@ public final class Parser {
 	    	return null;
 	    }
 	    
-	    // Calls look around function if command includes phrase "look around"
-	    //TODO: consider moving this into the noun/verb parse logic - all of these words have been added to the action/item dictionaries
-	    if (input.contains("look around") ||
-	    		input.contains("look room") ||
-	    		input.contains("inspect room")) {
-	    	controller.lookAround();
-	    	return null;
-	    }
-	    
-	    // Searches for named items
+	    // Searches for named items as phrase before splitting input string
 		for (String checkWord : itemLib) {
 			if (input.contains(checkWord)) {
 				noun = checkWord;
@@ -87,16 +78,29 @@ public final class Parser {
 			}
 		}
 		
+		//BEGIN COMMAND CALLS WITH PARSED INPUT
+		if (verb == "look" && noun == "") {
+			Controller.inspect();
+		}
+		if (verb == "look" && noun == "room" ||
+			verb == "look" && noun == "around") {
+			Controller.lookAround();
+		}
+		else if (verb == "look" && noun.length() > 0) {
+			Controller.inspect(noun);
+		}
+		
 		// Account for incomplete input (missing noun/verb)
+		//TODO: re-evaluate if this exact logic is needed with new commands
 		if (noun.length() == 0 || verb.length() == 0) {
 			
 			System.out.println("Unknown command.");
 		}
 		
+		//TODO: this no longer needs to return any information - instead it will call action methods
 	    // Set and return phrase
 		phrase.verb = verb;
 		phrase.noun = noun;
-		//TODO: this no longer needs to return any information - instead it will call action methods
 		return phrase;
 	}
 	
@@ -123,10 +127,17 @@ public final class Parser {
 	private String getNoun (String input) {
 		String noun = "";	
 		
-		
 		for (String checkWord : nounLib) {
 			if (input.equals(checkWord)) {
 				noun = input;
+				
+			    // Searches for named items
+				for (String namedItem : itemLib) {
+					if (namedItem.contains(noun)) {
+						noun = namedItem;
+						break;
+					}
+				}
 				break;
 			}
 		}
